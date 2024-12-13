@@ -5,11 +5,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class TestController {
-    // 홈
+    // 메인
     @GetMapping("/")
     public String home() throws Exception{
         return "index";
     }
+
+
+    // 비즈니스출장
+    @GetMapping("/corpTour")
+    public String corpTour() throws Exception{
+        return "corpTour";
+    }
+    // 학회/협회
+    @GetMapping("/conference")
+    public String conference() throws Exception{
+        return "conference";
+    }
+    // 견적문의
+    @GetMapping("/inquire")
+    public String inquire() throws Exception{
+        return "inquire";
+    }
+    // 회사소개
+    @GetMapping("/introduce")
+    public String introduce() throws Exception{
+        return "introduce";
+    }
+
+
+
+
 
     // generic
     @GetMapping("/generic")
