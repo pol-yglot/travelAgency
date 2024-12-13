@@ -10,8 +10,11 @@ public class TestController {
     public String home() throws Exception{
         return "index";
     }
-
-
+    // 공지사항
+    @GetMapping("/noti")
+    public String noti() throws Exception{
+        return "noti";
+    }
     // 비즈니스출장
     @GetMapping("/corpTour")
     public String corpTour() throws Exception{
@@ -32,10 +35,6 @@ public class TestController {
     public String introduce() throws Exception{
         return "introduce";
     }
-
-
-
-
 
     // generic
     @GetMapping("/generic")
