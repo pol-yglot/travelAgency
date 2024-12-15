@@ -25,6 +25,11 @@ public class TestController {
     public String conference() throws Exception{
         return "conference";
     }
+    // 학회/협회
+    @GetMapping("/incentive")
+    public String incentive() throws Exception{
+        return "incentive";
+    }
     // 견적문의
     @GetMapping("/inquire")
     public String inquire() throws Exception{
