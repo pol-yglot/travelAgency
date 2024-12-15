@@ -13,7 +13,7 @@ public class TestController {
     // 공지사항
     @GetMapping("/noti")
     public String noti() throws Exception{
-        return "noti";
+        return "bbs/noti";
     }
     // 비즈니스출장
     @GetMapping("/corpTour")
@@ -35,14 +35,10 @@ public class TestController {
     public String introduce() throws Exception{
         return "introduce";
     }
-
-    // generic
     @GetMapping("/generic")
     public String generic() throws Exception{
         return "generic";
     }
-
-    // elements
     @GetMapping("/elements")
     public String elements() throws Exception{
         return "elements";

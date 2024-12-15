@@ -5,66 +5,12 @@
     <!-- Footer -->
     <footer id="footer">
         <div class="inner">
-            <section>
-                <h2>간편문의</h2>
-                <form action="#" method="post">
-                    <div class="fields">
-                        <div class="field half">
-                            <input id="coprNm" name="coprNm" placeholder="회사명" type="text">
-                        </div>
-                        <div class="field half">
-                            <input id="name" name="name" placeholder="고객명" type="text">
-                        </div>
-                        <div class="field half">
-                            <input id="dept" name="dept" placeholder="소속부서" type="text">
-                        </div>
-                        <div class="field half">
-                            <input id="role" name="role" placeholder="직함" type="text">
-                        </div>
-                        <div class="field half">
-                            <input id="email" name="email" placeholder="이메일" type="email">
-                        </div>
-                        <div class="field half">
-                            <input id="phone" name="phone" placeholder="전화번호" type="text">
-                        </div>
-                        <div class="field">
-                            <div class="textarea-wrapper"><div class="textarea-wrapper"><textarea id="message" name="message" placeholder="메시지" rows="1" style="overflow: hidden; resize: none; height: 59px;"></textarea></div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <select id="quickQuestSel">
-                                <option value="">선택하세요</option>
-                                <option value="">기업 출장 서비스</option>
-                                <option value="">학회/협회 행사</option>
-                                <option value="">기타문의</option>
-                            </select>
-                        </div>
-                    </div>
-                    <ul class="actions">
-                        <li><input class="primary" type="submit" value="Send"></li>
-                    </ul>
-                </form>
-            </section>
-            <section>
-                <h2>Follow</h2>
-                <ul class="icons">
-                    <!--<li><a class="icon brands style2 fa-twitter" href="#"><span class="label">Twitter</span></a></li>-->
-                    <!--<li><a class="icon brands style2 fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>-->
-                    <li><a class="icon brands style2 fa-instagram" href="#"><span class="label">Instagram</span></a>
-                    </li>
-                    <!--<li><a class="icon brands style2 fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>-->
-                    <!--<li><a class="icon brands style2 fa-github" href="#"><span class="label">GitHub</span></a></li>-->
-                    <!--<li><a class="icon brands style2 fa-500px" href="#"><span class="label">500px</span></a></li-->
-                    <!--<li><a class="icon solid style2 fa-phone" href="#"><span class="label">Phone</span></a></li>-->
-                    <!--<li><a class="icon solid style2 fa-envelope" href="#"><span class="label">Email</span></a></li>-->
-                </ul>
-            </section>
             <section style="display: block;text-align: left;">
 
                 <h2 style="margin: 1rem 0">투어여행사</h2>
-                <span> djWJrn | kajsdas </span><br>
+                <span> 사업자번호 : 12345-67890 | 대표 : 홍길동 </span><br>
                 <span>
-                    djWJrn | kajsdas | akhsdj | daskjhdasd | sadsadasd
+                    <a th:href="@{/introduce}">회사소개</a> | <a>오시는길</a> | <a>공지사항</a> | <a>고객센터</a> | <a>자주묻는질문</a>
                 </span>
 
                 <ul style="
@@ -74,9 +20,23 @@
                     ">
                     <li style="padding: 0 0;">
                         <a href="/noti">
-                            <span class="label">[공지] 투어여행사 개인정보처리방침 공지</span>
+                            <span class="label"><a th:href="@{/noti}">[공지] 투어여행사 개인정보처리방침 공지</a></span>
                         </a>
                     </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Follow</h2>
+                <ul class="icons">
+                    <!--<li><a class="icon brands style2 fa-twitter" th:href="@{/}"><span class="label">Twitter</span></a></li>-->
+                    <li><a class="icon brands style2 fa-facebook-f" th:href="@{/}"><span class="label">Facebook</span></a></li>
+                    <li><a class="icon brands style2 fa-instagram" th:href="@{/}"><span class="label">Instagram</span></a>
+                    </li>
+                    <!--<li><a class="icon brands style2 fa-dribbble" th:href="@{/}"><span class="label">Dribbble</span></a></li>-->
+                    <li><a class="icon brands style2 fa-github" target="_blank" th:href="@{https://github.com/pol-yglot/travelAgency}"><span class="label">GitHub</span></a></li>
+                    <!--<li><a class="icon brands style2 fa-500px" th:href="@{/}"><span class="label">500px</span></a></li-->
+                    <!--<li><a class="icon solid style2 fa-phone" th:href="@{/}"><span class="label">Phone</span></a></li>-->
+                    <!--<li><a class="icon solid style2 fa-envelope" th:href="@{/}"><span class="label">Email</span></a></li>-->
                 </ul>
             </section>
             <ul class="copyright">

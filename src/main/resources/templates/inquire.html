@@ -24,39 +24,326 @@
 			<section>
 				<h2>견적문의</h2>
 				<form action="#" method="post">
-					<div class="fields">
-						<div class="field half">
-							<input id="coprNm" name="coprNm" placeholder="회사명" type="text"/>
-						</div>
-						<div class="field half">
-							<input id="name" name="name" placeholder="고객명" type="text"/>
-						</div>
-						<div class="field half">
-							<input id="dept" name="dept" placeholder="소속부서" type="text"/>
-						</div>
-						<div class="field half">
-							<input id="role" name="role" placeholder="직함" type="text"/>
-						</div>
-						<div class="field half">
-							<input id="email" name="email" placeholder="이메일" type="email"/>
-						</div>
-						<div class="field half">
-							<input id="phone" name="phone" placeholder="전화번호" type="text"/>
-						</div>
-						<div class="field">
-							<textarea id="message" name="message" placeholder="메시지"></textarea>
-						</div>
-						<div class="field">
-							<select id="quickQuestSel">
-								<option value="">선택하세요</option>
-								<option value="">기업 출장 서비스</option>
-								<option value="">학회/협회 행사</option>
-								<option value="">기타문의</option>
-							</select>
-						</div>
+					<div class="tbl">
+						<table class="type2">
+							<colgroup>
+								<col style="width: 18%;">
+								<col>
+							</colgroup>
+							<tbody>
+							<tr>
+								<th><span class="impt">제목</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<input maxlength="30" placeholder="제목을 입력해 주세요" style="width: 380px;" title="제목" type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">고객유형</span></th>
+								<td>
+									<span class="form_holder radio"><input class="inpt_radio" id="radioDefault01" name="radioDefault" type="radio" value="법인">
+										<label class="label_radio" for="radioDefault01">법인</label>
+									</span>
+									<span class="form_holder radio">
+										<input class="inpt_radio" id="radioDefault02" name="radioDefault" type="radio" value="개인">
+										<label class="label_radio" for="radioDefault02">개인</label>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">단체성격</span></th>
+								<td>
+									<div class="form_holder select">
+										<div class="select_item w250">
+											<select>
+												<option value="">선택하세요</option>
+												<option value="회사단체">회사단체</option>
+												<option value="기관단체">기관단체</option>
+												<option value="학교단체">학교단체</option>
+												<option value="기타">기타</option>
+											</select>
+										</div>
+										<input maxlength="30" placeholder="단체 성격을 입력해 주세요." readonly="readonly" style="width: 380px;" title="단체의 성격" type="text">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">문의성격</span></th>
+								<td>
+									<div class="select_item w250">
+										<select>
+											<option value="">선택하세요</option>
+											<option value="출장(항공/호텔) 문의">출장(항공/호텔) 문의</option>
+											<option value="기업/단체행사 견적 문의">기업/단체행사 견적 문의</option>
+											<option value="회원 복지 문의">회원 복지 문의</option>
+											<option value="투어여행사 문의">투어여행사 문의</option>
+											<option value="기타 제휴 문의">기타 제휴 문의</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">법인명</span></th>
+								<td>
+									<div class="form_wrap">
+										<span>
+											<input maxlength="30" placeholder="법인명을 입력해 주세요." style="width: 380px;" title="법인명" type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">법인소재지</span></th>
+								<td>
+									<div class="select_item w250">
+										<select>
+											<option value="서울특별시">서울특별시</option>
+											<option value="경기도">경기도</option>
+											<option value="강원도">강원도</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">소속부서/직급</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<input maxlength="30" placeholder="소속부서와 직급을 입력해 주세요."
+																							style="width: 380px;"
+																							title="소속부서/직급"
+																							type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">작성자</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+										<input maxlength="10" placeholder="이름을 입력해 주세요."
+																							style="width: 380px;"
+																							title="작성자"
+																							type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">휴대전화</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<input maxlength="11" placeholder="휴대전화를 입력해 주세요."
+																							style="width: 380px;"
+																							title="휴대전화"
+																							type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>일반전화</th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<input maxlength="15" placeholder="일반전화를 입력해 주세요."
+																							style="width: 380px;"
+																							title="일반전화"
+																							type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">생년월일</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<input maxlength="8" placeholder="생년월일을 입력해 주세요. 예)19991111"
+																							style="width: 380px;"
+																							title="생년월일"
+																							type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">이메일</span></th>
+								<td>
+									<div class="form_holder">
+										<input maxlength="30" placeholder="이메일 주소를 입력해 주세요." style="width: 200px;"
+																	title="이메일 주소"
+																	type="text">
+										<span class="divider">@</span>
+										<div class="select_item w250">
+											<select>
+												<option value="naver.com">naver.com</option>
+												<option value="daum.net">daum.net</option>
+												<option value="hanmail.net">hanmail.net</option>
+												<option value="nate.com">nate.com</option>
+												<option value="gmail.com">gmail.com</option>
+											</select>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">비밀번호</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<input autocomplete="off" maxlength="16"
+																							placeholder="비밀번호를 입력해 주세요."
+																							style="width: 380px;"
+																							title="비밀번호"
+																							type="password">
+										</span>
+									</div>
+									<p>
+										※ <em>8~16 자리의 영문 대/소문자, 숫자, 특수문자 중 2개 이상</em>을 조합해서 설정
+										해주시기 바랍니다.
+									</p></td>
+							</tr>
+							<tr>
+								<th><span class="impt">여행기간</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder mr0">
+											<button class="calandar" id="departDt" type="button"><span>출국일 선택</span></button>
+											<button class="calandar" id="returnDt" type="button"><span>귀국일 선택</span></button>
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">출발지</span></th>
+								<td>
+									<div class="form_wrap"><span class="form_holder"><input maxlength="30" placeholder="출발지를 입력해 주세요."
+																							style="width: 380px;"
+																							title="출발지"
+																							type="text"></span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">목적지</span></th>
+								<td>
+									<div class="form_wrap"><span class="form_holder"><input maxlength="30" placeholder="목적지를 입력해 주세요."
+																							style="width: 380px;"
+																							title="목적지"
+																							type="text"></span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="impt">인원선택</span></th>
+								<td>
+									<div class="form_wrap">
+										<span class="form_holder">
+											<span class="fl" style="line-height: 40px; margin-right: 10px;">성인</span>
+											<input class="inpt_text v-placeholder w220" maxlength="4" placeholder="인원 (명)" title="성인" type="text">
+										</span>
+										<span class="form_holder">
+											<span class="fl" style="line-height: 40px; margin-right: 10px;">아동</span>
+											<input class="inpt_text v-placeholder w220" maxlength="4" placeholder="인원 (명)" title="아동" type="text">
+										</span>
+										<span class="form_holder">
+											<span class="fl" style="line-height: 40px; margin-right: 10px;">유아</span>
+											<input class="inpt_text v-placeholder w220" maxlength="4" placeholder="인원 (명)" title="유아" type="text">
+										</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>요청사항</th>
+								<td>
+									<div class="form_holder">
+										<textarea class="w827" maxlength="500" placeholder="최대 500자까지 입력 가능합니다. 요청사항 작성 시 개인정보를 입력하지 않도록 유의하여 견적문의 관련 상세 내용을 자유롭게 작성해 주세요." rows="10">
+										</textarea>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									개인정보 수집 및<br>
+									이용 동의 안내(필수)
+								</th>
+								<td>
+									<div class="text_wrap w827 mt0 mb10"><p class="mt0">
+										고객님은 아래 개인정보 수집, 이용에 관한 동의를 거부할 권리가 있습니다.
+										<br>
+										단, 동의 거부 시 투어여행사(기업출장/단체) 견적 안내 및 상담이 불가함을 안내 드립니다.
+									</p></div>
+									<div class="tbl">
+										<table class="type_trabiz w827">
+											<colgroup>
+												<col width="15%">
+												<col>
+												<col width="25%">
+												<col width="25%">
+											</colgroup>
+											<thead>
+											<th>구분</th>
+											<th>개인정보 수집항목</th>
+											<th>수집 및 이용목적</th>
+											<th>보유 및 이용기간</th>
+											</thead>
+											<tbody>
+											<tr>
+												<td>필수정보</td>
+												<td><p>(법인고객)담당자 성명, 소속부서/직급, 생년월일, 휴대전화번호, 이메일</p>
+													<p>(개인고객)대표자 성명, 생년월일, 휴대전화번호, 이메일</p></td>
+												<td>투어여행사(기업출장/단체) 견적 안내 및 상담</td>
+												<td><b>수집일로부터 6개월 후 파기</b></td>
+											</tr>
+											<tr>
+												<td>선택정보</td>
+												<td><p>(법인고객)일반전화</p>
+													<p>(개인고객)일반전화</p></td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="text_wrap mt20"><strong class="tit">위 개인정보 수집 및 이용에 동의하십니까?</strong>
+									</div>
+									<div class="form_wrap mt10"><span class="form_holder radio"><input class="inpt_radio"
+																									   id="chk_agree01"
+																									   name="chk_agree"
+																									   type="radio"
+																									   value="Y"> <label
+											class="label_radio" for="chk_agree01">동의합니다</label></span> <span
+											class="form_holder radio"><input class="inpt_radio" id="chk_agree02" name="chk_agree"
+																			 type="radio" value="N"> <label
+											class="label_radio" for="chk_agree02">동의하지 않습니다.</label></span></div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+						<ul class="list_bul billiard">
+							<li>
+								필수사항 항목들은 반드시 기재해주셔야 투어여행사(기업출장/단체) 견적문의 등록이
+								가능합니다.
+							</li>
+							<li>
+								업무 처리 시간은 평일 기준 09:00~18:00로 게시판 답변은 문의 내용 및 성격에 따라 지연 될 수
+								있습니다. 이점 양해 부탁드립니다.
+							</li>
+							<li>
+								견적 요청으로 나온 상품 가격은 원가 뿐만 아니라 기획료, 가이드/기사경비, 당사의 이익 등을
+								포함한 금액입니다.
+							</li>
+						</ul>
 					</div>
+
 					<ul class="actions">
-						<li><input class="primary" type="submit" value="Send"/></li>
+						<li><input class="primary" type="submit" value="신청하기"/></li>
+						<li><input class="primary" type="reset" value="초기화"/></li>
+						<li><input class="primary" type="button" value="나가기"/></li>
 					</ul>
 				</form>
 			</section>
