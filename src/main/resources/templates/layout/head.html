@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="headFragment">
+    <head>
+        <title>Future Imperfect</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+        <!-- favicon 설정 -->
+        <link rel="shortcut icon" href="#">
+        <!-- 공통 css -->
+        <link rel="stylesheet" th:href="@{assets/css/main.css}"/>
+        <!-- jQuery CDN -->
+        <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+        <script th:src="@{assets/js/main.js}"></script>
+    </head>
+</th:block>
+</html>

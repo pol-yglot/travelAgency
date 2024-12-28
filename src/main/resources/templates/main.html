@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<!-- config -->
+<th:block th:replace="/layout/head :: headFragment"></th:block>
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- header -->
+    <header th:replace="~{layout/header :: headerFragment}"></header>
+    <!-- content -->
+    <div id="main">
+
+        <article class="post">
+            <header>
+                <div class="title">
+                    <p>기업여행 서비스</p>
+                    <h2><a href="single.html">트래비즈</a></h2>
+                    <p>출장 항공권부터 MICE 기업행사까지 <br/> 트래비즈가 함께 하겠습니다.</p>
+                    <div class="two-btn">
+                        <ul class="two-btn-list">
+                            <li class="two-btn-item">견적 문의 하기</li>
+                            <li class="two-btn-item">견적 조회 하기</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+        </article>
+        <section>
+            <div class="mini-posts">
+
+                <!-- Mini Post -->
+                <article class="mini-post">
+                    <header>
+                        <h3><a href="single.html">출장</a></h3>
+                        <time class="published" datetime="2015-10-20">October 20, 2015</time>
+                        <a href="#" class="author"><img src="images/avatar.jpg" alt=""></a>
+                    </header>
+                    <a href="single.html" class="image"><img src="images/pic04.jpg" alt=""></a>
+                </article>
+
+                <!-- Mini Post -->
+                <article class="mini-post">
+                    <header>
+                        <h3><a href="single.html">MICE</a></h3>
+                        <time class="published" datetime="2015-10-19">October 19, 2015</time>
+                        <a href="#" class="author"><img src="images/avatar.jpg" alt=""></a>
+                    </header>
+                    <a href="single.html" class="image"><img src="images/pic05.jpg" alt=""></a>
+                </article>
+
+                <!-- Mini Post -->
+                <article class="mini-post">
+                    <header>
+                        <h3><a href="single.html">복지</a></h3>
+                        <time class="published" datetime="2015-10-18">October 18, 2015</time>
+                        <a href="#" class="author"><img src="images/avatar.jpg" alt=""></a>
+                    </header>
+                    <a href="single.html" class="image"><img src="images/pic06.jpg" alt=""></a>
+                </article>
+
+                <!-- Mini Post -->
+                <article class="mini-post">
+                    <header>
+                        <h3><a href="single.html">여행</a></h3>
+                        <time class="published" datetime="2015-10-17">October 17, 2015</time>
+                        <a href="#" class="author"><img src="images/avatar.jpg" alt=""></a>
+                    </header>
+                    <a href="single.html" class="image"><img src="images/pic07.jpg" alt=""></a>
+                </article>
+
+            </div>
+        </section>
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2>트래비즈 멤버쉽 혜택</h2>
+                    <div class="two-btn">
+                        <ul class="two-btn-list">
+                            <li class="two-btn-item">법인 마일리지 적립</li>
+                            <li class="two-btn-item">법인 마일리지 사용</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <style>
+                .two-btn {
+                    text-align: center; /* 가운데 정렬 */
+                }
+
+                .two-btn-list {
+                    display: flex; /* 가로 배열 */
+                    justify-content: center; /* 가로 가운데 정렬 */
+                    gap: 15px; /* 항목 간 간격 */
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .two-btn-item {
+                    padding: 10px 20px;
+                    background-color: #ffffff;
+                    border-radius: 4px;
+                    border: 1px solid #e0e0e0;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: background-color 0.3s, transform 0.3s;
+                    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+                }
+
+                .two-btn-item:hover {
+                    background-color: #f1f1f1;
+                    transform: translateY(-2px);
+                    cursor: pointer;
+                }
+                @media (min-width: 800px) {
+                    .two-btn-list {
+                        justify-content: left;
+                    }
+                }
+            </style>
+        </article>
+        <footer th:replace="~{layout/footer :: footerFragment}"></footer>
+    </div>
+</div>
+</body>
+</html>
