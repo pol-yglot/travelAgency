@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+    context-path: /
+    session:
+      timeout: 60m
+      
+spring:
+  application:
+    name: travelAgency
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/travelAgency
+    username: syyoo
+    password: 1234
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+  mybatis:
+    mapper-location: mappers/*.xml
+  security:
+    user:
+      name: test
+      password: 1234
+      roles: USER,ADMIN
+
