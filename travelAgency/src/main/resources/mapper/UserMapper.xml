@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travelagency.mapper.UserMapper">
+    <!-- <resultMap id="UserVOMap" type="com.example.travelagency.vo.UserVO">
+        <result property="USER_ID" column="USER_ID"/>
+        <result property="USER_ACCOUNT" column="USER_ACCOUNT"/>
+        <result property="USER_PASSWORD" column="USER_PASSWORD"/>
+        <result property="USER_NAME" column="USER_NAME"/>
+        <result property="USER_PHONE" column="USER_PHONE"/>
+        <result property="CREATED_AT" column="CREATED_AT"/>
+        <result property="UPDATED_AT" column="UPDATED_AT"/>
+    </resultMap> -->
+
+    <select id="getAllUser" resultMap="com.example.travelagency.vo.UserVO">
+        SELECT USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT FROM TB_USER
+    </select>
+</mapper>

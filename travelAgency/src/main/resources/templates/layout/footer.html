@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<footer id="footer" th:fragment="footerFragment">
+    <ul class="terms">
+        <li><a th:href="@{/service/introduce}" target="_blank" class="term">회사소개</a></li>
+        <li><a th:href="@{/}" class="term">이용약관</a></li>
+        <li><a th:href="@{/}" class="term">개인정보처리방침</a></li>
+        <li><a th:href="@{/}" class="term">여행약관</a></li>
+        <li><a th:href="@{/}" class="term">해외여행자보험</a></li>
+    </ul>
+    <ul class="captions">
+        <li><a href="#" class="caption">(주)투어비즈</a></li>
+        <li><span class="caption">대표 : 홍길동</span></li>
+        <li><span class="caption">서울특별시 을지로3가 125</span></li>
+        <li><span class="caption">사업자번호 : 000-00-00000</span></li>
+        <li><span class="caption">관광사업자 등록번호 : 제0000-000000호</span></li>
+        <li><a th:href="@{/popup/overlay(type='bzno')}" class="caption" style="font-weight: bold;">사업자정보확인</a></li>
+        <li><span class="caption">등록관청 : 서울특별시 종로구청</span></li>
+        <li><span class="caption">개인정보 보호책임자 : 홍길동</span></li>
+        <li><span class="caption">팩스 : 02-000-0000</span></li>
+        <li><span class="caption">이메일 : 1111111@gmail.com</span></li>
+    </ul>
+    <ul class="customer-infos">
+        <li><span>고객센터 0000-0000</span></li>
+        <li><span>항공예약문의 0000-0000</span></li>
+    </ul>
+    <ul class="notice">
+        <li>부득이한 사정에 의해 여행일정이 변경되는 경우 사전 동의를 받습니다.</li>
+        <li>개별 항공권 및 일부 상품에 대해 통신판매중개자의 지위를 가지며, 해당 상품의 정보 및 거래 등에 관한 책임은 판매자에게 있습니다.</li>
+        <li>예금주 0000이 아닌 계좌(개인,대리점 등)로 입금하실 경우 당사에 대한 유효한 지급액이 아니며, 당사는 책임지지 않습니다.</li>
+    </ul>
+</footer>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="headerFragment">
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="/images/logo/logo-none.png" style="width: 150px;">
+            </a>
+            <div class="user-actions">
+                <button class="dark-mode-toggle">다크 모드</button>
+                <a href="user/login" th:href="@{/user/login}" class="login-btn" th:unless="${#authentication.isAuthenticated()}">로그인</a>
+                <a href="user/profile" th:href="@{/user/profile}" class="profile-btn" th:if="${#authentication.isAuthenticated()}">프로필</a>
+                <a href="user/logout" th:href="@{/user/logout}" class="logout-btn" th:if="${#authentication.isAuthenticated()}">로그아웃</a>
+            </div>
+        </div>
+    </header>
+    <button id="topBtn">TOP ▲</button>
+</th:block>
+</html>

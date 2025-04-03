@@ -1,10 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="ko">
+<th:block th:replace="/layout/head :: headFragment"></th:block>
 <body>
-sdsds
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>성공적인 비즈니스 출장을 위한 최적의 파트너</h1>
+            <p>맞춤형 출장 솔루션과 프리미엄 서비스를 경험하세요.</p>
+            <a href="/service/inquiry" th:href="@{/service/inquiry}" class="cta-btn">지금 바로 문의하기</a>
+        </div>
+        <div class="hero-image">
+            <img src="/images/main/hero.jpg" alt="출장 이미지">
+        </div>
+    </section>
+
+    <section class="client-logos">
+        <h2>고객사 로고</h2>
+        <div class="logo-list">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 1">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 2">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 3">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 4">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 5">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 6">
+            <img src="/images/clients/naver-logo.png" alt="고객사 로고 7">
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>주요 서비스</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3>항공권 예약</h3>
+                <p>최적의 항공편과 합리적인 가격을 제공합니다.</p>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service2.gif" alt="호텔 예약">
+                <h3>호텔 예약</h3>
+                <p>편안하고 안전한 비즈니스 호텔을 예약해드립니다.</p>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service3.gif" alt="렌터카 예약">
+                <h3>렌터카 예약</h3>
+                <p>목적지까지 편리하게 이동할 수 있도록 렌터카를 제공합니다.</p>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service4.gif" alt="출장 맞춤 컨설팅">
+                <h3>출장 맞춤 컨설팅</h3>
+                <p>성공적인 출장을 위한 맞춤형 컨설팅 서비스를 제공합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>문의하기</h2>
+        <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
+            <table class="form-table">
+                <!--<colgroup>
+                    <col style="width: 20%">
+                </colgroup>-->
+                <tr>
+                    <td class="col1"> 성명 <span class="warn">*</span></td>
+                    <label class="label-form" for="username"></label>
+                    <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                    <label class="label-form" for="tel"></label>
+                    <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 이메일 <span class="warn">*</span></td>
+                    <label class="label-form" for="email"></label>
+                    <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 유형 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="radio" name="personal" id="personal" checked>
+                        <label for="personal">개인</label>
+                        <input type="radio" name="copr" id="copr">
+                        <label for="personal">기업</label>
+                        <input type="radio" name="org" id="org">
+                        <label for="personal">단체</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1"> 문의구분 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
+                        <label for="businesstrip">출장</label>
+                        <input type="checkbox" name="edu" id="edu">
+                        <label for="edu">연수/교육</label>
+                        <input type="checkbox" name="conference" id="conference">
+                        <label for="conference">학회/협회</label>
+                        <input type="checkbox" name="etc" id="etc">
+                        <label for="etc">기타</label>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col1"> 문의내용 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 99%;height: 18em; "></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">견적문의</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+</main>
+<footer th:replace="~{layout/footer :: footerFragment}"></footer>
 </body>
 </html>
