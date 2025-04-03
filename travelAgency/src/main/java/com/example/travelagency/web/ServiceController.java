@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping(value = "service")
 public class ServiceController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceController.class);
 
     @GetMapping("/services")
     public String services() {

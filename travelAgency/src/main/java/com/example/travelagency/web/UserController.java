@@ -17,14 +17,13 @@ import java.util.List;
 @RequestMapping(value = "user")
 public class UserController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
-
     @GetMapping("/userList")
     public String userList() {
-        List<UserVO> userList = userService.getAllUser();
         return "user/userList";
     }
     @GetMapping("/login")
