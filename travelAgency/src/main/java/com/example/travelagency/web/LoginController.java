@@ -45,13 +45,22 @@ public class LoginController {
             }
         } else { // 사용자 로그인
             try {
+                
+                // 미가입고객
+                if(!userService.isUserExist(inputId)){
+                    LOGGER.warn("없는 고객!");
+                    model.addAttribute("error", "회원 정보가 없습니다. 회원가입을 진행해주세요.");
+                    return "user/signup"; 
+                }
+
+                // 가입고객
                 UserVO user = userService.getUser(inputId);
 
                 // 비밀번호 해싱 비교 필요
                 if (user != null && user.getUSER_ACCOUNT().equals(inputId) && user.getUSER_PASSWORD().equals(password)) {
                     session.setAttribute("user", user); // 세션에 사용자 정보 저장
                     LOGGER.info("사용자 로그인 성공!");
-                    return "redirect:/home";
+                    return "redirect:/";
                 } else {
                     LOGGER.warn("사용자 로그인 실패!");
                     model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -73,7 +82,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // 세션 만료
-        return "redirect:/home";
+        return "redirect:/";
     }
 
 }

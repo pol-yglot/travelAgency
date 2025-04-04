@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserService {
     List<UserVO> getAllUser();
     UserVO getUser(String inputId);
+    boolean isUserExist(String inputId);
+    UserVO login(String inputId, String inputPassword);
 }

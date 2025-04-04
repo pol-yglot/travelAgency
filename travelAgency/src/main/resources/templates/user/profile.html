@@ -11,8 +11,8 @@
             <div class="profile-background"></div>
             <div class="profile-avatar">
                 <div class="profile-info">
-                    <h2>홍길동님, 안녕하세요! :)</h2>
-                    <p>example@google.com</p>
+                    <h2 th:text="${user.USER_NAME} + '님, 안녕하세요! :)'"></h2>
+                    <p th:text="${user.USER_EMAIL}"></p>
                 </div>
                 <img src="/images/profile/avatar.jpg" alt="프로필 사진">
             </div>

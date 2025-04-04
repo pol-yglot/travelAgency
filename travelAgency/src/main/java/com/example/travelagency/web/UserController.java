@@ -1,10 +1,13 @@
 package com.example.travelagency.web;
 
 import com.example.travelagency.service.UserService;
+import com.example.travelagency.vo.UserVO;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -21,12 +24,11 @@ public class UserController {
         return "user/userList";
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "/home";
-    }
     @GetMapping("/profile")
-    public String profile() {
+    public String profile(HttpSession session, Model model) {
+        // 로그인 시 세션에 올린 사용자 정보를 재사용
+        UserVO user = (UserVO) session.getAttribute("user");
+        model.addAttribute("user", user);
         return "user/profile";
     }
 
