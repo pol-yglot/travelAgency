@@ -12,7 +12,15 @@
         <result property="UPDATED_AT" column="UPDATED_AT"/>
     </resultMap>
 
-    <select id="getAllBoard" resultMap="BoardVOResultMap">
-        SELECT * FROM tb_board
+    <select id="getAllBoardPaged" resultMap="BoardVOResultMap">
+        SELECT *
+        FROM tb_board
+        ORDER BY BOARD_ID DESC LIMIT #{limit} OFFSET #{offset}
     </select>
+
+    <select id="getTotalBoardCount" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_board
+    </select>
+
 </mapper>

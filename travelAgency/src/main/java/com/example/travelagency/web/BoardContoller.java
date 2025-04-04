@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.example.travelagency.vo.PageInfo;
 
 import java.util.List;
 
@@ -27,10 +29,13 @@ public class BoardContoller {
     }
 
     @GetMapping("/boardList")
-    public String boardList(Model model) {
-        List<BoardVO> boardList = boardService.getAllBoard();
-        model.addAttribute("boardList", boardList);
-        LOGGER.debug("게시글 리스트 {}",boardList.toString());
+    public String boardList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        PageInfo<BoardVO> pageInfo = boardService.getAllBoard(page);
+        LOGGER.debug("페이지 수  :::::: {}",pageInfo.getPageSize());
+
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("boardList", pageInfo.getItems());
+        model.addAttribute("title", "게시판"); // 제목 추가 (템플릿에서 사용)
         return "board/boardList";
     }
 
