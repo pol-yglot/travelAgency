@@ -1,6 +1,11 @@
 /* 공통 스타일 */
 body {
-    font-family: 'Arial', sans-serif;
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
     margin: 0;
     padding: 0;
     color: #333;
@@ -83,7 +88,7 @@ img {
 }
 
 .nav-menu a:hover {
-    background-color: var(--brand-highlight-color);
+    background: var(--brand-highlight-color);
 }
 .dark-mode .nav-menu{
     color: #eee;
@@ -108,7 +113,7 @@ img {
 }
 
 .user-actions a:hover,button:hover {
-    background-color: var(--brand-highlight-color);
+    background: var(--brand-highlight-color);
 }
 
 /* 반응형 스타일 */
@@ -174,7 +179,7 @@ section {
 }
 
 .cta-btn:hover {
-    background-color: var(--brand-highlight-color);
+    background: var(--brand-highlight-color);
 }
 
 .hero-image {
@@ -285,7 +290,7 @@ section {
 }
 
 .form-table button[type="submit"]:hover {
-    background-color: var(--brand-highlight-color);
+    background: var(--brand-highlight-color);
 }
 
 .warn {
@@ -495,7 +500,7 @@ tbody td:nth-child(3) {
 }
 
 .pagination a:hover {
-    background-color: #f2f2f2;
+    background: var(--brand-highlight-color);
 }
 
 .pagination .current {
@@ -510,6 +515,11 @@ tbody td:nth-child(3) {
     pointer-events: none; /* 클릭 비활성화 */
 }
 
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
 
 /**
 * 브랜드 컬러
@@ -517,5 +527,6 @@ tbody td:nth-child(3) {
 :root {
     --brand-main-color: #724A8C; /* 메인 컬러 진한 보라 */
     --brand-sub-color: #CFBBD9; /* 메인 컬러 연한 보라 */
-    --brand-highlight-color: #E6D24A; /* 보라색의 보색 = 노란색 */
+    /*--brand-highlight-color: #E6D24A; !* 보라색의 보색 = 노란색 *!*/
+    --brand-highlight-color: linear-gradient(to right, #5a72eb, #ec4c6d);
 }

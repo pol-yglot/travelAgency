@@ -5,9 +5,25 @@
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
+    <link href="/css/contact.css" rel="stylesheet">
     <section>
         <div class="content-wrap">
-            <h2 th:text="${'✈️ '+title +' 목록'}"></h2>
+            <h2 th:text="${'✈ '+title +' 전체보기'}"></h2>
+            <div class="search-bar">
+                <input type="text" placeholder="검색어를 입력하세요.">
+                <button type="submit">검색</button>
+            </div>
+            <!--<div class="keywords">
+                <a href="#">키워드 1</a>
+                <a href="#">키워드 2</a>
+                <a href="#">키워드 3</a>
+                <a href="#">키워드 4</a>
+                <a href="#">키워드 5</a>
+                <a href="#">키워드 6</a>
+            </div>-->
+            <div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
+                <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
+            </div>
             <p th:if="${#lists.isEmpty(pageInfo.items)}" class="no-data">등록된 게시글이 없습니다.</p>
 
             <table th:if="${not #lists.isEmpty(pageInfo.items)}">

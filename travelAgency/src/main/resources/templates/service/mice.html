@@ -1,12 +1,91 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="/layout/head :: headFragment"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section>
-        엥
+    <link href="/css/services.css" rel="stylesheet">
+    <section class="main-banner">
+        <h2>M.I.C.E</h2>
+        <p>다양한 국제회의, 전시 및 박람회, 문화이벤트 등을 경험하세요.</p>
+        <img src="/images/services/banner.png" alt="메인 배너 이미지">
+    </section>
+
+    <section class="services">
+        <h2>고객사 후기</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <!--<div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service1.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>-->
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>MICE</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <img src="/images/main/service2.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">Meeting</a></h3>
+                <p>- 국제회의, 정부회의, 기업/협회회의
+                    - 회의기획, 준비 및 집행
+                    - 예산관리, 스폰서 교섭 및 선정
+                    - 행사장 섭외, 예상참가자 DB구축</p>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service2.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">Incentive</a></h3>
+                <p>- 포상관광 프로그램 기획 및 진행
+                    - 행사지 분석 및 여행 컨설팅
+                    - 각종 액티비티 및 팀빌딩 프로그램
+                    - 국내 항공, 숙박등 토탈 여행서비스</p>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service2.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">Convention</a></h3>
+                <p>- 국제 학술전 및 세계 총회 유치
+                    - 행사 프로그램 편성, 관리
+                    - 공식 및 사교행사 기획 및 진행
+                    - 부대 행사 기획 및 운영</p>
+            </div>
+            <div class="service-item">
+                <img src="/images/main/service2.gif" alt="항공권 예약">
+                <h3><a th:href="@{/}">Event & Exhibition</a></h3>
+                <p>- 전시기획 및 운영
+                    - 사내 워크샵 기획 및 진행
+                    - 팀 빌딩 추천 프로그램 제시
+                    - 행사 홍보 및 마케팅</p>
+            </div>
+        </div>
     </section>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>

@@ -1,0 +1,132 @@
+.container {
+    display: flex;
+}
+
+.dark-mode .container {
+    background-color: #121212;
+    color: #eee;
+}
+
+.left-nav {
+    width: 150px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.dark-mode .left-nav {
+    background-color: #121212;
+    color: #eee;
+}
+
+
+.left-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-nav li {
+    margin-bottom: 10px;
+}
+
+.left-nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+.dark-mode .left-nav a{
+    background-color: #121212;
+    color: #eee;
+}
+
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: var(--brand-main-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.keywords {
+    margin-bottom: 20px;
+}
+
+.keywords a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    background-color: #e0e0e0;
+    text-decoration: none;
+    color: #333;
+    border-radius: 30px;
+}
+
+.accordion-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.accordion-header {
+    background-color: #f0f0f0;
+    padding: 0 20px 0 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode .accordion-header {
+    background-color: #121212;
+    color: #eee;
+}
+
+.accordion-content {
+    padding: 10px;
+    display: none; /* 초기에는 숨김 */
+}
+
+.accordion-icon {
+    font-weight: bold;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 동일한 열 */
+    gap: 10px; /* 박스 간 간격 */
+    margin-top: 20px; /* 아코디언과의 간격 */
+}
+
+.grid-item {
+    background-color: #f0f0f0;
+    padding: 80px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+}
+
+.dark-mode .grid-item {
+    color: #121212;
+}
+
+div.notice{
+    display: flex;
+    align-content: center;
+}

@@ -1,0 +1,193 @@
+/* 메인 배너 영역 */
+.main-banner {
+    text-align: center;
+    padding: 5rem 0;
+    background-color: #f8f8f8;
+}
+
+.dark-mode .main-banner{
+    background-color: #121212;
+    color: #eee;
+}
+
+.main-banner img {
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+/* 고객사 로고 영역 */
+.client-logos {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.logo-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.logo-list img {
+    max-height: 100px;
+}
+
+/* 서비스 소개 탭 영역 */
+.service-intro {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.tab {
+    width: 30%;
+    padding: 2rem;
+    margin: 0 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.tab ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tab li {
+    margin-bottom: 1rem;
+}
+
+/* 핵심 서비스 영역 */
+.services {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.service-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.service-container {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 배치 */
+    background-color: #E2E2E2;
+    padding: 1em;
+}
+
+.dark-mode .service-container{
+    background-color: #121212;
+    color: #eee;
+}
+
+.service-section {
+    display: flex;
+    padding: 20px;
+}
+
+.service-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.service-image {
+    flex: 1;
+}
+
+.service-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* 짝수 섹션에서 글과 그림 순서 변경 */
+.service-section:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* 세로 가운데 정렬 */
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 20px;
+}
+
+.map-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.map-container h2 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.map-container > div { /* map-container의 바로 아래 div에만 적용 */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.map-container > div > div { /* map-container > div > div에 적용 */
+    padding: 2rem;
+    box-sizing: border-box; /* padding, border 포함한 전체 크기 유지 */
+}
+
+.map-container > div > div:first-child { /* 첫 번째 div (기업정보) */
+    flex: 1; /* 남은 공간 모두 차지 */
+    background-color: #6a82fb;
+    color: white;
+    font-weight: bold;
+}
+
+.map-container > div > div:last-child { /* 마지막 div (회사 정보) */
+    flex: 1; /* 남은 공간 모두 차지 */
+    background-color: #f0f0f0; /* 배경색 변경 */
+    text-align: left;
+}
+
+.map-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.map-container li {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .map-container > div {
+        flex-direction: column; /* 세로로 배치 */
+    }
+
+    .map-container > div > div {
+        width: 100%; /* 전체 너비 사용 */
+    }
+}

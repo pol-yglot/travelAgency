@@ -22,4 +22,14 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("사용자 목록을 불러오는 중 오류 발생", e);
         }
     }
+
+    @Override
+    public UserVO getUser(String inputId) {
+        try {
+            return userMapper.getUser(inputId);
+        } catch (Exception e) {
+            throw new RuntimeException("사용자 정보를 불러오는 중 오류 발생", e);
+        }
+    }
+
 }

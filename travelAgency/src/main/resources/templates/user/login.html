@@ -5,8 +5,25 @@
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section>
-        엥
+    <link href="/css/login.css" rel="stylesheet">
+    <section style="display: flex; justify-content: center">
+        <div class="login-container">
+            <h2>로그인</h2>
+            <form method="post" th:action="@{/login}" id="login" onsubmit="return formCheck(this);">
+                <div class="form-group">
+                    <label for="inputId"> 아이디(이메일) <span class="warn">*</span></label>
+                    <input type="text" name="inputId" id="inputId" placeholder="example@google.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"> 비밀번호 <span class="warn">*</span></label>
+                    <input type="password" name="password" id="password" placeholder="********">
+                </div>
+                <div class="form-group">
+                    <button type="submit">로그인</button>
+                </div>
+                <p class="error-message" th:if="${error}" th:text="${error}"></p>
+            </form>
+        </div>
     </section>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>

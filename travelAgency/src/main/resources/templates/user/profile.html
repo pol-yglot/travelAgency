@@ -5,10 +5,80 @@
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section>
-        엥
+    <link href="/css/profile.css" rel="stylesheet">
+    <section class="profile">
+        <div class="profile-header">
+            <div class="profile-background"></div>
+            <div class="profile-avatar">
+                <div class="profile-info">
+                    <h2>홍길동님, 안녕하세요! :)</h2>
+                    <p>example@google.com</p>
+                </div>
+                <img src="/images/profile/avatar.jpg" alt="프로필 사진">
+            </div>
+            <button class="edit-profile-button" id="edit-profile-button">프로필 수정</button>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section">
+                <h3>활동 기록</h3>
+                <ul class="activity-list">
+                    <li>게시글 1: 2024-01-01</li>
+                    <li>댓글 2: 2024-01-02</li>
+                    <li>좋아요 3: 2024-01-03</li>
+                </ul>
+            </div>
+
+            <div class="profile-section">
+                <h3>관심분야</h3>
+                <p class="preference">여행, IT, 요리</p>
+            </div>
+
+            <div class="profile-section">
+                <h3>보안 설정</h3>
+                <button class="mfa-button">다중 인증 설정</button>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section">
+                <h3>찜 목록</h3>
+                <ul class="wish-list">
+                    <li>상품 1</li>
+                    <li>상품 2</li>
+                    <li>상품 3</li>
+                </ul>
+            </div>
+
+            <div class="profile-section">
+                <h3>문의 내역</h3>
+                <ul class="recommend-list">
+                    <li>추천 상품 1</li>
+                    <li>추천 상품 2</li>
+                    <li>추천 상품 3</li>
+                </ul>
+            </div>
+
+            <div class="profile-section">
+                <h3>출장 리포트</h3>
+                <ul class="recommend-list">
+                    <li>추천 상품 1</li>
+                    <li>추천 상품 2</li>
+                    <li>추천 상품 3</li>
+                </ul>
+            </div>
+        </div>
+
     </section>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
+<script>
+    $(document).ready(function () {
+
+        $('#edit-profile-button').click(function () {
+            location.replace("/user/updateProfile");
+        });
+    });
+</script>
 </body>
 </html>

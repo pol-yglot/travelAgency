@@ -5,8 +5,56 @@
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section>
-        엥
+    <link href="/css/profile.css" rel="stylesheet">
+    <section class="profile">
+        <div class="profile-header">
+            <div class="profile-background"></div>
+            <div class="profile-avatar">
+                <img src="/images/profile/avatar.jpg" alt="프로필 사진">
+                <div class="profile-info">
+                    <button type="button">프로필 사진 변경</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="contact">
+            <h2>회원정보</h2>
+            <form method="post" th:action="@{/user/updateProfile}" id="inquiry" onsubmit="return formCheck(this);">
+                <table class="form-table">
+                    <tr>
+                        <td class="col1"> 성명 <span class="warn">*</span></td>
+                        <label class="label-form" for="username"></label>
+                        <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                        <label class="label-form" for="tel"></label>
+                        <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 이메일 <span class="warn">*</span></td>
+                        <label class="label-form" for="email"></label>
+                        <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 유형 <span class="warn">*</span></td>
+                        <td class="col2">
+                            <input type="radio" name="personal" id="personal" checked>
+                            <label for="personal">개인</label>
+                            <input type="radio" name="copr" id="copr">
+                            <label for="personal">기업</label>
+                            <input type="radio" name="org" id="org">
+                            <label for="personal">단체</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">수정완료</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </section>
     </section>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>

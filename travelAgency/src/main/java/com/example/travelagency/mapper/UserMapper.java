@@ -10,5 +10,6 @@ import java.util.List;
 public interface UserMapper {
     // mvn dependency:tree
     List<UserVO> getAllUser();
+    UserVO getUser(String inputId);
 }
 

@@ -32,8 +32,8 @@ public class ServiceController {
         return "service/inquiry";
     }
 
-    @GetMapping("/introduce")
-    public String introduce() {
-        return "service/introduce";
+    @GetMapping("/company")
+    public String company() {
+        return "service/company";
     }
 }

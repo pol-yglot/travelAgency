@@ -1,17 +1,11 @@
 package com.example.travelagency.web;
 
 import com.example.travelagency.service.UserService;
-import com.example.travelagency.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "user")
@@ -26,16 +20,11 @@ public class UserController {
     public String userList() {
         return "user/userList";
     }
-    @GetMapping("/login")
-    public String login() {
-        return "user/login";
-    }
 
     @GetMapping("/logout")
     public String logout() {
-        return "user/logout";
+        return "/home";
     }
-
     @GetMapping("/profile")
     public String profile() {
         return "user/profile";

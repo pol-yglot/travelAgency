@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserService {
     List<UserVO> getAllUser();
+    UserVO getUser(String inputId);
 }

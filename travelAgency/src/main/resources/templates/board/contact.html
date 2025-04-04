@@ -1,14 +1,156 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="/layout/head :: headFragment"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section>
-        엥
-    </section>
+    <link href="/css/contact.css" rel="stylesheet">
+    <div class="container">
+        <!--<aside class="left-nav">
+            <h3>네비게이션</h3>
+            <ul>
+                <li><a href="#">메뉴 1</a></li>
+                <li><a href="#">메뉴 2</a></li>
+                <li><a href="#">메뉴 3</a></li>
+            </ul>
+        </aside>-->
+        <section class="content">
+            <h2>궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="검색어를 입력하세요.">
+                <button type="submit">검색</button>
+            </div>
+            <div class="keywords">
+                <a href="#">키워드 1</a>
+                <a href="#">키워드 2</a>
+                <a href="#">키워드 3</a>
+                <a href="#">키워드 4</a>
+                <a href="#">키워드 5</a>
+                <a href="#">키워드 6</a>
+            </div>
+            <div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
+                <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Q. 견적 문의는 어떻게 하나요?</h3>
+                        <span class="accordion-icon">&gt</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>작성자: 홍길동</p>
+                        <p>작성일: 2024-01-01</p>
+                        <p>내용: Q. 게시글 1의 내용입니다.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Q. 테마 변경 방법이 궁금해요.</h3>
+                        <span class="accordion-icon">&gt</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>작성자: 김철수</p>
+                        <p>작성일: 2024-01-02</p>
+                        <p>내용: Q. 게시글 2의 내용입니다.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Q. 출장 관리 매뉴얼이 있나요?</h3>
+                        <span class="accordion-icon">&gt</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>작성자: 이영희</p>
+                        <p>작성일: 2024-01-03</p>
+                        <p>내용: Q. 게시글 3의 내용입니다.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Q. 기업출장이 처음이에요!</h3>
+                        <span class="accordion-icon">&gt</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>작성자: 이영희</p>
+                        <p>작성일: 2024-01-03</p>
+                        <p>내용: Q. 게시글 4의 내용입니다.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Q. 회원가입이 필수인가요?</h3>
+                        <span class="accordion-icon">&gt</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>작성자: 이영희</p>
+                        <p>작성일: 2024-01-03</p>
+                        <p>내용: Q. 게시글 5의 내용입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="grid-container">
+                <div class="grid-item">박스 1</div>
+                <div class="grid-item">박스 2</div>
+                <div class="grid-item">박스 3</div>
+                <div class="grid-item">박스 4</div>
+            </div>-->
+        </section>
+    </div>
+    <div>
+        <button type="button" id="boardList">더보기 +</button>
+    </div>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
+<script>
+    $(document).ready(function () {
+
+        hashTag();
+
+        var count = 0;
+
+        // FAQ 아코디언
+        $('.accordion-icon').click(function () {
+            if(count == 0){
+                $(this).closest('div').siblings('div').show();
+                count++;
+            }else{
+                $(this).closest('div').siblings('div').hide();
+                count = 0;
+            }
+        });
+
+        // 키워드 검색처리
+        $('.keywords').find('a').click(function (e) {
+            var tag = e.target.textContent;
+            var txt = tag.replace('#','');
+            $('.search-bar').find('input').val(txt);
+            // 여기서 바로 클릭 호출하면 Maximum call stack size exceeded
+        });
+
+        // 검색버튼 클릭
+        $('.search-bar').find('button').click(function (e) {
+            if($('.search-bar').find('input').val() == ""){
+                alert("검색어를 입력하세요.");
+                return;
+            }
+            var txt = e.target.textContent;
+            $('.search-bar').find('input').val(txt);
+            $('.search-bar').find('button').click();
+        });
+
+        $('#boardList').click(function (e) {
+            location.replace("/board/boardList");
+        });
+
+        // 해시태그 # 추가
+        function hashTag() {
+            for(var i=0;i<$('.keywords').find('a').length;i++){
+                var keywordTxt = $('.keywords').find('a')[i].text;
+                $('.keywords').find('a')[i].text = '#'+keywordTxt;
+            }
+        }
+    });
+</script>
 </body>
 </html>

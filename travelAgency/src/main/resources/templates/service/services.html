@@ -1,13 +1,122 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="/layout/head :: headFragment"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section>
-        엥
+    <link href="/css/services.css" rel="stylesheet">
+    <section class="main-banner">
+        <h2>기업 출장, 이제 더 스마트하게!</h2>
+        <p>고객사 1:1 맞춤 출장관리전문가가
+            출장데이터 분석부터 컨설팅까지</p>
+        <img src="/images/services/banner.png" alt="메인 배너 이미지">
     </section>
+
+    <section class="service-intro">
+        <h2>우리 회사 출장 관리 이런 고민이 있으신가요?</h2>
+        <div class="tab-container">
+            <div class="tab" id="tab1">
+                <img src="/images/services/busy.png">
+                <h3>효율적인 출장 관리</h3>
+                <p>출장 관리가 어렵습니다.</p>
+            </div>
+            <div class="tab" id="tab2">
+                <img src="/images/services/busy.png">
+                <h3>전담 직원 부재</h3>
+                <p>시간이 오래 걸립니다.</p>
+            </div>
+            <div class="tab" id="tab3">
+                <img src="/images/services/busy.png">
+                <h3>비상 상황 응대 개선</h3>
+                <p>연락이 어렵습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="service-container">
+            <div class="service-section">
+                <div class="service-text">
+                    <h2>효율적인 출장 관리</h2>
+                    <p>여기에 글 내용 1을 입력하세요.</p>
+                </div>
+                <div class="service-image">
+                    <img src="/images/services/good.jpg" alt="이미지 1">
+                </div>
+            </div>
+
+            <div class="service-section">
+                <div class="service-text">
+                    <h2>전담 직원 부재</h2>
+                    <p>여기에 글 내용 2를 입력하세요.</p>
+                </div>
+                <div class="service-image">
+                    <img src="/images/services/good.jpg" alt="이미지 2">
+                </div>
+            </div>
+
+            <div class="service-section">
+                <div class="service-text">
+                    <h2>비상 상황 응대 개선</h2>
+                    <p>여기에 글 내용 3을 입력하세요.</p>
+                </div>
+                <div class="service-image">
+                    <img src="/images/services/good.jpg" alt="이미지 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-intro">
+        <h2>기업 전문 책임전담제는
+            출장 관리 고민을 이렇게 해결합니다</h2>
+        <div class="circle-container">
+            <div class="circle">
+                <p>Data Analystic</p>
+            </div>
+            <div class="circle">
+                <p>BTMS</p>
+            </div>
+            <div class="circle">
+                <p>Optimized Service</p>
+            </div>
+            <div class="circle">
+                <p>Report</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-intro">
+        <h2>모두가 만족하는 서비스</h2>
+        <div class="tab-container">
+            <div class="tab" id="tab4">
+                <h3>출장 직원</h3>
+                <ul>
+                    <li>출장 예약 한 번에</li>
+                    <li>출장 규정 자동 반영</li>
+                    <li>사용 내역 자동 연동</li>
+                </ul>
+            </div>
+            <div class="tab" id="tab5">
+                <h3>관리자</h3>
+                <ul>
+                    <li>연중무휴 실시간 CS 대응 지원</li>
+                    <li>검증 업무 최소화</li>
+                    <li>출장 규정 설정 및 커스터마이징</li>
+                </ul>
+            </div>
+            <div class="tab" id="tab6">
+                <h3>CEO</h3>
+                <ul>
+                    <li>자동화 보고서</li>
+                    <li>컴플라이언스 기능</li>
+                    <li>출장 현황, 안전 관리 등 출장 통계 지원</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 </body>
