@@ -12,15 +12,18 @@
         <result property="CREATED_AT" column="CREATED_AT"/>
         <result property="UPDATED_AT" column="UPDATED_AT"/>
         <result property="USER_EMAIL" column="USER_EMAIL"/>
+        <result property="USER_TYPE" column="USER_TYPE"/>
     </resultMap>
 
     <select id="getAllUser" resultMap="UserVOMap">
-        SELECT USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL FROM TB_USER
+        SELECT
+            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+        FROM TB_USER
     </select>
 
     <select id="getUser" parameterType="String" resultMap="UserVOMap">
         SELECT
-            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL
+            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
         FROM TB_USER
         WHERE USER_ACCOUNT = #{inputId}
     </select>

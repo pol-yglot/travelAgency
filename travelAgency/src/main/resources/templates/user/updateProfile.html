@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="/layout/head :: headFragment"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
@@ -12,39 +12,40 @@
             <div class="profile-avatar">
                 <img src="/images/profile/avatar.jpg" alt="프로필 사진">
                 <div class="profile-info">
-                    <button type="button">프로필 사진 변경</button>
+                    <label for="profileImage">프로필 사진 변경</label>
+                    <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display: none;">
                 </div>
             </div>
         </div>
 
         <section class="contact">
             <h2>회원정보</h2>
-            <form method="post" th:action="@{/user/updateProfile}" id="inquiry" onsubmit="return formCheck(this);">
+            <form method="post" th:action="@{/user/updateProfile}" id="inquiry" onsubmit="return formCheck(this);" enctype="multipart/form-data">
                 <table class="form-table">
                     <tr>
                         <td class="col1"> 성명 <span class="warn">*</span></td>
                         <label class="label-form" for="username"></label>
-                        <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+                        <td class="col2"><input type="text" name="username" id="username" th:value="${user.USER_NAME}" required></td>
                     </tr>
                     <tr>
                         <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
                         <label class="label-form" for="tel"></label>
-                        <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+                        <td class="col2"><input type="tel" name="tel" id="tel" th:value="${user.USER_PHONE}" required></td>
                     </tr>
                     <tr>
                         <td class="col1"> 이메일 <span class="warn">*</span></td>
                         <label class="label-form" for="email"></label>
-                        <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com" required></td>
+                        <td class="col2"><input type="email" name="email" id="email" th:value="${user.USER_EMAIL}" required></td>
                     </tr>
                     <tr>
                         <td class="col1"> 유형 <span class="warn">*</span></td>
                         <td class="col2">
-                            <input type="radio" name="personal" id="personal" checked>
+                            <input type="radio" name="userType" id="personal" value="personal" th:checked="${user.USER_TYPE == 'personal'}">
                             <label for="personal">개인</label>
-                            <input type="radio" name="copr" id="copr">
-                            <label for="personal">기업</label>
-                            <input type="radio" name="org" id="org">
-                            <label for="personal">단체</label>
+                            <input type="radio" name="userType" id="copr" value="copr" th:checked="${user.USER_TYPE == 'copr'}">
+                            <label for="copr">기업</label>
+                            <input type="radio" name="userType" id="org" value="org" th:checked="${user.USER_TYPE == 'org'}">
+                            <label for="org">단체</label>
                         </td>
                     </tr>
                     <tr>

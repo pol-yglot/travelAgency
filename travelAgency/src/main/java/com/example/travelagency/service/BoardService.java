@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BoardService {
     PageInfo<BoardVO> getAllBoard(int page);
+    List<BoardVO> getBoardByTitle(String keyword);
+    List<BoardVO> getBoardByContent(String keyword);
 }

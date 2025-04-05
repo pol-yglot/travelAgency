@@ -15,4 +15,5 @@ public class UserVO {
     private Date CREATED_AT;
     private Date UPDATED_AT;
     private String USER_EMAIL;
+    private String USER_TYPE;
 }

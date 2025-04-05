@@ -3,7 +3,6 @@ package com.example.travelagency.mapper;
 import com.example.travelagency.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

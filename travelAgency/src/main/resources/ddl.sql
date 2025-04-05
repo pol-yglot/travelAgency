@@ -37,6 +37,12 @@ CREATE TABLE TB_USER (
                          UPDATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 일시 (기본값: 현재 시간, 업데이트 시 자동 갱신)
 ) COMMENT '사용자 정보 테이블';
 
+ALTER TABLE TB_USER
+    ADD USER_EMAIL VARCHAR(255);
+
+ALTER TABLE TB_USER
+    ADD USER_TYPE VARCHAR(100);
+
 -- 사용자 상세 테이블: 사용자의 추가 정보(주소, 프로필 사진, 선호 설정 등)를 저장
 CREATE TABLE TB_USER_DETAIL (
                                 USER_DETAIL_ID INT PRIMARY KEY AUTO_INCREMENT, -- 사용자 상세 ID (기본 키, 자동 증가)

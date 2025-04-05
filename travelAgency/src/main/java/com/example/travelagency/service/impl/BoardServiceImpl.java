@@ -28,6 +28,16 @@ public class BoardServiceImpl implements BoardService {
         return new PageInfo<>(boardList, page, totalPages, PAGE_SIZE, totalItems);
     }
 
+    @Override
+    public List<BoardVO> getBoardByTitle(String keyword) {
+        return boardMapper.getBoardListByTitle(keyword);
+    }
+
+    @Override
+    public List<BoardVO> getBoardByContent(String keyword) {
+        return boardMapper.getBoardListByContent(keyword);
+    }
+
     /**
      * 드라이버 체킹
      * */

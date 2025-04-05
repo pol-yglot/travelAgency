@@ -16,19 +16,7 @@
             </ul>
         </aside>-->
         <section class="content">
-            <h2>궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
-            <div class="search-bar">
-                <input type="text" placeholder="검색어를 입력하세요.">
-                <button type="submit">검색</button>
-            </div>
-            <div class="keywords">
-                <a href="#">키워드 1</a>
-                <a href="#">키워드 2</a>
-                <a href="#">키워드 3</a>
-                <a href="#">키워드 4</a>
-                <a href="#">키워드 5</a>
-                <a href="#">키워드 6</a>
-            </div>
+            <h2>자주 묻는 질문 FAQ</h2>
             <div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
                 <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
             </div>
@@ -98,59 +86,9 @@
         </section>
     </div>
     <div>
-        <button type="button" id="boardList">더보기 +</button>
+        <button type="button" id="boardList">전체글보기</button>
     </div>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
-<script>
-    $(document).ready(function () {
-
-        hashTag();
-
-        var count = 0;
-
-        // FAQ 아코디언
-        $('.accordion-icon').click(function () {
-            if(count == 0){
-                $(this).closest('div').siblings('div').show();
-                count++;
-            }else{
-                $(this).closest('div').siblings('div').hide();
-                count = 0;
-            }
-        });
-
-        // 키워드 검색처리
-        $('.keywords').find('a').click(function (e) {
-            var tag = e.target.textContent;
-            var txt = tag.replace('#','');
-            $('.search-bar').find('input').val(txt);
-            // 여기서 바로 클릭 호출하면 Maximum call stack size exceeded
-        });
-
-        // 검색버튼 클릭
-        $('.search-bar').find('button').click(function (e) {
-            if($('.search-bar').find('input').val() == ""){
-                alert("검색어를 입력하세요.");
-                return;
-            }
-            var txt = e.target.textContent;
-            $('.search-bar').find('input').val(txt);
-            $('.search-bar').find('button').click();
-        });
-
-        $('#boardList').click(function (e) {
-            location.replace("/board/boardList");
-        });
-
-        // 해시태그 # 추가
-        function hashTag() {
-            for(var i=0;i<$('.keywords').find('a').length;i++){
-                var keywordTxt = $('.keywords').find('a')[i].text;
-                $('.keywords').find('a')[i].text = '#'+keywordTxt;
-            }
-        }
-    });
-</script>
 </body>
 </html>

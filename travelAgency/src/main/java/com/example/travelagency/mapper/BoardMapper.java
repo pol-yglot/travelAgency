@@ -11,4 +11,6 @@ import java.util.List;
 public interface BoardMapper {
     List<BoardVO> getAllBoardPaged(@Param("offset") int offset, @Param("limit") int limit);
     int getTotalBoardCount();
+    List<BoardVO> getBoardListByTitle(String keyword);
+    List<BoardVO> getBoardListByContent(String keyword);
 }

@@ -18,6 +18,24 @@
         ORDER BY BOARD_ID DESC LIMIT #{limit} OFFSET #{offset}
     </select>
 
+   <select id="getBoardByTitle" resultMap="BoardVOResultMap">
+        SELECT *
+        FROM tb_board
+        WHERE BOARD_TITLE LIKE #{keyword}
+    </select>
+
+    <select id="getBoardListByTitle" parameterType="string" resultMap="BoardVOResultMap">
+        SELECT *
+        FROM tb_board
+        WHERE BOARD_TITLE LIKE CONCAT('%',#{keyword},'%')
+    </select>
+
+    <select id="getBoardListByContent" parameterType="string" resultMap="BoardVOResultMap">
+        SELECT *
+        FROM tb_board
+        WHERE BOARD_CONTENT LIKE CONCAT('%',#{keyword},'%')
+    </select>
+
     <select id="getTotalBoardCount" resultType="int">
         SELECT COUNT(*)
         FROM tb_board

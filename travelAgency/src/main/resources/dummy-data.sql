@@ -3,6 +3,10 @@ INSERT INTO TB_USER (USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE) VALUES
                                                                              ('user1', 'password123', '홍길동', '010-1234-5678'),
                                                                              ('user2', 'password456', '김철수', '010-9876-5432'),
                                                                              ('user3', 'password789', '이영희', '010-5678-1234');
+UPDATE TB_USER SET USER_EMAIL = 'user123@example.com';
+UPDATE TB_USER SET USER_TYPE = 'personal' WHERE USER_ACCOUNT = 'user1';
+UPDATE TB_USER SET USER_TYPE = 'copr' WHERE USER_ACCOUNT = 'user2';
+UPDATE TB_USER SET USER_TYPE = 'org' WHERE USER_ACCOUNT = 'user3';
 
 -- TB_USER_DETAIL 테이블 더미 데이터 삽입
 INSERT INTO TB_USER_DETAIL (USER_ID, USER_ADDRESS, USER_PROFILE_IMAGE_URL, USER_PREFERENCE) VALUES

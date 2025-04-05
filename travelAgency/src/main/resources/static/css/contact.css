@@ -38,10 +38,24 @@
     color: #eee;
 }
 
-
 .content {
     flex: 1;
     padding: 20px;
+}
+
+#searchForm {
+    margin: 0;
+    padding: 0;
+    display: flex; /* 기존 검색 바처럼 flex 레이아웃을 유지하고 싶다면 */
+    align-items: center; /* 세로 방향 중앙 정렬 (선택 사항) */
+    width: 100%;
+}
+
+#searchType{
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
 .search-bar {
@@ -57,7 +71,7 @@
 }
 
 .search-bar button {
-    padding: 10px 20px;
+    padding: 15px;
     background-color: var(--brand-main-color);
     color: white;
     border: none;

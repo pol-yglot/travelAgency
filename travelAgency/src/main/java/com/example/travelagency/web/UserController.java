@@ -27,8 +27,13 @@ public class UserController {
     @GetMapping("/profile")
     public String profile(HttpSession session, Model model) {
         // 로그인 시 세션에 올린 사용자 정보를 재사용
-        UserVO user = (UserVO) session.getAttribute("user");
-        model.addAttribute("user", user);
+        if(session.getAttribute("user") != null) {
+            UserVO user = (UserVO) session.getAttribute("user");
+            model.addAttribute("user", user);
+        }else{
+            // 미로그인시 로그인 페이지로 이동
+            return "user/login";
+        }
         return "user/profile";
     }
 
@@ -38,7 +43,15 @@ public class UserController {
     }
 
     @GetMapping("/updateProfile")
-    public String updateProfile() {
+    public String updateProfile(HttpSession session, Model model) {
+        // 로그인 시 세션에 올린 사용자 정보를 재사용
+        if(session.getAttribute("user") != null) {
+            UserVO user = (UserVO) session.getAttribute("user");
+            model.addAttribute("user", user);
+        }else{
+            // 미로그인시 로그인 페이지로 이동
+            return "user/login";
+        }
         return "user/updateProfile";
     }
 }

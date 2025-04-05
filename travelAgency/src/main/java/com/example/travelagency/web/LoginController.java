@@ -45,7 +45,6 @@ public class LoginController {
             }
         } else { // 사용자 로그인
             try {
-                
                 // 미가입고객
                 if(!userService.isUserExist(inputId)){
                     LOGGER.warn("없는 고객!");
