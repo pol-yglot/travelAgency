@@ -13,6 +13,7 @@ mybatis:
   #type-alias-package: com.example.travelagency.vo
   configuration:
     map-underscore-to-camel-case: true
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #sql쿼리출력
 spring:
   application:
     name: travelAgency
@@ -39,4 +40,4 @@ logging:
     #com.example.travelagency.mapper: debug
     #org.mybatis: debug
     #org.apache.ibatis: debug
-    root: debug
+    root: info

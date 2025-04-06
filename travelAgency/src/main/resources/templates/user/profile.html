@@ -31,7 +31,14 @@
 
             <div class="profile-section">
                 <h3>관심분야</h3>
-                <p class="preference">여행, IT, 요리</p>
+                <input type="hidden" id="displayArea" th:value="${userDetail.USER_PREFERENCE}" >
+                <p class="preference" id="preference"></p>
+                <!--<tr>
+                    <td class="col1"> 관심분야</td>
+                    <label class="label-form" for="preference"></label>
+                    <input type="hidden" id="displayArea" th:value="${userDetail.USER_PREFERENCE}" >
+                    <td class="col2"><input type="text" name="preference" id="preference"></td>
+                </tr>-->
             </div>
 
             <div class="profile-section">
@@ -78,6 +85,30 @@
         $('#edit-profile-button').click(function () {
             location.replace("/user/updateProfile");
         });
+
+        const userPreferenceJson = $("#displayArea").val();
+
+        if (userPreferenceJson) {
+            try {
+                const userPreference = JSON.parse(userPreferenceJson);
+                const displayValues = [
+                    userPreference.travelStyle,
+                    userPreference.accommodationType,
+                    userPreference.interestedRegions ? userPreference.interestedRegions.join(", ") : "",
+                    userPreference.hotelAmenities ? userPreference.hotelAmenities.join(", ") : "",
+                    userPreference.foodType ? userPreference.foodType.join(", ") : "",
+                    userPreference.spicyFoodPreference,
+                    userPreference.preferredPriceRangeAccommodation,
+                    userPreference.activityPreference ? Object.values(userPreference.activityPreference).join(", ") : ""
+                ].filter(Boolean);
+
+                $("#preference").text(displayValues.join(", "));
+
+            } catch (error) {
+                console.error("JSON 파싱 오류:", error);
+                $("#preference").text("데이터 오류");
+            }
+        }
     });
 </script>
 </body>

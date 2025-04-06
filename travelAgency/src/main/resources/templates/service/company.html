@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <th:block th:replace="/layout/head :: headFragment"></th:block>
-    <link rel="stylesheet" href="/css/company.css">
-</head>
+<th:block th:replace="/layout/head :: headFragment"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <link href="/css/services.css" rel="stylesheet">
+    <link  rel="stylesheet" href="/css/services.css">
+    <link rel="stylesheet" href="/css/company.css">
     <section class="main-banner">
         <h2>투어비즈</h2>
         <p>기업 출장의 완벽한 성공을 위한 맞춤 서비스를 제공합니다.</p>

@@ -19,6 +19,56 @@ INSERT INTO TB_PRODUCT (PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_DESCRIPTION, PRODUC
                                                                                                  ('상품1', 10000, '상품1 설명', 'http://example.com/product1.jpg'),
                                                                                                  ('상품2', 20000, '상품2 설명', 'http://example.com/product2.jpg'),
                                                                                                  ('상품3', 30000, '상품3 설명', 'http://example.com/product3.jpg');
+-- USER_ID 1번 고객 선호도 데이터 (키 값 영어로 수정)
+UPDATE TB_USER_DETAIL
+SET USER_PREFERENCE = '{
+  "travelStyle": "자유 여행",
+  "accommodationType": "호텔",
+  "hotelAmenities": ["수영장", "조식 포함"],
+  "interestedRegions": ["제주도", "부산"],
+  "activityPreference": {
+    "oceanActivities": "높음",
+    "culturalSites": "보통",
+    "shopping": "낮음"
+  },
+  "foodType": ["해산물", "한식"],
+  "preferredPriceRangeAccommodation": "10만원-20만원"
+}'
+WHERE USER_ID = 1;
+
+-- USER_ID 2번 고객 선호도 데이터 (키 값 영어로 수정)
+UPDATE TB_USER_DETAIL
+SET USER_PREFERENCE = '{
+  "travelStyle": "패키지 여행",
+  "accommodationType": "리조트",
+  "resortAmenities": ["전용 해변", "올인클루시브"],
+  "interestedRegions": ["발리", "푸켓"],
+  "activityPreference": {
+    "oceanActivities": "매우 높음",
+    "relaxation": "최고",
+    "localCultureExperience": "보통"
+  },
+  "foodType": ["동남아 음식", "양식"],
+  "preferredPriceRangeAccommodation": "20만원 이상"
+}'
+WHERE USER_ID = 2;
+
+-- USER_ID 3번 고객 선호도 데이터 (키 값 영어로 수정)
+UPDATE TB_USER_DETAIL
+SET USER_PREFERENCE = '{
+  "travelStyle": "배낭 여행",
+  "accommodationType": "게스트하우스",
+  "guesthouseFeatures": ["저렴한 가격", "다른 여행객과의 교류"],
+  "interestedRegions": ["유럽", "남미"],
+  "activityPreference": {
+    "walkingTour": "높음",
+    "publicTransportation": "높음",
+    "meetingNewPeople": "매우 높음"
+  },
+  "foodType": ["localStreetFood", "diverseCuisineExperience"],
+  "preferredPriceRangeAccommodation": "5만원 이하"
+}'
+WHERE USER_ID = 3;
 
 -- TB_PRODUCT_DETAIL 테이블 더미 데이터 삽입
 INSERT INTO TB_PRODUCT_DETAIL (PRODUCT_ID, DETAIL_DESCRIPTION, SPECIFICATION, STOCK_QUANTITY) VALUES

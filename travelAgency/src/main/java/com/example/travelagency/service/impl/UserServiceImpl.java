@@ -1,5 +1,6 @@
 package com.example.travelagency.service.impl;
 
+import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
 import com.example.travelagency.mapper.UserMapper;
 import com.example.travelagency.service.UserService;
@@ -30,6 +31,15 @@ public class UserServiceImpl implements UserService {
             return userMapper.getUser(inputId);
         } catch (Exception e) {
             throw new RuntimeException("사용자 정보를 불러오는 중 오류 발생, getUser", e);
+        }
+    }
+
+    @Override
+    public UserDetailVO getUserDetail(int userId) {
+        try {
+            return userMapper.getUserDetail(userId);
+        } catch (Exception e) {
+            throw new RuntimeException("사용자 상세 정보를 불러오는 중 오류 발생, getUser", e);
         }
     }
 

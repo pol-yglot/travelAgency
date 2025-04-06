@@ -1,6 +1,7 @@
 package com.example.travelagency.web;
 
 import com.example.travelagency.service.UserService;
+import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -29,7 +30,11 @@ public class UserController {
         // 로그인 시 세션에 올린 사용자 정보를 재사용
         if(session.getAttribute("user") != null) {
             UserVO user = (UserVO) session.getAttribute("user");
+            // USER_ID로 상세정보 조회
+            UserDetailVO userDetail = userService.getUserDetail(user.getUSER_ID());
+            LOGGER.debug("userDetail = " + userDetail);
             model.addAttribute("user", user);
+            model.addAttribute("userDetail", userDetail);
         }else{
             // 미로그인시 로그인 페이지로 이동
             return "user/login";
@@ -47,7 +52,11 @@ public class UserController {
         // 로그인 시 세션에 올린 사용자 정보를 재사용
         if(session.getAttribute("user") != null) {
             UserVO user = (UserVO) session.getAttribute("user");
+            // USER_ID로 상세정보 조회
+            UserDetailVO userDetail = userService.getUserDetail(user.getUSER_ID());
+            LOGGER.debug("userDetail = " + userDetail);
             model.addAttribute("user", user);
+            model.addAttribute("userDetail", userDetail);
         }else{
             // 미로그인시 로그인 페이지로 이동
             return "user/login";
