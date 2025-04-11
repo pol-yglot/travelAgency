@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="/layout/head :: headFragment"></th:block>
+<body>
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+    <section class="contact">
+        <h2>회원가입</h2>
+        <div class="step-ui">
+            <div class="step step1"><span>1. 약관동의</span></div>
+            <div class="step step2"><span>2. 정보입력</span></div>
+            <div class="step step3"><span>3. 입력확인</span></div>
+            <div class="step step4"><span>4. 가입완료</span></div>
+        </div>
+    </section>
+
+    <!-- 1. 약관동의 -->
+    <section class="contact step1">
+        <div class="terms-list">
+            <div class="term-item">
+                <label>
+                    <input type="checkbox" name="agree_terms_service" id="agree_terms_service" required>
+                    <a href="/pdf/terms_service.pdf" class="view-pdf" data-pdf-url="/pdf/terms_service.pdf"
+                       target="_blank">서비스 이용약관 (필수)</a>
+                </label>
+            </div>
+            <div class="term-item">
+                <label>
+                    <input type="checkbox" name="agree_terms_privacy" id="agree_terms_privacy" required>
+                    <a href="/pdf/terms_privacy.pdf" class="view-pdf" data-pdf-url="/pdf/terms_privacy.pdf"
+                       target="_blank">개인정보 수집 및 이용 동의 (필수)</a>
+                </label>
+            </div>
+            <div class="term-item">
+                <label>
+                    <input type="checkbox" name="agree_terms_marketing" id="agree_terms_marketing">
+                    <a href="/pdf/terms_marketing.pdf" class="view-pdf" data-pdf-url="/pdf/terms_marketing.pdf"
+                       target="_blank">(선택) 마케팅 정보 수신 동의</a>
+                </label>
+            </div>
+        </div>
+        <div class="button-group">
+            <button type="button" class="next-step" data-next="step2" disabled id="next-step-terms">다음 단계</button>
+        </div>
+    </section>
+
+    <!-- 2. 정보입력 -->
+    <section class="contact step2">
+        <h2>문의하기</h2>
+        <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
+            <table class="form-table">
+                <!--<colgroup>
+                    <col style="width: 20%">
+                </colgroup>-->
+                <tr>
+                    <td class="col1"> 성명 <span class="warn">*</span></td>
+                    <label class="label-form" for="username"></label>
+                    <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                    <label class="label-form" for="tel"></label>
+                    <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 이메일 <span class="warn">*</span></td>
+                    <label class="label-form" for="email"></label>
+                    <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com"
+                                            required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 유형 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="radio" name="personal" id="personal" checked>
+                        <label for="personal">개인</label>
+                        <input type="radio" name="copr" id="copr">
+                        <label for="personal">기업</label>
+                        <input type="radio" name="org" id="org">
+                        <label for="personal">단체</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1"> 문의구분 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
+                        <label for="businesstrip">출장</label>
+                        <input type="checkbox" name="edu" id="edu">
+                        <label for="edu">연수/교육</label>
+                        <input type="checkbox" name="conference" id="conference">
+                        <label for="conference">학회/협회</label>
+                        <input type="checkbox" name="etc" id="etc">
+                        <label for="etc">기타</label>
+                    </td>
+                </tr>
+            </table>
+            <div class="button-group">
+                <button type="button" class="next-step" data-next="step2" disabled id="next-step-terms">다음 단계</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- 3. 입력확인 -->
+    <section class="contact step3">
+        <h2>입력확인</h2>
+        <table class="form-table">
+            <!--<colgroup>
+                <col style="width: 20%">
+            </colgroup>-->
+            <tr>
+                <td class="col1"> 성명 <span class="warn">*</span></td>
+                <label class="label-form" for="username"></label>
+                <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+            </tr>
+            <tr>
+                <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                <label class="label-form" for="tel"></label>
+                <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+            </tr>
+            <tr>
+                <td class="col1"> 이메일 <span class="warn">*</span></td>
+                <label class="label-form" for="email"></label>
+                <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com" required>
+                </td>
+            </tr>
+            <tr>
+                <td class="col1"> 유형 <span class="warn">*</span></td>
+                <td class="col2">
+                    <input type="radio" name="personal" id="personal" checked>
+                    <label for="personal">개인</label>
+                    <input type="radio" name="copr" id="copr">
+                    <label for="personal">기업</label>
+                    <input type="radio" name="org" id="org">
+                    <label for="personal">단체</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="col1"> 문의구분 <span class="warn">*</span></td>
+                <td class="col2">
+                    <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
+                    <label for="businesstrip">출장</label>
+                    <input type="checkbox" name="edu" id="edu">
+                    <label for="edu">연수/교육</label>
+                    <input type="checkbox" name="conference" id="conference">
+                    <label for="conference">학회/협회</label>
+                    <input type="checkbox" name="etc" id="etc">
+                    <label for="etc">기타</label>
+                </td>
+            </tr>
+        </table>
+        <div class="button-group">
+            <button type="button" class="next-step" data-next="step2" disabled id="next-step-terms">다음 단계</button>
+        </div>
+    </section>
+
+    <!-- 4. 회원가입 완료 -->
+    <section class="contact active step4">
+        <h2>회원가입이 완료되었습니다.</h2>
+    </section>
+
+
+</main>
+<footer th:replace="~{layout/footer :: footerFragment}"></footer>
+<script>
+    $(document).ready(function () {
+        $('div[class^="step"]')
+    });
+</script>
+</body>
+</html>

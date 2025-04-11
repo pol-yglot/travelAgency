@@ -1,0 +1,582 @@
+/* 공통 스타일 */
+body {
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #eee;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 헤더 스타일 */
+.main-header {
+    background-color: #f8f8f8;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .main-header {
+    background-color: #1e1e1e;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* nav 스타일 수정 */
+.nav-bar {
+    background-color:  var(--brand-sub-color);
+    padding: 0.5rem 0;
+}
+.dark-mode .nav-bar {
+    background-color: gray;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 5vh;
+    align-content: center;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: left;
+}
+
+.nav-menu li {
+    margin: 0 1rem;
+    align-content: center;
+    font-weight: bold;
+}
+
+.nav-menu a {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background: var(--brand-highlight-color);
+}
+.dark-mode .nav-menu{
+    color: #eee;
+}
+.dark-mode .nav-menu a:hover {
+    background-color: #333;
+}
+
+.user-actions {
+    display: flex;
+}
+
+.user-actions a,button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color:  var(--brand-main-color);
+    color: white;
+    transition: background-color 0.3s ease;
+    border: none;
+    font-size: 14px;
+}
+
+.user-actions a:hover,button:hover {
+    background: var(--brand-highlight-color);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 600px) {
+    .nav-container {
+        flex-direction: column; /* 세로로 배치 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        height: auto;
+    }
+
+    .nav-menu {
+        flex-direction: column; /* 세로로 배치 */
+        align-items: flex-start;
+    }
+
+    .nav-menu li {
+        margin: 0.5rem 0; /* 세로 간격 조정 */
+    }
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 50%;
+}
+.hero-image{
+    margin: 3em 0 0 0;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.cta-btn {
+    background-color:  var(--brand-main-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: var(--brand-highlight-color);
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 40%;
+}
+
+.services, .destinations, .testimonials, .contact {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.service-list, .destination-list, .testimonial-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.service-item, .destination-item, .testimonial-item {
+    margin: 1rem;
+}
+
+.service-item img, .destination-item img {
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        flex-direction: column; /* 세로로 배치 */
+    }
+
+    .hero-content, .hero-image {
+        max-width: 100%; /* 전체 너비 사용 */
+    }
+
+    .service-list, .destination-list {
+        grid-template-columns: 1fr; /* 1열로 배치 */
+    }
+}
+
+/* 문의하기 섹션 스타일 */
+.contact {
+    padding: 1rem;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 2rem;
+}
+
+.form-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.form-table td:not(button[type=submit]) {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-table .col1 {
+    width: 20%;
+    font-weight: bold;
+}
+
+.form-table .col2 {
+    width: 80%;
+}
+
+.form-table input[type="text"],
+.form-table input[type="email"],
+.form-table input[type="number"],
+.form-table input[type="tel"],
+.form-table textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* padding, border 포함한 전체 크기 유지 */
+}
+
+.form-table textarea {
+    height: 150px; /* textarea 높이 설정 */
+}
+
+.form-table input[type="radio"],
+.form-table input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.form-table label {
+    margin-right: 1rem;
+}
+
+.form-table button[type="submit"] {
+    background-color:  var(--brand-main-color);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.form-table button[type="submit"]:hover {
+    background: var(--brand-highlight-color);
+}
+.form-group textarea {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    resize: vertical; /* 세로 방향으로 크기 조절 가능 */
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: val(--brand-highlight-color); /* 포커스 시 테두리 색상 변경 */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* 포커스 시 그림자 효과 */
+}
+
+.warn {
+    color: red;
+}
+
+@media (max-width: 600px) {
+    .form-table {
+        width: 100%; /* 전체 너비 사용 */
+    }
+
+    .form-table .col1, .form-table .col2 {
+        display: block; /* 블록 요소로 변경 */
+        width: 100%; /* 전체 너비 사용 */
+    }
+
+    .form-table td {
+        padding: 0.5rem; /* 패딩 조정 */
+    }
+}
+
+/* 푸터 스타일 */
+footer {
+    background-color: #f8f8f8;
+    padding: 2rem 1rem;
+    text-align: left;
+    border-top: 1px solid #eee;
+}
+
+.dark-mode footer {
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+}
+
+.terms, .captions, .customer-infos, .notice {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.terms li, .captions li, .customer-infos li, .notice li {
+    margin: 0 0.5rem;
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.dark-mode .caption {
+    color: #bbb;
+}
+
+@media (max-width: 600px) {
+    footer {
+        text-align: center; /* 가운데 정렬 */
+    }
+
+    .terms, .captions, .customer-infos, .notice {
+        flex-direction: column; /* 세로로 배치 */
+        align-items: center; /* 가운데 정렬 */
+    }
+
+    .terms li, .captions li, .customer-infos li, .notice li {
+        margin: 0.5rem 0; /* 세로 간격 조정 */
+    }
+}
+
+/* 플로팅 */
+#topBtn {
+    display: none; /* 초기에는 숨김 */
+    position: fixed; /* 화면 고정 */
+    bottom: 60px;
+    right: 20px;
+    z-index: 99; /* 다른 요소 위에 표시 */
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정색 배경 */
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.complete-page {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.complete-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.main-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color:  var(--brand-main-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-full{
+    margin: 0;
+    width: 100%;
+}
+
+/* 고객사 로고 영역 */
+.client-logos {
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.logo-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+    /*display: inline-block;*/
+    animation: logo-slide 20s linear infinite;
+}
+
+.logo-list img {
+    max-height: 100px;
+    height: 50px;
+    margin: 0 100px;
+}
+
+@keyframes logo-slide {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%); /* 이미지가 왼쪽으로 이동 */
+    }
+}
+
+/* 테이블 전체 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse; /* 테이블 셀 테두리 병합 */
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* 테이블 헤더 스타일 */
+thead th {
+    background-color: #f2f2f2; /* 밝은 회색 배경 */
+    color: #333; /* 어두운 글자색 */
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #ddd; /* 하단 테두리 */
+}
+
+/* 테이블 데이터 셀 스타일 */
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #eee; /* 하단 테두리 */
+}
+
+/* 홀수 번째 행 배경색 */
+tbody tr:nth-child(odd) {
+    background-color: #fff; /* 흰색 배경 */
+}
+
+/* 짝수 번째 행 배경색 */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* 약간 밝은 회색 배경 */
+}
+
+/* 테이블 첫 번째 컬럼 (번호) 스타일 */
+tbody td:first-child {
+    text-align: center;
+    width: 50px; /* 적절한 너비 설정 */
+}
+
+/* 테이블 제목 컬럼 스타일 */
+tbody td:nth-child(2) {
+    /* 필요에 따라 스타일 추가 */
+}
+
+/* 테이블 내용 컬럼 스타일 */
+tbody td:nth-child(3) {
+    /* 필요에 따라 스타일 추가 */
+}
+
+/* 데이터가 없을 경우 메시지 스타일 */
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background: var(--brand-highlight-color);
+}
+
+.pagination .current {
+    background-color: var(--brand-main-color); /* 활성화된 페이지 배경색 */
+    color: white;
+    border-color: var(--brand-main-color);
+}
+
+.pagination .disabled {
+    color: #ccc;
+    border-color: #ccc;
+    pointer-events: none; /* 클릭 비활성화 */
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.step-ui {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    margin: 2rem 7.5rem;
+}
+
+.step {
+    flex-grow: 1; /* 각 단계가 동일한 너비를 차지하도록 */
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: #777;
+    position: relative; /* 가상 요소(::before)를 위한 기준점 */
+}
+
+.step.active {
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+.hide {
+    display: none !important;
+}
+
+/**
+* 브랜드 컬러
+*/
+:root {
+    --brand-main-color: #724A8C; /* 메인 컬러 진한 보라 */
+    --brand-sub-color: #CFBBD9; /* 메인 컬러 연한 보라 */
+    /*--brand-highlight-color: #E6D24A; !* 보라색의 보색 = 노란색 *!*/
+    --brand-highlight-color: linear-gradient(to right, #5a72eb, #ec4c6d);
+}

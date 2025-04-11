@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="/layout/head :: headFragment"></th:block>
+<body>
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+    <link href="/css/contact.css" rel="stylesheet">
+    <section>
+        <div class="content-wrap">
+            <!--<h2 th:text="${'✈ '+title +' 전체보기'}"></h2>-->
+            <h2>궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
+            <div class="search-bar">
+                <form id="searchForm">
+                    <select name="searchType" id="searchType" required>
+                        <option value="">구분</option>
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                    </select>
+                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." required>
+                    <button type="submit">검색</button>
+                </form>
+            </div>
+            <div class="keywords">
+                <a href="#">키워드 1</a>
+                <a href="#">키워드 2</a>
+                <a href="#">키워드 3</a>
+                <a href="#">키워드 4</a>
+                <a href="#">키워드 5</a>
+                <a href="#">키워드 6</a>
+            </div>
+            <div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
+                <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
+            </div>
+            <div class="sort">
+                <a href="#">추천순</a>
+                <a href="#">인기순</a>
+                <a href="#">댓글순</a>
+                <a href="#">최신순</a>
+            </div>
+            <table id="readResults" th:if="${not #lists.isEmpty(pageInfo.items)}">
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>내용</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="board, stat : ${pageInfo.items}">
+                    <!--<td name="stat" th:text="${stat.index + 1}"></td>-->
+                    <td name="stat" th:text="${pageInfo.items.size() - stat.index}"></td> <!-- 역순 -->
+                    <td name="title"><a href="board/boardDetail" th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}">></span></a></td>
+                    <td name="content" th:text="${board.BOARD_CONTENT}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div id="searchResults"></div>
+            <p th:if="${#lists.isEmpty(pageInfo.items)}" class="no-data">등록된 게시글이 없습니다.</p>
+
+            <div class="pagination" th:if="${pageInfo.totalPages > 0}">
+                <a th:if="${pageInfo.currentPage > 1}" th:href="@{/board/boardList(page=${pageInfo.currentPage - 1})}">&laquo;</a>
+
+                <th:block th:each="page : ${#numbers.sequence(1, pageInfo.totalPages)}">
+                    <span th:if="${page == pageInfo.currentPage}" class="current" th:text="${page}"></span>
+                    <a th:unless="${page == pageInfo.currentPage}" th:href="@{/board/boardList(page=${page})}" th:text="${page}"></a>
+                </th:block>
+
+                <a th:if="${pageInfo.currentPage < pageInfo.totalPages}" th:href="@{/board/boardList(page=${pageInfo.currentPage + 1})}">&raquo;</a>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{layout/footer :: footerFragment}"></footer>
+<script>
+    $(document).ready(function () {
+        hashTag();
+
+        // 키워드 검색처리
+        $('.keywords').find('a').click(function (e) {
+            var tag = e.target.textContent;
+            var txt = tag.replace('#','');
+            $('.search-bar').find('input').val(txt);
+            // 여기서 바로 클릭 호출하면 Maximum call stack size exceeded
+        });
+
+        $('#boardList').click(function (e) {
+            location.replace("/board/boardList");
+        });
+
+        // 해시태그 # 추가
+        function hashTag() {
+            for(var i=0;i<$('.keywords').find('a').length;i++){
+                var keywordTxt = $('.keywords').find('a')[i].text;
+                $('.keywords').find('a')[i].text = '#'+keywordTxt;
+            }
+        }
+
+        $('#searchForm').submit(function(event) {
+            event.preventDefault(); // 폼 기본 제출 동작 방지
+
+            var searchType = $('#searchType').val();
+            var keyword = $('#keyword').val().trim();
+
+            $.ajax({
+                url: '/board/searchBoard',
+                type: 'GET',
+                dataType: 'json',
+                data: { searchType: searchType, keyword: keyword },
+                success: function(data) {
+                    var html = '';
+                    if (data && data.length > 0) { // data는 배열이므로 length 속성으로 확인
+                        $.each(data, function(index, board) { // 배열을 순회
+                            html += '<tr>';
+                            html += '<td>' + (index + 1) + '</td>';
+                            html += '<td>' + board.board_TITLE + '</td>'; // 객체의 속성명 그대로 접근
+                            html += '<td>' + board.board_CONTENT + '</td>'; // 객체의 속성명 그대로 접근
+                            html += '</tr>';
+                        });
+                        $('#readResults tbody').empty().append(html);
+                        $('#searchResults').empty();
+                        $('#keyword').val("");
+                    } else {
+                        $('#searchResults').html('<p class="no-data">검색 결과가 없습니다.</p>');
+                        $('#readResults tbody').empty();
+                        $('#keyword').val("");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('검색 요청 실패:', error);
+                    alert('검색 에러!');
+                    $('#keyword').val("");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

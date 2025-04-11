@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.travelagency.mapper.UserMapper">
+    <resultMap id="UserVOMap" type="com.example.travelagency.vo.UserVO">
+        <result property="USER_ID" column="USER_ID"/>
+        <result property="USER_ACCOUNT" column="USER_ACCOUNT"/>
+        <result property="USER_PASSWORD" column="USER_PASSWORD"/>
+        <result property="USER_NAME" column="USER_NAME"/>
+        <result property="USER_PHONE" column="USER_PHONE"/>
+        <result property="CREATED_AT" column="CREATED_AT"/>
+        <result property="UPDATED_AT" column="UPDATED_AT"/>
+        <result property="USER_EMAIL" column="USER_EMAIL"/>
+        <result property="USER_TYPE" column="USER_TYPE"/>
+    </resultMap>
+
+    <resultMap id="UserDetailVOMap" type="com.example.travelagency.vo.UserDetailVO">
+        <result property="USER_DETAIL_ID" column="USER_DETAIL_ID"/>
+        <result property="USER_ID" column="USER_ID"/>
+        <result property="USER_ADDRESS" column="USER_ADDRESS"/>
+        <result property="USER_PROFILE_IMAGE_URL" column="USER_PROFILE_IMAGE_URL"/>
+        <result property="USER_PREFERENCE" column="USER_PREFERENCE"/>
+        <result property="CREATED_AT" column="CREATED_AT"/>
+        <result property="UPDATED_AT" column="UPDATED_AT"/>
+    </resultMap>
+
+    <select id="getAllUser" resultMap="UserVOMap">
+        SELECT
+            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+        FROM TB_USER
+    </select>
+
+    <select id="getUser" parameterType="String" resultMap="UserVOMap">
+        SELECT
+            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+        FROM TB_USER
+        WHERE USER_ACCOUNT = #{inputId}
+    </select>
+
+    <select id="getUserById" parameterType="int" resultMap="UserVOMap">
+        SELECT
+            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+        FROM TB_USER
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="getUserDetail" parameterType="int" resultMap="UserDetailVOMap">
+        SELECT
+            td.USER_DETAIL_ID, td.USER_ADDRESS, td.USER_PROFILE_IMAGE_URL, td.USER_PREFERENCE, td.CREATED_AT AS DETAIL_CREATED_AT, td.UPDATED_AT AS DETAIL_UPDATED_AT
+        FROM TB_USER tu
+                 LEFT JOIN TB_USER_DETAIL td ON tu.USER_ID = td.USER_ID
+        WHERE tu.USER_ID = #{userId}
+    </select>
+
+    <select id="isUserExist" parameterType="String" resultType="int">
+        SELECT
+            COUNT(*) as cnt
+        FROM TB_USER
+        WHERE USER_ACCOUNT = #{inputId}
+    </select>
+</mapper>
