@@ -10,10 +10,16 @@
         <div class="profile-header">
             <div class="profile-background"></div>
             <div class="profile-avatar">
-                <img src="/images/profile/avatar.jpg" alt="프로필 사진">
+                <!-- 기존 프로필 이미지 영역 -->
+                <img id="profileImageOld" th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">
+                <!-- preview 영역 -->
+                <img id="profileImagePreview" alt="프로필 사진" class="hide">
                 <div class="profile-info">
-                    <label for="profileImage">프로필 사진 변경</label>
-                    <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display: none;">
+                    <form method="post" th:action="@{/user/updateProfileImage}" id="profile-info" onsubmit="return formCheck(this);" enctype="multipart/form-data">
+                        <label for="profileImage"></label>
+                        <input type="file" id="profileImage" name="profileImage" accept="image/*" required>
+                        <button id="edit-profile-image" type="submit">프로필 이미지 변경</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -23,41 +29,56 @@
             <form method="post" th:action="@{/user/updateProfile}" id="inquiry" onsubmit="return formCheck(this);" enctype="multipart/form-data">
                 <table class="form-table">
                     <tr>
+                        <td class="col1"> 아이디 <span class="warn">*</span></td>
+                        <label class="label-form" for="USER_ACCOUNT"></label>
+                        <td class="col2"><span th:name="USER_ACCOUNT" id="USER_ACCOUNT" th:text="${user.USER_ACCOUNT}" ></span></td>
+                    </tr>
+                    <tr>
                         <td class="col1"> 성명 <span class="warn">*</span></td>
-                        <label class="label-form" for="username"></label>
-                        <td class="col2"><input type="text" name="username" id="username" th:value="${user.USER_NAME}" required></td>
+                        <label class="label-form" for="USER_NAME"></label>
+                        <td class="col2"><input type="text" name="USER_NAME" id="USER_NAME" th:value="${user.USER_NAME}" required></td>
                     </tr>
                     <tr>
                         <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
-                        <label class="label-form" for="tel"></label>
-                        <td class="col2"><input type="tel" name="tel" id="tel" th:value="${user.USER_PHONE}" required></td>
+                        <label class="label-form" for="USER_PHONE"></label>
+                        <td class="col2"><input type="tel" name="USER_PHONE" id="USER_PHONE" th:value="${user.USER_PHONE}" required></td>
                     </tr>
                     <tr>
                         <td class="col1"> 이메일 <span class="warn">*</span></td>
-                        <label class="label-form" for="email"></label>
-                        <td class="col2"><input type="email" name="email" id="email" th:value="${user.USER_EMAIL}" required></td>
+                        <label class="label-form" for="USER_EMAIL"></label>
+                        <td class="col2"><input type="email" name="USER_EMAIL" id="USER_EMAIL" th:value="${user.USER_EMAIL}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 비밀번호 <span class="warn">*</span></td>
+                        <label class="label-form" for="USER_PASSWORD"></label>
+                        <td class="col2"><input type="password" name="USER_PASSWORD" id="USER_PASSWORD" placeholder="******" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 비밀번호 확인<span class="warn">*</span></td>
+                        <label class="label-form" for="passwordChk"></label>
+                        <td class="col2"><input type="password" name="passwordChk" id="passwordChk" placeholder="******" required></td>
                     </tr>
                     <tr>
                         <td class="col1"> 유형 <span class="warn">*</span></td>
                         <td class="col2">
-                            <input type="radio" name="userType" id="personal" value="personal" th:checked="${user.USER_TYPE == 'personal'}">
+                            <input type="radio" name="USER_TYPE" id="personal" value="personal" th:checked="${user.USER_TYPE == 'personal'}">
                             <label for="personal">개인</label>
-                            <input type="radio" name="userType" id="copr" value="copr" th:checked="${user.USER_TYPE == 'copr'}">
+                            <input type="radio" name="USER_TYPE" id="copr" value="copr" th:checked="${user.USER_TYPE == 'copr'}">
                             <label for="copr">기업</label>
-                            <input type="radio" name="userType" id="org" value="org" th:checked="${user.USER_TYPE == 'org'}">
+                            <input type="radio" name="USER_TYPE" id="org" value="org" th:checked="${user.USER_TYPE == 'org'}">
                             <label for="org">단체</label>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1"> 주소</td>
-                        <label class="label-form" for="address"></label>
-                        <td class="col2"><input type="text" name="address" id="address" th:value="${userDetail.USER_ADDRESS}"></td>
+                        <label class="label-form" for="USER_ADDRESS"></label>
+                        <td class="col2"><input type="text" name="USER_ADDRESS" id="USER_ADDRESS" th:value="${userDetail.USER_ADDRESS}"></td>
                     </tr>
                     <tr>
                         <td class="col1"> 관심분야</td>
-                        <label class="label-form" for="preference"></label>
+                        <label class="label-form" for="USER_PREFERENCE"></label>
                         <input type="hidden" id="displayArea" th:value="${userDetail.USER_PREFERENCE}" >
-                        <td class="col2"><input type="text" name="preference" id="preference"></td>
+                        <td class="col2"><input type="text" name="USER_PREFERENCE" id="USER_PREFERENCE"></td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -72,8 +93,8 @@
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
     $(document).ready(function() {
+        // 선호도
         const userPreferenceJson = $("#displayArea").val();
-
         if (userPreferenceJson) {
             try {
                 const userPreference = JSON.parse(userPreferenceJson);
@@ -88,13 +109,36 @@
                     userPreference.activityPreference ? Object.values(userPreference.activityPreference).join(", ") : ""
                 ].filter(Boolean);
 
-                $("#preference").val(displayValues.join(", "));
+                $("#USER_PREFERENCE").val(displayValues.join(", "));
 
             } catch (error) {
                 console.error("JSON 파싱 오류:", error);
-                $("#preference").val("데이터 오류");
+                $("#USER_PREFERENCE").val("데이터 오류");
             }
         }
+
+        // 프로필 이미지 미리보기
+        const $profileImageOld = $('#profileImageOld').attr('src');
+        let $profileImageOldImage = $('#profileImageOld');
+        let $profileImageInput = $('#profileImage');
+        let $profileImagePreview = $('#profileImagePreview');
+
+        $profileImageInput.on('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $profileImageOldImage.addClass('hide');
+                    $profileImagePreview.attr('src', e.target.result); // 미리보기 이미지 업데이트
+                    $profileImagePreview.removeClass('hide');
+                };
+                reader.readAsDataURL(file); // 파일을 Data URL로 읽기
+            } else {
+                $profileImagePreview.attr('src', $profileImageOld);
+                $profileImagePreview.addClass('hide');
+            }
+        });
     });
 </script>
 </body>

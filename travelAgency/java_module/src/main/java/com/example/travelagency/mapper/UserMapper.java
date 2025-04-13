@@ -14,5 +14,7 @@ public interface UserMapper {
     int isUserExist(@Param("inputId") String inputId);
     UserDetailVO getUserDetail(int userId);
     UserVO getUserById(int userId);
+    void updateProfileImage(String profileImageUrl, int userId);
+    int updateUser(UserVO user);
 }
 

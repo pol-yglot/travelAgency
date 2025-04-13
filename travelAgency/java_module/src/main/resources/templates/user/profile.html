@@ -14,9 +14,8 @@
                     <h2 th:text="${user.USER_NAME} + '님, 안녕하세요! :)'"></h2>
                     <p th:text="${user.USER_EMAIL}"></p>
                 </div>
-                <img src="/images/profile/avatar.jpg" alt="프로필 사진">
+                <img th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">
             </div>
-            <button class="edit-profile-button" id="edit-profile-button">프로필 수정</button>
         </div>
 
         <div class="profile-content">
@@ -42,8 +41,8 @@
             </div>
 
             <div class="profile-section">
-                <h3>보안 설정</h3>
-                <button class="mfa-button">다중 인증 설정</button>
+                <h3>프로필 수정</h3>
+                <button class="edit-profile-button" id="edit-profile-button">프로필 수정</button>
             </div>
         </div>
 

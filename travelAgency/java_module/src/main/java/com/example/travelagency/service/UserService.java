@@ -12,4 +12,6 @@ public interface UserService {
     boolean isUserExist(String inputId);
     UserVO login(String inputId, String inputPassword);
     UserDetailVO getUserDetail(int userId);
+    void updateProfileImage(String profileImageUrl, int userId);
+    int updateUser(UserVO user);
 }

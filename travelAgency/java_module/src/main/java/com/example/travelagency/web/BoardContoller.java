@@ -8,13 +8,19 @@ import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.travelagency.vo.PageInfo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +29,7 @@ import java.util.List;
 public class BoardContoller {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BoardContoller.class);
+    private final String boardFilesLocation = "/app/files/board/"; // 실제 파일 저장 경로
 
     @Autowired
     private BoardService boardService;
@@ -86,4 +93,19 @@ public class BoardContoller {
         return "board/boardDetail";
     }
 
+    @GetMapping("/files/{filename}")
+    @ResponseBody
+    public ResponseEntity<FileSystemResource> serveFile(@PathVariable String filename) throws IOException, IOException {
+        Path filePath = Paths.get(boardFilesLocation, filename);
+        FileSystemResource resource = new FileSystemResource(filePath);
+
+        if (resource.exists()) {
+            String contentType = Files.probeContentType(filePath);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .body(resource);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

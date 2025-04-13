@@ -101,8 +101,18 @@ img {
     display: flex;
 }
 
-.user-actions a,button {
+.user-actions a {
     margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color:  var(--brand-main-color);
+    color: white;
+    transition: background-color 0.3s ease;
+    border: none;
+    font-size: 14px;
+}
+
+.user-actions button {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     background-color:  var(--brand-main-color);
@@ -257,6 +267,7 @@ section {
 .form-table input[type="email"],
 .form-table input[type="number"],
 .form-table input[type="tel"],
+.form-table input[type="password"],
 .form-table textarea {
     width: 100%;
     padding: 0.8rem;
@@ -287,6 +298,7 @@ section {
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
+    margin: 0;
 }
 
 .form-table button[type="submit"]:hover {

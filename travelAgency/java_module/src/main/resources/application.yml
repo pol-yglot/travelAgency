@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
   servlet:
     encoding:
       charset: UTF-8
@@ -9,18 +9,18 @@ server:
 
 # 최상단에 기재
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
   #type-alias-package: com.example.travelagency.vo
+  mapper-locations: classpath:mapper/*.xml
   configuration:
-    map-underscore-to-camel-case: true
-    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #sql쿼리출력
-  #config-location: classpath:mapper/MyBatisConfig.xml
+    #map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #sql쿼리출력
+   #config-location: classpath:mapper/MyBatisConfig.xml
 spring:
   application:
     name: travelAgency
   web:
     resources:
-      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:/travelAgency/files/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/travelAgency?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
@@ -36,6 +36,12 @@ spring:
       name: test
       password: 1234
       roles: USER,ADMIN
+
+file :
+  upload-dir: /travelAgency/files/
+  profile-image-dir: /travelAgency/files/user/
+  board-file-dir:  /travelAgency/files/board/
+
 logging:
   level:
     #com.example.travelagency.mapper: debug

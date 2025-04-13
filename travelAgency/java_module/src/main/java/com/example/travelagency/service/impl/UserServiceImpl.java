@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userMapper.getUserById(userId);
         } catch (Exception e) {
-            throw new RuntimeException("사용자 정보를 불러오는 중 오류 발생, getUser", e);
+            throw new RuntimeException("사용자 정보를 불러오는 중 오류 발생, getUserById", e);
         }
     }
 
@@ -48,7 +48,25 @@ public class UserServiceImpl implements UserService {
         try {
             return userMapper.getUserDetail(userId);
         } catch (Exception e) {
-            throw new RuntimeException("사용자 상세 정보를 불러오는 중 오류 발생, getUser", e);
+            throw new RuntimeException("사용자 상세 정보를 불러오는 중 오류 발생, getUserDetail", e);
+        }
+    }
+
+    @Override
+    public void updateProfileImage(String profileImageUrl, int userId) {
+        try {
+            userMapper.updateProfileImage(profileImageUrl, userId);
+        } catch (Exception e) {
+            throw new RuntimeException("프로필 이미지 업로드 중 오류 발생, updateProfileImage", e);
+        }
+    }
+
+    @Override
+    public int updateUser(UserVO user) {
+        try {
+            return userMapper.updateUser(user);
+        } catch (Exception e) {
+            throw new RuntimeException("고객정보 수정 중 오류 발생, updateUser", e);
         }
     }
 
