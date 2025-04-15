@@ -1,5 +1,6 @@
 package com.example.travelagency.service;
 
+import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
 
@@ -14,4 +15,8 @@ public interface UserService {
     UserDetailVO getUserDetail(int userId);
     void updateProfileImage(String profileImageUrl, int userId);
     int updateUser(UserVO user);
+    int insertInquiry(InquiryVO inquiry);
+    List<InquiryVO> getInquiryList(int inputId);
+    InquiryVO getInquiry(int inquiryId);
+    int updateUserDetail(UserDetailVO userDetail);
 }

@@ -1,7 +1,6 @@
 package com.example.travelagency.web;
 
 import com.example.travelagency.service.UserService;
-import com.example.travelagency.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 @Controller
 @RequestMapping(value = "service")
-public class ServiceController {
+public class CompanyController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CompanyController.class);
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/services")
     public String services() {

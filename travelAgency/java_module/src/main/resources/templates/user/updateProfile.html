@@ -26,6 +26,7 @@
 
         <section class="contact">
             <h2>회원정보</h2>
+            <p class="error-message" th:if="${error}" th:text="${error}"></p>
             <form method="post" th:action="@{/user/updateProfile}" id="inquiry" onsubmit="return formCheck(this);" enctype="multipart/form-data">
                 <table class="form-table">
                     <tr>
@@ -76,9 +77,68 @@
                     </tr>
                     <tr>
                         <td class="col1"> 관심분야</td>
-                        <label class="label-form" for="USER_PREFERENCE"></label>
-                        <input type="hidden" id="displayArea" th:value="${userDetail.USER_PREFERENCE}" >
-                        <td class="col2"><input type="text" name="USER_PREFERENCE" id="USER_PREFERENCE"></td>
+                        <td class="col2">
+                        <!-- 여행 스타일 -->
+                        <label>여행 스타일</label>
+                        <select id="travelStyle">
+                            <option value="패키지 여행">패키지 여행</option>
+                            <option value="자유 여행">자유 여행</option>
+                        </select>
+
+                        <!-- 숙소 유형 -->
+                        <label>숙소 유형</label>
+                        <select id="accommodationType">
+                            <option value="리조트">리조트</option>
+                            <option value="호텔">호텔</option>
+                        </select>
+
+                        <!-- 리조트 편의시설 -->
+                        <label>리조트 편의시설</label><br/>
+                        <label><input type="checkbox" name="resortAmenities" value="전용 해변"> 전용 해변</label>
+                        <label><input type="checkbox" name="resortAmenities" value="올인클루시브"> 올인클루시브</label>
+
+                        <!-- 관심 지역 -->
+                        <label>관심 지역</label><br/>
+                        <label><input type="checkbox" name="interestedRegions" value="발리"> 발리</label>
+                        <label><input type="checkbox" name="interestedRegions" value="푸켓"> 푸켓</label>
+
+                        <!-- 활동 선호도 -->
+                        <label>해양 액티비티</label>
+                        <select id="oceanActivities">
+                            <option value="낮음">낮음</option>
+                            <option value="보통">보통</option>
+                            <option value="매우 높음" selected>매우 높음</option>
+                        </select>
+
+                        <label>휴식 선호도</label>
+                        <select id="relaxation">
+                            <option value="보통">보통</option>
+                            <option value="최고" selected>최고</option>
+                        </select>
+
+                        <label>현지 문화 체험</label>
+                        <select id="localCultureExperience">
+                            <option value="낮음">낮음</option>
+                            <option value="보통" selected>보통</option>
+                        </select>
+
+                        <!-- 음식 선호 -->
+                        <label>음식 타입</label><br/>
+                        <label><input type="checkbox" name="foodType" value="동남아 음식"> 동남아 음식</label>
+                        <label><input type="checkbox" name="foodType" value="양식"> 양식</label>
+
+                        <!-- 선호 가격대 -->
+                        <label>선호 숙소 가격대</label>
+                        <select id="priceRange">
+                            <option value="20만원 미만">20만원 미만</option>
+                            <option value="20만원 이상" selected>20만원 이상</option>
+                        </select>
+
+                        <!-- 실제 전송할 JSON hidden field -->
+                        <input type="hidden" name="USER_PREFERENCE" id="USER_PREFERENCE"/>
+
+
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">

@@ -30,7 +30,7 @@
 
             <div class="profile-section">
                 <h3>관심분야</h3>
-                <input type="hidden" id="displayArea" th:value="${userDetail.USER_PREFERENCE}" >
+                <input type="hidden" id="preferenceJson" name="preferenceJson">
                 <p class="preference" id="preference"></p>
                 <!--<tr>
                     <td class="col1"> 관심분야</td>
@@ -42,7 +42,7 @@
 
             <div class="profile-section">
                 <h3>프로필 수정</h3>
-                <button class="edit-profile-button" id="edit-profile-button">프로필 수정</button>
+                <button class="pretty-button" id="edit-profile-button">프로필 수정</button>
             </div>
         </div>
 
@@ -58,25 +58,46 @@
 
             <div class="profile-section">
                 <h3>문의 내역</h3>
-                <ul class="recommend-list">
-                    <li>추천 상품 1</li>
-                    <li>추천 상품 2</li>
-                    <li>추천 상품 3</li>
+                <ul class="recommend-list" th:each="inq : ${inqList}">
+                    <li><a class="link" th:href="@{/user/getInquiry(inquiryId=${inq.INQUIRY_ID})}" th:text="${inq.INQUIRY_TITLE}"></a></li>
                 </ul>
             </div>
 
             <div class="profile-section">
                 <h3>출장 리포트</h3>
                 <ul class="recommend-list">
-                    <li>추천 상품 1</li>
-                    <li>추천 상품 2</li>
-                    <li>추천 상품 3</li>
+                    <button class="pretty-button" type="button">리포트 확인</button>
                 </ul>
             </div>
         </div>
 
     </section>
 </main>
+<!-- 모달 배경 -->
+<div id="preferenceModalOverlay" class="modal-overlay"></div>
+
+<!-- 모달 본체 -->
+<div id="preferenceModal" class="modal">
+    <button class="close-button" id="closeModal">&times;</button>
+    <h3>관심 분야 선택</h3>
+
+    <label for="modal_travelStyle">여행 스타일</label>
+    <select id="modal_travelStyle">
+        <option value="패키지 여행">패키지 여행</option>
+        <option value="자유 여행">자유 여행</option>
+    </select>
+
+    <label for="modal_accommodationType">숙소 유형</label>
+    <select id="modal_accommodationType">
+        <option value="리조트">리조트</option>
+        <option value="호텔">호텔</option>
+    </select>
+
+    <div class="modal-footer">
+        <button class="btn btn-save" id="savePreference">저장</button>
+        <button class="btn btn-cancel" id="closeModal2">취소</button>
+    </div>
+</div>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
     $(document).ready(function () {
@@ -85,29 +106,27 @@
             location.replace("/user/updateProfile");
         });
 
-        const userPreferenceJson = $("#displayArea").val();
+        // 버튼 삽입
+        $("#preference").html(`
+          <button type="button" class="pretty-button" id="openPreferenceModal">
+            관심분야 등록
+          </button>
+        `);
 
-        if (userPreferenceJson) {
-            try {
-                const userPreference = JSON.parse(userPreferenceJson);
-                const displayValues = [
-                    userPreference.travelStyle,
-                    userPreference.accommodationType,
-                    userPreference.interestedRegions ? userPreference.interestedRegions.join(", ") : "",
-                    userPreference.hotelAmenities ? userPreference.hotelAmenities.join(", ") : "",
-                    userPreference.foodType ? userPreference.foodType.join(", ") : "",
-                    userPreference.spicyFoodPreference,
-                    userPreference.preferredPriceRangeAccommodation,
-                    userPreference.activityPreference ? Object.values(userPreference.activityPreference).join(", ") : ""
-                ].filter(Boolean);
+        // 모달 열기
+        $('#preference').on('click', '#openPreferenceModal', function () {
+            $('#preferenceModal').fadeIn(200);
+            $('#preferenceModalOverlay').fadeIn(200);
+        });
 
-                $("#preference").text(displayValues.join(", "));
-
-            } catch (error) {
-                console.error("JSON 파싱 오류:", error);
-                $("#preference").text("데이터 오류");
-            }
+        // 모달 닫기
+        function closeModal() {
+            $('#preferenceModal').fadeOut(200);
+            $('#preferenceModalOverlay').fadeOut(200);
         }
+
+        $('#closeModal, #closeModal2, #preferenceModalOverlay').click(closeModal);
+
     });
 </script>
 </body>

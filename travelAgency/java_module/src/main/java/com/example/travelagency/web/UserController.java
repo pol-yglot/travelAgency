@@ -2,6 +2,7 @@ package com.example.travelagency.web;
 
 import com.example.travelagency.service.FileService;
 import com.example.travelagency.service.UserService;
+import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "user")
@@ -30,21 +32,25 @@ public class UserController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping("/userList")
-    public String userList() {
-        return "user/userList";
+    @GetMapping("/getInquiry")
+    public String getInquiry(@RequestParam("inquiryId") int inquiryId, Model model) {
+        InquiryVO inquiry = userService.getInquiry(inquiryId);
+        model.addAttribute("inquiry", inquiry);
+        return "/user/inquiryDetail";
     }
 
     @GetMapping("/profile")
     public String profile(HttpSession session, Model model) {
         // 로그인 시 세션에 올린 사용자 정보를 재사용
         if (session.getAttribute("user") != null) {
+
             UserVO user = (UserVO) session.getAttribute("user");
-            // USER_ID로 상세정보 조회
             UserDetailVO userDetail = userService.getUserDetail(user.getUSER_ID());
-            LOGGER.debug("userDetail = " + userDetail);
+            List<InquiryVO> inqList = userService.getInquiryList(user.getUSER_ID());
+
             model.addAttribute("user", user);
             model.addAttribute("userDetail", userDetail);
+            model.addAttribute("inqList", inqList);
         } else {
             // 미로그인시 로그인 페이지로 이동
             return "user/login";
@@ -98,8 +104,22 @@ public class UserController {
             user.setUSER_PASSWORD(USER_PASSWORD);
             result = userService.updateUser(user);
 
-            // 2. userDetail 정보 업데이트
+            if(result < 1){
+                redirectAttributes.addFlashAttribute("mesage", "고객정보수정을 실패했습니다. 다시 시도해주세요.");
+                return "redirect:/user/profile";
+            }
 
+            // 2. userDetail 정보 업데이트
+            UserDetailVO userDetail = userService.getUserDetail(user.getUSER_ID());
+            userDetail.setUSER_ID(String.valueOf(user.getUSER_ID()));
+            userDetail.setUSER_ADDRESS(USER_ADDRESS);
+            userDetail.setUSER_PREFERENCE(USER_PREFERENCE);
+            result = userService.updateUserDetail(userDetail);
+
+            if(result < 1){
+                redirectAttributes.addFlashAttribute("mesage", "고객정보수정에 실패했습니다. 다시 시도해주세요.");
+                return "redirect:/user/profile";
+            }
 
         } else {
             // 미로그인시 로그인 페이지로 이동

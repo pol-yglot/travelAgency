@@ -1,5 +1,6 @@
 package com.example.travelagency.service.impl;
 
+import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
 import com.example.travelagency.mapper.UserMapper;
@@ -67,6 +68,34 @@ public class UserServiceImpl implements UserService {
             return userMapper.updateUser(user);
         } catch (Exception e) {
             throw new RuntimeException("고객정보 수정 중 오류 발생, updateUser", e);
+        }
+    }
+
+    @Override
+    public int insertInquiry(InquiryVO inquiry) {
+        try {
+            return userMapper.insertInquiry(inquiry);
+        } catch (Exception e) {
+            throw new RuntimeException("견적문의 저장 중 오류 발생, updateUser", e);
+        }
+    }
+
+    @Override
+    public List<InquiryVO> getInquiryList(int inputId) {
+        return userMapper.getInquiryList(inputId);
+    }
+
+    @Override
+    public InquiryVO getInquiry(int inquiryId) {
+        return userMapper.getInquiry(inquiryId);
+    }
+
+    @Override
+    public int updateUserDetail(UserDetailVO userDetail) {
+        try {
+            return userMapper.updateUserDetail(userDetail);
+        } catch (Exception e) {
+            throw new RuntimeException("고객정보 수정 중 오류 발생, updateUserDetail", e);
         }
     }
 

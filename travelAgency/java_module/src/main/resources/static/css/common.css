@@ -582,6 +582,91 @@ tbody td:nth-child(3) {
 .hide {
     display: none !important;
 }
+/* 모달 오버레이 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* 모달 본체 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 12px;
+    width: 480px;
+    max-width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    font-family: 'Apple SD Gothic Neo', 'sans-serif';
+}
+
+.modal h3 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.modal label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.modal select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.modal .close-button {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+.modal .modal-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.modal .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.modal .btn-save {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal .btn-cancel {
+    background-color: #eee;
+    color: #333;
+    margin-left: 8px;
+}
 
 /**
 * 브랜드 컬러

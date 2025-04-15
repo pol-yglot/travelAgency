@@ -72,12 +72,20 @@ CREATE TABLE TB_INQUIRY (
                             USER_ID INT, -- 사용자 ID (외래 키)
                             PRODUCT_ID INT, -- 상품 ID (외래 키)
                             INQUIRY_CONTENT TEXT NOT NULL, -- 문의 내용 (필수)
-                            CONTACT_INFO VARCHAR(255), -- 연락처 정보
                             CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성 일시 (기본값: 현재 시간)
                             UPDATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정 일시 (기본값: 현재 시간, 업데이트 시 자동 갱신)
                             FOREIGN KEY (USER_ID) REFERENCES TB_USER(USER_ID), -- 사용자 테이블과의 외래 키 관계 설정
                             FOREIGN KEY (PRODUCT_ID) REFERENCES TB_PRODUCT(PRODUCT_ID) -- 상품 테이블과의 외래 키 관계 설정
 ) COMMENT '견적 문의 정보 테이블';
+
+ALTER TABLE tb_inquiry
+ADD COLUMN USER_ACCOUNT VARCHAR(50),
+ADD COLUMN USER_NAME VARCHAR(100) NOT NULL, -- 사용자 이름 (필수)
+ADD COLUMN USER_PHONE VARCHAR(20), -- 사용자 전화번호
+ADD COLUMN USER_EMAIL VARCHAR(255),
+ADD COLUMN  INQUIRY_TITLE VARCHAR(100) NOT NULL; -- 문의제목
+ALTER TABLE travelagency.tb_inquiry DROP FOREIGN KEY tb_inquiry_ibfk_2;
+ALTER TABLE tb_inquiry CHANGE PRODUCT_TYPE CATEGORY_TYPE varchar(50) NULL;
 
 -- 후기 테이블: 상품 또는 서비스에 대한 사용자 후기(별점, 내용, 작성자 등)를 저장
 CREATE TABLE TB_REVIEW (
@@ -194,3 +202,12 @@ CREATE TABLE TB_NOTIFICATION (
                                  UPDATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정 일시 (기본값: 현재 시간, 업데이트 시 자동 갱신)
                                  FOREIGN KEY (USER_ID) REFERENCES TB_USER(USER_ID) -- 사용자 테이블과의 외래 키 관계 설정
 ) COMMENT '사용자 알림 테이블';
+
+-- 카테고리 테이블
+CREATE TABLE TB_CATEGORY (
+                             CATEGORY_ID int PRIMARY KEY AUTO_INCREMENT,
+                             CATEGORY_TYPE varchar(50) DEFAULT NULL,
+                             CATEGORY_NAME varchar(100) DEFAULT NULL,
+                             CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성 일시 (기본값: 현재 시간)
+                             UPDATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 일시 (기본값: 현재 시간, 업데이트 시 자동 갱신)
+) COMMENT='카테고리 테이블';

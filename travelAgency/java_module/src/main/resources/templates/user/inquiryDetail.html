@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="/layout/head :: headFragment"></th:block>
+<body>
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+  <section class="contact">
+    <h2>문의내역 상세보기</h2>
+    <table class="form-table">
+      <!--<colgroup>
+          <col style="width: 20%">
+      </colgroup>-->
+      <tr>
+        <td class="col1"> 성명 <span class="warn">*</span></td>
+        <label class="label-form" for="USER_NAME"></label>
+        <td class="col2"><span th:text="${inquiry.USER_NAME}"></span></td>
+      </tr>
+      <tr>
+        <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+        <label class="label-form" for="USER_PHONE"></label>
+        <td class="col2"><span th:text="${inquiry.USER_PHONE}"></span></td>
+      </tr>
+      <tr>
+        <td class="col1"> 이메일 <span class="warn">*</span></td>
+        <label class="label-form" for="USER_EMAIL"></label>
+        <td class="col2"><span th:text="${inquiry.USER_EMAIL}"></span></td>
+      </tr>
+      <tr>
+        <td class="col1"> 유형 <span class="warn">*</span></td>
+        <td class="col2">
+          <input type="radio" name="personal" id="personal" checked>
+          <label for="personal">개인</label>
+          <input type="radio" name="copr" id="copr">
+          <label for="personal">기업</label>
+          <input type="radio" name="org" id="org">
+          <label for="personal">단체</label>
+        </td>
+      </tr>
+      <tr>
+        <td class="col1"> 문의구분 <span class="warn">*</span></td>
+        <td class="col2">
+          <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
+          <label for="businesstrip">출장</label>
+          <input type="checkbox" name="edu" id="edu">
+          <label for="edu">연수/교육</label>
+          <input type="checkbox" name="conference" id="conference">
+          <label for="conference">학회/협회</label>
+          <input type="checkbox" name="etc" id="etc">
+          <label for="etc">기타</label>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td class="col1"> 문의내용 <span class="warn">*</span></td>
+        <td class="col2">
+          <textarea th:utext="${inquiry.INQUIRY_CONTENT}">내용이 없습니다.</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="button">수정하기</button>
+          <button type="button">삭제하기</button>
+          <a th:href="@{/}">메인으로</a>
+        </td>
+      </tr>
+    </table>
+  </section>
+</main>
+<footer th:replace="~{layout/footer :: footerFragment}"></footer>
+</body>
+</html>

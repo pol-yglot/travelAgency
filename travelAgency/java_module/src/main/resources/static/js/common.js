@@ -34,6 +34,17 @@ $(document).ready(function() {
         }
     });
 
+    // 열기
+    $(document).on("click", "#openModal", function () {
+        $("#preferenceModal, #preferenceModalOverlay").show();
+    });
+
+// 닫기
+    $(document).on("click", "#closeModal, #preferenceModalOverlay", function () {
+        $("#preferenceModal, #preferenceModalOverlay").hide();
+    });
+
+
     /**
      * 최상단으로 이동
      * */
