@@ -14,7 +14,8 @@
                     <h2 th:text="${user.USER_NAME} + '님, 안녕하세요! :)'"></h2>
                     <p th:text="${user.USER_EMAIL}"></p>
                 </div>
-                <img th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">
+                <!--<img th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">-->
+                <img id="profile-avatar" th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진" style="cursor:pointer;" />
             </div>
         </div>
 
@@ -58,8 +59,13 @@
 
             <div class="profile-section">
                 <h3>문의 내역</h3>
-                <ul class="recommend-list" th:each="inq : ${inqList}">
-                    <li><a class="link" th:href="@{/user/getInquiry(inquiryId=${inq.INQUIRY_ID})}" th:text="${inq.INQUIRY_TITLE}"></a></li>
+                <ul class="recommend-list" th:each="inq,stat : ${inqList}">
+                    <li>
+                        <a class="pretty-button"
+                           th:href="@{/user/getInquiry(inquiryId=${inq.INQUIRY_ID})}"
+                           th:text="${stat.index + 1} + '. ' + ${inq.INQUIRY_TITLE}">
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -98,6 +104,17 @@
         <button class="btn btn-cancel" id="closeModal2">취소</button>
     </div>
 </div>
+
+<!-- 👇 확대 보기용 모달 -->
+<div id="avatar-container" class="avatar-modal">
+    <div class="avatar-modal-overlay" id="avatar-overlay"></div>
+    <div class="avatar-modal-content">
+        <span class="avatar-close" id="avatar-close">&times;</span>
+        <img id="avatar-large" src="" alt="프로필 확대 이미지">
+    </div>
+</div>
+
+
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
     $(document).ready(function () {
@@ -126,6 +143,16 @@
         }
 
         $('#closeModal, #closeModal2, #preferenceModalOverlay').click(closeModal);
+
+        $('#profile-avatar').on('click', function () {
+            const src = $(this).attr('src');
+            $('#avatar-large').attr('src', src);
+            $('#avatar-container').fadeIn(200);
+        });
+
+        $('#avatar-overlay, #avatar-close').on('click', function () {
+            $('#avatar-container').fadeOut(200);
+        });
 
     });
 </script>

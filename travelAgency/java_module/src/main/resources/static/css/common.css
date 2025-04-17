@@ -88,13 +88,13 @@ img {
 }
 
 .nav-menu a:hover {
-    background: var(--brand-highlight-color);
+    background-color: var(--brand-highlight-color);
 }
 .dark-mode .nav-menu{
     color: #eee;
 }
 .dark-mode .nav-menu a:hover {
-    background-color: #333;
+    background-color: var(--brand-highlight-color);
 }
 
 .user-actions {
@@ -317,7 +317,7 @@ section {
 
 .form-group textarea:focus {
     outline: none;
-    border-color: val(--brand-highlight-color); /* 포커스 시 테두리 색상 변경 */
+    border-color: red;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* 포커스 시 그림자 효과 */
 }
 
@@ -441,13 +441,11 @@ footer {
     justify-content: space-around;
     align-items: center;
     margin-top: 2rem;
-    /*display: inline-block;*/
     animation: logo-slide 20s linear infinite;
 }
 
 .logo-list img {
-    max-height: 100px;
-    height: 50px;
+    height: 150px;
     margin: 0 100px;
 }
 
@@ -668,12 +666,45 @@ tbody td:nth-child(3) {
     margin-left: 8px;
 }
 
+.pretty-button{
+    display: inline-block;
+    background-color: var(--brand-main-color);
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* ✅ hover 효과 명확하게 오버라이드 */
+.pretty-button:hover,
+.pretty-button:focus {
+    background-color: var(--brand-highlight-color) !important;
+    color: white !important;
+    text-decoration: none;
+}
+a.pretty-button{
+    /* 💡 말줄임 처리 핵심 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* 또는 원하는 너비 지정 eg. 250px */
+    background-color: var(--brand-main-color);
+}
+
+a.pretty-button:hover {
+    background: linear-gradient(to right, #5a72eb, #ec4c6d);
+}
+
 /**
 * 브랜드 컬러
 */
 :root {
     --brand-main-color: #724A8C; /* 메인 컬러 진한 보라 */
     --brand-sub-color: #CFBBD9; /* 메인 컬러 연한 보라 */
-    /*--brand-highlight-color: #E6D24A; !* 보라색의 보색 = 노란색 *!*/
+    --brand-warning: #ffc400;
     --brand-highlight-color: linear-gradient(to right, #5a72eb, #ec4c6d);
 }
