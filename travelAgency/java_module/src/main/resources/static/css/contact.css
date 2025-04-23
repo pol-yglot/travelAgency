@@ -132,8 +132,12 @@
     display: none; /* 초기에는 숨김 */
 }
 
-.accordion-icon {
+/*.accordion-icon {
     font-weight: bold;
+}*/
+
+.accordion-icon > img{
+    width: 20px;
 }
 
 .grid-container {

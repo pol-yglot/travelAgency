@@ -1,0 +1,51 @@
+2025-04-22T21:56:29.006+09:00  INFO 19400 --- [restartedMain] c.e.t.TravelAgencyApplication            : Starting TravelAgencyApplication using Java 17.0.12 with PID 19400 (C:\Users\NICCOMPANY_YSY\Documents\travelAgency\travelAgency\java_module\target\classes started by NICCOMPANY_YSY in C:\Users\NICCOMPANY_YSY\Documents\travelAgency\travelAgency)
+2025-04-22T21:56:29.006+09:00  INFO 19400 --- [restartedMain] c.e.t.TravelAgencyApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T21:56:34.185+09:00  WARN 19400 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'boardMapper' and 'com.example.travelagency.mapper.BoardMapper' mapperInterface. Bean already defined with the same name!
+2025-04-22T21:56:34.192+09:00  WARN 19400 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'commentMapper' and 'com.example.travelagency.mapper.CommentMapper' mapperInterface. Bean already defined with the same name!
+2025-04-22T21:56:34.192+09:00  WARN 19400 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'userMapper' and 'com.example.travelagency.mapper.UserMapper' mapperInterface. Bean already defined with the same name!
+2025-04-22T21:56:34.192+09:00  WARN 19400 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.example.travelagency.mapper]' package. Please check your configuration.
+2025-04-22T21:56:34.506+09:00  INFO 19400 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-04-22T21:56:34.506+09:00  INFO 19400 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-22T21:56:34.506+09:00  INFO 19400 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2025-04-22T21:56:34.560+09:00  INFO 19400 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-22T21:56:34.560+09:00  INFO 19400 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5481 ms
+2025-04-22T21:56:34.913+09:00  INFO 19400 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6be97fb0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43048e8f, org.springframework.security.web.context.SecurityContextHolderFilter@799e2100, org.springframework.security.web.header.HeaderWriterFilter@e0128dd, org.springframework.security.web.authentication.logout.LogoutFilter@5b4e716b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17549dec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@549051af, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a7b1458, org.springframework.security.web.access.ExceptionTranslationFilter@21cc5970, org.springframework.security.web.access.intercept.AuthorizationFilter@3e0d058d]
+2025-04-22T21:56:35.243+09:00  INFO 19400 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-22T21:56:35.298+09:00  INFO 19400 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-04-22T21:56:35.305+09:00  INFO 19400 --- [restartedMain] c.e.t.TravelAgencyApplication            : Started TravelAgencyApplication in 6.876 seconds (process running for 53.075)
+2025-04-22T21:56:35.307+09:00  INFO 19400 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-22T21:56:35.318+09:00  INFO 19400 --- [restartedMain] c.e.t.TravelAgencyApplication            :  
+  __                    __                             
+ / /________ __  _____ / / ___ ____ ____ ___  ______ __
+/ __/ __/ _ `/ |/ / -_) / / _ `/ _ `/ -_) _ \/ __/ // /
+\__/_/  \_,_/|___/\__/_/  \_,_/\_, /\__/_//_/\__/\_, / 
+                              /___/             /___/  
+ 
+2025-04-22T21:56:35.318+09:00  INFO 19400 --- [restartedMain] c.e.t.TravelAgencyApplication            : ✅ 서버가 실행되었습니다.
+2025-04-22T21:56:35.318+09:00  INFO 19400 --- [restartedMain] c.e.t.TravelAgencyApplication            : 🔗 접속 주소: http://localhost:8080
+2025-04-22T21:57:03.235+09:00  INFO 15040 --- [restartedMain] c.e.t.TravelAgencyApplication            : Starting TravelAgencyApplication using Java 17.0.12 with PID 15040 (C:\Users\NICCOMPANY_YSY\Documents\travelAgency\travelAgency\java_module\target\classes started by NICCOMPANY_YSY in C:\Users\NICCOMPANY_YSY\Documents\travelAgency\travelAgency)
+2025-04-22T21:57:03.237+09:00  INFO 15040 --- [restartedMain] c.e.t.TravelAgencyApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T21:57:03.365+09:00  INFO 15040 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-22T21:57:03.366+09:00  INFO 15040 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-22T21:57:09.410+09:00  WARN 15040 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'boardMapper' and 'com.example.travelagency.mapper.BoardMapper' mapperInterface. Bean already defined with the same name!
+2025-04-22T21:57:09.410+09:00  WARN 15040 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'commentMapper' and 'com.example.travelagency.mapper.CommentMapper' mapperInterface. Bean already defined with the same name!
+2025-04-22T21:57:09.410+09:00  WARN 15040 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'userMapper' and 'com.example.travelagency.mapper.UserMapper' mapperInterface. Bean already defined with the same name!
+2025-04-22T21:57:09.410+09:00  WARN 15040 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.example.travelagency.mapper]' package. Please check your configuration.
+2025-04-22T21:57:10.757+09:00  INFO 15040 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-04-22T21:57:10.794+09:00  INFO 15040 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-22T21:57:10.795+09:00  INFO 15040 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2025-04-22T21:57:11.008+09:00  INFO 15040 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-22T21:57:11.008+09:00  INFO 15040 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7642 ms
+2025-04-22T21:57:11.937+09:00  INFO 15040 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5dd3441c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e494954, org.springframework.security.web.context.SecurityContextHolderFilter@40679dbd, org.springframework.security.web.header.HeaderWriterFilter@50261116, org.springframework.security.web.authentication.logout.LogoutFilter@18540610, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@468bb132, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10d5d329, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7aa38421, org.springframework.security.web.access.ExceptionTranslationFilter@2676c27b, org.springframework.security.web.access.intercept.AuthorizationFilter@1d07c7dd]
+2025-04-22T21:57:20.019+09:00  INFO 15040 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-22T21:57:20.119+09:00  INFO 15040 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-04-22T21:57:20.125+09:00  INFO 15040 --- [restartedMain] c.e.t.TravelAgencyApplication            : Started TravelAgencyApplication in 18.003 seconds (process running for 19.605)
+2025-04-22T21:57:20.132+09:00  INFO 15040 --- [restartedMain] c.e.t.TravelAgencyApplication            :  
+  __                    __                             
+ / /________ __  _____ / / ___ ____ ____ ___  ______ __
+/ __/ __/ _ `/ |/ / -_) / / _ `/ _ `/ -_) _ \/ __/ // /
+\__/_/  \_,_/|___/\__/_/  \_,_/\_, /\__/_//_/\__/\_, / 
+                              /___/             /___/  
+ 
+2025-04-22T21:57:20.132+09:00  INFO 15040 --- [restartedMain] c.e.t.TravelAgencyApplication            : ✅ 서버가 실행되었습니다.
+2025-04-22T21:57:20.132+09:00  INFO 15040 --- [restartedMain] c.e.t.TravelAgencyApplication            : 🔗 접속 주소: http://localhost:8080

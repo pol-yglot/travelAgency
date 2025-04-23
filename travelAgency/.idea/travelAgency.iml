@@ -6,15 +6,8 @@
     </content>
   </component>
   <component name="FacetManager">
-    <facet type="django" name="Django">
-      <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/api_module" />
-        <option name="settingsModule" value="settings.py" />
-        <option name="manageScript" value="$MODULE_DIR$/api_module/manage.py" />
-        <option name="environment" value="&lt;map/&gt;" />
-        <option name="doNotUseTestRunner" value="false" />
-        <option name="trackFilePattern" value="migrations" />
-      </configuration>
+    <facet type="Python" name="Python">
+      <configuration sdkName="Python 3.8 (.venv)" />
     </facet>
   </component>
 </module>

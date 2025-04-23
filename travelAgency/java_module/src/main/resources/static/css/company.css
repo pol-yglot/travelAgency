@@ -1,0 +1,85 @@
+section{
+    text-align: left;
+}
+
+.history-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333;
+    text-align: left;
+}
+
+.history-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.history-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.history-block {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+.year-circle {
+    min-width: 100px;
+    height: 100px;
+    border: 4px solid #007bc7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bc7;
+    position: relative;
+    margin-right: 30px;
+}
+
+.year-circle::after {
+    content: '';
+    width: 40px;
+    height: 2px;
+    background: #007bc7;
+    position: absolute;
+    right: -30px;
+}
+
+.month-events {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.month-events li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.month {
+    width: 30px;
+    font-weight: bold;
+    color: #222;
+}
+
+.event {
+    flex: 1;
+    color: #333;
+}
+
+.event .note {
+    font-style: italic;
+    color: #888;
+    margin-left: 8px;
+    font-size: 0.9em;
+}

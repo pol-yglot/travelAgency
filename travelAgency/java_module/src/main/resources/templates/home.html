@@ -5,6 +5,7 @@
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
+
     <section class="hero">
         <div class="hero-content">
             <h1>성공적인 비즈니스 출장을 위한 최적의 파트너</h1>
@@ -12,24 +13,30 @@
             <a href="/service/inquiry" th:href="@{/service/inquiry}" class="cta-btn">지금 바로 문의하기</a>
         </div>
         <div class="hero-image">
-            <img src="/images/company/man.png" alt="출장 이미지">
+            <img src="/images/company/business-removebg.png" alt="출장 이미지">
         </div>
     </section>
 
     <section class="hero">
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/lpfhD2InQQM?si=rxGZXhs64t8L4fre" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="100%" height="500"
+                src="https://www.youtube.com/embed/PMBa2F44jxU?autoplay=1&mute=1&loop=1&playlist=PMBa2F44jxU"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
     </section>
 
-    <section class="client-logos">
-        <h2>고객사 로고</h2>
+    <section class="client-logos services">
+        <h2 class="section-title">함께 성장하는 고객사들과의 소중한 파트너십</h2>
         <div class="logo-list">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
-            <img src="/images/company/star2.png" alt="고객사 로고 1">
+            <div class="logo"><img src="/images/company/naver.png" alt="네이버 로고"></div>
+            <div class="logo"><img src="/images/company/kakao.png" alt="카카오 로고"></div>
+            <div class="logo"><img src="/images/company/insta.png" alt="인스타그램 로고"></div>
+            <div class="logo"><img src="/images/company/google.png" alt="구글 로고" class="google-logo"></div>
+            <div class="logo"><img src="/images/company/naver.png" alt="네이버 로고"></div>
+            <div class="logo"><img src="/images/company/kakao.png" alt="카카오 로고"></div>
+            <div class="logo"><img src="/images/company/insta.png" alt="인스타그램 로고"></div>
+            <div class="logo"><img src="/images/company/google.png" alt="구글 로고" class="google-logo"></div>
         </div>
     </section>
 
@@ -37,22 +44,22 @@
         <h2>주요 서비스</h2>
         <div class="service-list">
             <div class="service-item">
-                <img src="/images/company/service1.gif" alt="항공권 예약">
+                <img src="/images/company/airplane.gif" alt="항공권 예약">
                 <h3>항공권 예약</h3>
                 <p>최적의 항공편과 합리적인 가격을 제공합니다.</p>
             </div>
             <div class="service-item">
-                <img src="/images/company/service1.gif" alt="호텔 예약">
+                <img src="/images/company/hotel.gif" alt="호텔 예약">
                 <h3>호텔 예약</h3>
                 <p>편안하고 안전한 비즈니스 호텔을 예약해드립니다.</p>
             </div>
             <div class="service-item">
-                <img src="/images/company/service1.gif" alt="렌터카 예약">
+                <img src="/images/company/rent-car.gif" alt="렌터카 예약">
                 <h3>렌터카 예약</h3>
                 <p>목적지까지 편리하게 이동할 수 있도록 렌터카를 제공합니다.</p>
             </div>
             <div class="service-item">
-                <img src="/images/company/service1.gif" alt="출장 맞춤 컨설팅">
+                <img src="/images/company/consulting.gif" alt="출장 맞춤 컨설팅">
                 <h3>출장 맞춤 컨설팅</h3>
                 <p>성공적인 출장을 위한 맞춤형 컨설팅 서비스를 제공합니다.</p>
             </div>
@@ -79,7 +86,7 @@
                 <tr>
                     <td class="col1"> 이메일 <span class="warn">*</span></td>
                     <label class="label-form" for="USER_EMAIL"></label>
-                    <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com" required></td>
+                    <td class="col2"><input type="email" name="USER_EMAIL" id="USER_EMAIL" placeholder="example@google.com" required></td>
                 </tr>
                 <tr>
                     <td class="col1"> 유형 <span class="warn">*</span></td>
