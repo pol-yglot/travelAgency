@@ -3,12 +3,14 @@ package com.example.travelagency.service.impl;
 import com.example.travelagency.mapper.BoardMapper;
 import com.example.travelagency.service.BoardService;
 import com.example.travelagency.vo.BoardVO;
+import com.example.travelagency.vo.CommentVO;
 import com.example.travelagency.vo.PageInfo;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -39,8 +41,18 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardVO getBoardById(int boardId) {
-        return boardMapper.getBoardById(boardId);
+    public Map<String, Object> getBoardById(int boardId) {
+        Map<String, Object> boardMap = boardMapper.getBoardById(boardId);
+        if(boardMap != null){
+            return boardMapper.getBoardById(boardId);
+        }else{
+            throw new IllegalArgumentException("조회된 게시글이 없습니다.");
+        }
+    }
+
+    @Override
+    public List<CommentVO> getCommentListByBoardId(int boardId) {
+        return boardMapper.getCommentListByBoardId(boardId);
     }
 
     /**

@@ -43,6 +43,10 @@ ALTER TABLE TB_USER
 ALTER TABLE TB_USER
     ADD USER_TYPE VARCHAR(100);
 
+ALTER TABLE tb_comment CHANGE COMMENT_REGDATE CREATED_AT timestamp DEFAULT CURRENT_TIMESTAMP  NULL COMMENT '댓글 등록일';
+ALTER TABLE tb_comment CHANGE COMMENT_UPDATDATE UPDATED_AT timestamp NULL COMMENT '댓글 수정일';
+ALTER TABLE travelagency.tb_comment MODIFY COLUMN COMMENT_WRITER int NOT NULL COMMENT '댓글 작성자';
+
 -- 사용자 상세 테이블: 사용자의 추가 정보(주소, 프로필 사진, 선호 설정 등)를 저장
 CREATE TABLE TB_USER_DETAIL (
                                 USER_DETAIL_ID INT PRIMARY KEY AUTO_INCREMENT, -- 사용자 상세 ID (기본 키, 자동 증가)

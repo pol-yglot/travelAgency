@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <td class="col1">작성자</td>
-                <td class="col2"><span th:text="${user.USER_NAME}"></span></td>
+                <td class="col2"><span th:text="${board.USER_NAME}"></span></td>
             </tr>
             <tr>
                 <td class="col1">날짜</td>
@@ -32,79 +32,29 @@
         </table>
     </section>
     <section class="comment-section">
-        <h3>댓글 (2)</h3>
-        <ul class="comment-list">
-            <li class="comment-item">
-                <div class="comment-header">
-                    <span class="comment-writer">랄라스윗</span>
-                    <span class="comment-date">2025-04-09 13:05</span>
-                    <!--<button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>-->
-                </div>
-                <div class="comment-body">댓글 내용 예시 1</div>
-            </li>
-            <li class="comment-item">
-                <div class="comment-header">
-                    <span class="comment-writer">김철수</span>
-                    <span class="comment-date">2025-04-09 13:10</span>
-                    <!--<button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>-->
-                </div>
-                <div class="comment-body">댓글 내용 두번째 예시입니다.</div>
-            </li>
+        <h3>댓글</h3>
+        <ul class="comment-list" th:each="comment : ${commentList}">
+            <li class="comment-header" th:text="${comment.USER_NAME}"></li>
+            <li class="comment-item" th:text="${comment.COMMENT_CONTENT}"></li>
         </ul>
-
         <div class="comment-form">
             <h4>댓글 작성</h4>
             <form action="/comment/add" method="post">
                 <div class="form-group">
-                    <label for="commentWriter"><span th:text="${user.USER_NAME}"></span></label>
-                    <input type="hidden" id="commentWriter" name="commentWriter" th:value="${user.USER_ACCOUNT}"/>
+                    <!--<label for="commentWriter"><span th:text="${board.USER_NAME}"></span></label>
+                    <input type="hidden" id="commentWriter" name="commentWriter" th:value="${board.USER_ACCOUNT}"/>-->
                 </div>
                 <div class="form-group">
+                    <label for="USER_NAME"></label>
+                    <span class="" th:text="${board.USER_NAME} ? ${board.USER_NAME} : '로그인후 댓글작성이 가능합니다.'"></span>
+                    <input type="hidden" name="USER_NAME" id="USER_NAME" value=""/>
                     <label for="commentContent"></label>
-                    <textarea id="commentContent" name="commentContent"></textarea>
+                    <textarea id="commentContent" name="commentContent">댓글을 입력하세요.</textarea>
                 </div>
-                <button type="submit" class="btn-submit btn-full">등록</button>
+                <button type="submit" class="pretty-button btn-submit btn-full">등록</button>
             </form>
         </div>
     </section>
-    <!--<section class="comment-section">
-        <h3>댓글 (<span th:text="${comments != null ? #lists.size(comments) : 0}">0</span>)</h3>
-        <ul class="comment-list">
-            <li class="comment-item" th:each="comment : ${comments}">
-                <div class="comment-header">
-                    <span class="comment-writer" th:text="${comment.commentWriter}">작성자</span>
-                    <span class="comment-date" th:text="${#dates.format(comment.commentRegdate, 'yyyy-MM-dd HH:mm')}">날짜</span>
-                    <th:block th:if="${session.getAttribute('user') != null and session.getAttribute('user').USER_ID == comment.userId}">
-                        <button class="btn-edit">수정</button>
-                        <button class="btn-delete">삭제</button>
-                    </th:block>
-                </div>
-                <div class="comment-body" th:text="${comment.commentContent}">댓글 내용</div>
-            </li>
-            <li class="comment-item empty" th:if="${comments == null or #lists.isEmpty(comments)}">
-                등록된 댓글이 없습니다.
-            </li>
-        </ul>
-
-        <div class="comment-form">
-            <h4>댓글 작성</h4>
-            <form action="/comment/add" method="post">
-                <input type="hidden" name="boardId" th:value="${board.boardId}">
-                <div class="form-group">
-                    <label for="commentWriter">작성자</label>
-                    <input type="text" id="commentWriter" name="commentWriter" th:value="${session.getAttribute('user') != null ? session.getAttribute('user').USER_ID : ''}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="commentContent">내용</label>
-                    <textarea id="commentContent" name="commentContent"></textarea>
-                </div>
-                <button type="submit" class="btn-submit">등록</button>
-            </form>
-        </div>
-    </section>
-    </section>-->
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 

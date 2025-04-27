@@ -8,7 +8,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>성공적인 비즈니스 출장을 위한 최적의 파트너</h1>
+            <h1>성공적인 비즈니스 출장을 위한 <br />최적의 파트너</h1>
             <p>맞춤형 출장 솔루션과 프리미엄 서비스를 경험하세요.</p>
             <a href="/service/inquiry" th:href="@{/service/inquiry}" class="cta-btn">지금 바로 문의하기</a>
         </div>
@@ -24,20 +24,6 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
-    </section>
-
-    <section class="client-logos services">
-        <h2 class="section-title">함께 성장하는 고객사들과의 소중한 파트너십</h2>
-        <div class="logo-list">
-            <div class="logo"><img src="/images/company/naver.png" alt="네이버 로고"></div>
-            <div class="logo"><img src="/images/company/kakao.png" alt="카카오 로고"></div>
-            <div class="logo"><img src="/images/company/insta.png" alt="인스타그램 로고"></div>
-            <div class="logo"><img src="/images/company/google.png" alt="구글 로고" class="google-logo"></div>
-            <div class="logo"><img src="/images/company/naver.png" alt="네이버 로고"></div>
-            <div class="logo"><img src="/images/company/kakao.png" alt="카카오 로고"></div>
-            <div class="logo"><img src="/images/company/insta.png" alt="인스타그램 로고"></div>
-            <div class="logo"><img src="/images/company/google.png" alt="구글 로고" class="google-logo"></div>
-        </div>
     </section>
 
     <section class="services">
@@ -66,8 +52,30 @@
         </div>
     </section>
 
+    <section class="services" style="height: 500px;">
+        <div style="width: 100%; height: 100%; background-color: #eee; "><img style="display: inline-block; width: 100%; height: 100%;" src="/images/company/main.png"></div>
+    </section>
+
+    <section class="client-logos services">
+        <h2 class="section-title">함께 성장하는 고객사들과의 소중한 파트너십</h2>
+        <div class="logo-list">
+            <div class="logo"><img src="/images/company/naver.png" alt="네이버 로고"></div>
+            <div class="logo"><img src="/images/company/kakao.png" alt="카카오 로고"></div>
+            <div class="logo"><img src="/images/company/insta.png" alt="인스타그램 로고"></div>
+            <div class="logo"><img src="/images/company/google.png" alt="구글 로고" class="google-logo"></div>
+            <div class="logo"><img src="/images/company/naver.png" alt="네이버 로고"></div>
+            <div class="logo"><img src="/images/company/kakao.png" alt="카카오 로고"></div>
+            <div class="logo"><img src="/images/company/insta.png" alt="인스타그램 로고"></div>
+            <div class="logo"><img src="/images/company/google.png" alt="구글 로고" class="google-logo"></div>
+        </div>
+    </section>
+
+    <section class="services" style="height: 500px;">
+        <div style="width: 100%; height: 100%; background-color: #eee; "><img style="display: inline-block; width: 100%; height: 100%;" src="/images/company/1.png"></div>
+    </section>
+
     <section class="contact">
-        <h2>문의하기</h2>
+        <h2>즉시 문의 신청 하기</h2>
         <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
             <table class="form-table">
                 <!--<colgroup>

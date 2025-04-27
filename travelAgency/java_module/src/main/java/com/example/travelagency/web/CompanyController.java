@@ -17,9 +17,9 @@ public class CompanyController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/services")
-    public String services() {
-        return "service/services";
+    @GetMapping("/businessTrip")
+    public String businessTrip() {
+        return "service/businessTrip";
     }
 
     @GetMapping("/mice")

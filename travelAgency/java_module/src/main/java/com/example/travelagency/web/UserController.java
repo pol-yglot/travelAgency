@@ -6,11 +6,13 @@ import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,8 @@ public class UserController {
 
     @Autowired
     private FileService fileService;
+
+    private BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/getInquiry")
     public String getInquiry(@RequestParam("inquiryId") int inquiryId, Model model) {
@@ -101,7 +105,13 @@ public class UserController {
             user.setUSER_PHONE(USER_PHONE);
             user.setUSER_EMAIL(USER_EMAIL);
             user.setUSER_TYPE(USER_TYPE);
-            user.setUSER_PASSWORD(USER_PASSWORD);
+            //user.setUSER_PASSWORD(USER_PASSWORD);
+
+            // ✅ 비밀번호 암호화 후 저장
+            if (USER_PASSWORD != null && !USER_PASSWORD.isEmpty()) {
+                String encryptedPassword = passwordEncoder.encode(USER_PASSWORD);
+                user.setUSER_PASSWORD(encryptedPassword);
+            }
             result = userService.updateUser(user);
 
             if(result < 1){

@@ -17,7 +17,7 @@
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select>
-                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." required>
+                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." onkeyup="enterkey();" required>
                     <button type="submit">검색</button>
                 </form>
             </div>
@@ -33,10 +33,13 @@
                 <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
             </div>
             <div class="sort">
-                <a href="#">추천순</a>
-                <a href="#">인기순</a>
-                <a href="#">댓글순</a>
-                <a href="#">최신순</a>
+                <form method="get" action="/board/boardList">
+                    <input type="hidden" name="sortType" id="sortTypeInput">
+                    <button type="button" onclick="submitSort('recommend')">추천순</button>
+                    <button type="button" onclick="submitSort('popular')">인기순</button>
+                    <button type="button" onclick="submitSort('comment')">댓글순</button>
+                    <button type="button" onclick="submitSort('recent')">최신순</button>
+                </form>
             </div>
             <table id="readResults" th:if="${not #lists.isEmpty(pageInfo.items)}">
                 <thead>
@@ -49,8 +52,8 @@
                 <tbody>
                 <tr th:each="board, stat : ${pageInfo.items}">
                     <!--<td name="stat" th:text="${stat.index + 1}"></td>-->
-                    <td name="stat" th:text="${pageInfo.items.size() - stat.index}"></td> <!-- 역순 -->
-                    <td name="title"><a href="board/boardDetail" th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}">></span></a></td>
+                    <td name="stat" th:text="${startIndex + stat.index + 1}"></td> <!-- 역순 -->
+                    <td name="title"><a href="board/boardDetail" th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}"></span></a></td>
                     <td name="content" th:text="${board.BOARD_CONTENT}"></td>
                 </tr>
                 </tbody>
@@ -94,6 +97,23 @@
             for(var i=0;i<$('.keywords').find('a').length;i++){
                 var keywordTxt = $('.keywords').find('a')[i].text;
                 $('.keywords').find('a')[i].text = '#'+keywordTxt;
+            }
+        }
+
+        // 정렬
+        function submitSort(type) {
+            $('#sortTypeInput').val(type);
+            $('.sort form').submit();
+        }
+
+        // 엔터키가 눌렸을 때 실행하는 반응
+        function enterkey() {
+            if(searchType == '' || keyword == ''){
+                alert('검색구분 혹은 검색어를 입력하세요.');
+                return;
+            }
+            if (window.event.keyCode == 13) {
+                $("#searchForm").submit();
             }
         }
 

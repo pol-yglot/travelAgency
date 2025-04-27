@@ -9,19 +9,19 @@
     <section style="display: flex; justify-content: center">
         <div class="login-container">
             <h2>로그인</h2>
-            <form method="post" th:action="@{/login}" id="login" onsubmit="return formCheck(this);">
+            <form method="post" th:action="@{/login}" id="login">
                 <div class="form-group">
-                    <label for="inputId"> 아이디(이메일) <span class="warn">*</span></label>
-                    <input type="text" name="inputId" id="inputId" placeholder="user1" value="user1" required>
+                    <label for="username"> 아이디(이메일) <span class="warn">*</span></label>
+                    <input type="text" name="username" id="username" placeholder="user1" value="user1" required>
                 </div>
                 <div class="form-group">
                     <label for="password"> 비밀번호 <span class="warn">*</span></label>
-                    <input type="password" name="password" id="password" value="password000" placeholder="********">
+                    <input type="password" name="password" id="password" value="password000" placeholder="********" required>
                 </div>
                 <div class="form-group">
                     <button type="submit">로그인</button>
                 </div>
-                <p class="error-message" th:if="${error}" th:text="${error}"></p>
+                <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
             </form>
         </div>
     </section>

@@ -8,9 +8,8 @@ import java.util.Date;
 public class CommentVO {
     private int COMMENT_ID;
     private int BOARD_ID;
-    private String COMMENT_WRITER;
+    private int COMMENT_WRITER;
     private String COMMENT_CONTENT;
-    private Date COMMENT_REGDATE;
-    private Date COMMENT_UPDATDATE;
-    private String USER_ACCOUNT;
+    private Date CREATED_AT;
+    private Date UPDATED_AT;
 }

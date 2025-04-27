@@ -3,6 +3,7 @@ package com.example.travelagency.web;
 import com.example.travelagency.service.BoardService;
 import com.example.travelagency.service.UserService;
 import com.example.travelagency.vo.BoardVO;
+import com.example.travelagency.vo.CommentVO;
 import com.example.travelagency.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "board")
@@ -72,8 +74,11 @@ public class BoardContoller {
         PageInfo<BoardVO> pageInfo = boardService.getAllBoard(page);
         LOGGER.debug("페이지 수  :::::: {}",pageInfo.getPageSize());
 
+        int startIndex = (page - 1) * pageInfo.getPageSize();
+
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("boardList", pageInfo.getItems());
+        model.addAttribute("startIndex", startIndex);  // 다음페이지로 넘어갔을때 시작할 인덱스 + 게시글 인덱스로 순번 계산
         /* model.addAttribute("title", "게시판"); // 제목 추가 (템플릿에서 사용) */
         return "board/boardList";
     }
@@ -81,11 +86,16 @@ public class BoardContoller {
     @GetMapping("/boardDetail")
     public String boardDetail(@RequestParam("BOARD_ID") int BOARD_ID, HttpSession session, Model model) {
         try {
-            LOGGER.info("세션 데이터 확인 {}",session.getAttribute("user").toString());
-            BoardVO board = boardService.getBoardById(BOARD_ID);
-            UserVO user = userService.getUserById(board.getUSER_ID());
+            Map<String, Object> board = boardService.getBoardById(BOARD_ID);
+            // 글작성자 == 로그인사용자
+            if(session.getAttribute("user") != null) {
+                LOGGER.info("세션 데이터 확인 {}",session.getAttribute("user").toString());
+                UserVO user = (UserVO) session.getAttribute("user");
+                model.addAttribute("user", user);
+            }
+            List<CommentVO> commentList = boardService.getCommentListByBoardId(BOARD_ID);
             model.addAttribute("board", board);
-            model.addAttribute("user", user);
+            model.addAttribute("commentList", commentList);
         }catch (Exception e) {
             throw new RuntimeException("게시판 상세 데이터를 불러오는 중 오류 발생, boardDetail", e);
         }
