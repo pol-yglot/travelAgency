@@ -5,7 +5,7 @@ server:
       charset: UTF-8
     context-path: /
     session:
-      timeout: 60m
+      timeout: 30m
 
 # 최상단에 기재
 mybatis:

@@ -16,4 +16,5 @@ public interface BoardMapper {
     List<BoardVO> getBoardListByContent(String keyword);
     Map<String, Object> getBoardById(int boardId);
     List<CommentVO> getCommentListByBoardId(int boardId);
+    int addComment(int boardId, String commentWriter, String commentContent);
 }

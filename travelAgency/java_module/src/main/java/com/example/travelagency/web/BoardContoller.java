@@ -13,6 +13,8 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -85,14 +87,22 @@ public class BoardContoller {
 
     @GetMapping("/boardDetail")
     public String boardDetail(@RequestParam("BOARD_ID") int BOARD_ID, HttpSession session, Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 인증된 사용자 정보가 있는지 확인
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String)) { // "anonymousUser" 방지
+
+            // principal 꺼내기
+            org.springframework.security.core.userdetails.User userDetails =
+                    (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+
+            String username = userDetails.getUsername(); // 로그인한 아이디
+            UserVO user = userService.getUser(username);
+            model.addAttribute("user", user);
+        }
         try {
             Map<String, Object> board = boardService.getBoardById(BOARD_ID);
-            // 글작성자 == 로그인사용자
-            if(session.getAttribute("user") != null) {
-                LOGGER.info("세션 데이터 확인 {}",session.getAttribute("user").toString());
-                UserVO user = (UserVO) session.getAttribute("user");
-                model.addAttribute("user", user);
-            }
             List<CommentVO> commentList = boardService.getCommentListByBoardId(BOARD_ID);
             model.addAttribute("board", board);
             model.addAttribute("commentList", commentList);
@@ -101,6 +111,18 @@ public class BoardContoller {
         }
 
         return "board/boardDetail";
+    }
+
+    @PostMapping("/addComment")
+    public String addComment(@RequestParam int BOARD_ID,@RequestParam String COMMENT_WRITER, @RequestParam String COMMENT_CONTENT) {
+        try{
+            LOGGER.info(BOARD_ID+":"+COMMENT_WRITER+":"+COMMENT_CONTENT);
+            int result = 0;
+            result = boardService.addComment(BOARD_ID, COMMENT_WRITER, COMMENT_CONTENT);
+            return "redirect:/board/boardDetail?BOARD_ID="+BOARD_ID;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @GetMapping("/files/{filename}")

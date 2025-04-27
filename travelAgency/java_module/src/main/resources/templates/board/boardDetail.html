@@ -26,30 +26,31 @@
             <tr>
                 <td class="col1"> 글본문</td>
                 <td class="col2">
-                    <textarea th:utext="${board.BOARD_CONTENT}">내용이 없습니다.</textarea>
+                    <span th:utext="${board.BOARD_CONTENT}">내용이 없습니다.</span>
                 </td>
             </tr>
         </table>
     </section>
     <section class="comment-section">
-        <h3>댓글</h3>
+        <h3>📌 댓글</h3>
         <ul class="comment-list" th:each="comment : ${commentList}">
-            <li class="comment-header" th:text="${comment.USER_NAME}"></li>
+            <li class="comment-header" th:text="${user.USER_NAME} +' ['+${#dates.format(comment.CREATED_AT,'yyyy-MM-dd HH:mm')}+']'"></li>
             <li class="comment-item" th:text="${comment.COMMENT_CONTENT}"></li>
         </ul>
         <div class="comment-form">
-            <h4>댓글 작성</h4>
-            <form action="/comment/add" method="post">
+            <!--<h4>댓글 작성</h4>-->
+            <form action="/board/addComment" method="post">
                 <div class="form-group">
                     <!--<label for="commentWriter"><span th:text="${board.USER_NAME}"></span></label>
                     <input type="hidden" id="commentWriter" name="commentWriter" th:value="${board.USER_ACCOUNT}"/>-->
                 </div>
                 <div class="form-group">
-                    <label for="USER_NAME"></label>
-                    <span class="" th:text="${board.USER_NAME} ? ${board.USER_NAME} : '로그인후 댓글작성이 가능합니다.'"></span>
-                    <input type="hidden" name="USER_NAME" id="USER_NAME" value=""/>
-                    <label for="commentContent"></label>
-                    <textarea id="commentContent" name="commentContent">댓글을 입력하세요.</textarea>
+                    <label for="COMMENT_WRITER"></label>
+                    <span class="" th:text="${user.USER_NAME}"></span>
+                    <input type="hidden" name="BOARD_ID" id="BOARD_ID" th:value="${board.BOARD_ID}" required/>
+                    <input type="hidden" name="COMMENT_WRITER" id="COMMENT_WRITER" th:value="${user.USER_ID}" required/>
+                    <label for="COMMENT_CONTENT"></label>
+                    <textarea id="COMMENT_CONTENT" name="COMMENT_CONTENT" placeholder="댓글을 입력하세요." required></textarea>
                 </div>
                 <button type="submit" class="pretty-button btn-submit btn-full">등록</button>
             </form>

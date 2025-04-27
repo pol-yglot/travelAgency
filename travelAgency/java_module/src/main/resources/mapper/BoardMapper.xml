@@ -13,15 +13,6 @@
         <result property="BOARD_HITS" column="BOARD_HITS"/>
     </resultMap>
 
-    <resultMap id="CommentVOResultMap" type="com.example.travelagency.vo.CommentVO">
-        <id property="COMMENT_ID" column="COMMENT_ID"/>
-        <result property="BOARD_ID" column="BOARD_ID"/>
-        <result property="COMMENT_WRITER" column="COMMENT_WRITER"/>
-        <result property="COMMENT_CONTENT" column="COMMENT_CONTENT"/>
-        <result property="CREATED_AT" column="CREATED_AT"/>
-        <result property="UPDATED_AT" column="UPDATED_AT"/>
-    </resultMap>
-
     <select id="getAllBoardPaged" resultMap="BoardVOResultMap">
         SELECT *
         FROM tb_board
@@ -44,8 +35,23 @@
         WHERE BOARD_TITLE LIKE #{keyword}
     </select>
 
-    <select id="getCommentListByBoardId" parameterType="int" resultMap="CommentVOResultMap">
-        SELECT *
+    <insert id="addComment" parameterType="map">
+        INSERT INTO TB_COMMENT
+            (BOARD_ID, COMMENT_WRITER, COMMENT_CONTENT, CREATED_AT, UPDATED_AT)
+        VALUES
+            (#{boardId}, #{commentWriter}, #{commentContent}, NOW(), NOW())
+    </insert>
+
+    <select id="getCommentListByBoardId" parameterType="int" resultType="map">
+        SELECT  TC.COMMENT_ID,
+                TC.BOARD_ID,
+                TC.COMMENT_WRITER,
+                TC.COMMENT_CONTENT,
+                TC.CREATED_AT,
+                TC.UPDATED_AT,
+                TU.USER_ID,
+                TU.USER_NAME,
+                TU.USER_ACCOUNT
             FROM TB_COMMENT TC
         INNER JOIN TB_BOARD TB ON TB.USER_ID = TC.COMMENT_WRITER
         INNER JOIN TB_USER TU ON TU.USER_ID = TC.COMMENT_WRITER

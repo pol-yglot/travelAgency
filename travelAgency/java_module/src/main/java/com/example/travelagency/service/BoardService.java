@@ -13,4 +13,5 @@ public interface BoardService {
     List<BoardVO> getBoardByContent(String keyword);
     Map<String, Object> getBoardById(int boardId);
     List<CommentVO> getCommentListByBoardId(int boardId);
+    int addComment(int boardId, String commentWriter, String commentContent);
 }
