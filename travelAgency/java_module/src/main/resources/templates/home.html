@@ -6,55 +6,14 @@
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>성공적인 비즈니스 출장을 위한 <br />최적의 파트너</h1>
-            <p>맞춤형 출장 솔루션과 프리미엄 서비스를 경험하세요.</p>
-            <a href="/service/inquiry" th:href="@{/service/inquiry}" class="cta-btn">지금 바로 문의하기</a>
-        </div>
-        <div class="hero-image">
-            <img src="/images/company/business-removebg.png" alt="출장 이미지">
-        </div>
-    </section>
+    <div class="slider-container">
 
-    <section class="hero">
-        <iframe width="100%" height="500"
-                src="https://www.youtube.com/embed/PMBa2F44jxU?autoplay=1&mute=1&loop=1&playlist=PMBa2F44jxU"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
-    </section>
+        <img src="/images/company/1.png" class="slider-image" alt="슬라이더 이미지">
+        <img src="/images/company/main.png" class="slider-image" alt="슬라이더 이미지">
+        <img src="/images/company/1.png" class="slider-image" alt="슬라이더 이미지">
+        <img src="/images/company/main.png" class="slider-image" alt="슬라이더 이미지">
 
-    <section class="services">
-        <h2>주요 서비스</h2>
-        <div class="service-list">
-            <div class="service-item">
-                <img src="/images/company/airplane.gif" alt="항공권 예약">
-                <h3>항공권 예약</h3>
-                <p>최적의 항공편과 합리적인 가격을 제공합니다.</p>
-            </div>
-            <div class="service-item">
-                <img src="/images/company/hotel.gif" alt="호텔 예약">
-                <h3>호텔 예약</h3>
-                <p>편안하고 안전한 비즈니스 호텔을 예약해드립니다.</p>
-            </div>
-            <div class="service-item">
-                <img src="/images/company/rent-car.gif" alt="렌터카 예약">
-                <h3>렌터카 예약</h3>
-                <p>목적지까지 편리하게 이동할 수 있도록 렌터카를 제공합니다.</p>
-            </div>
-            <div class="service-item">
-                <img src="/images/company/consulting.gif" alt="출장 맞춤 컨설팅">
-                <h3>출장 맞춤 컨설팅</h3>
-                <p>성공적인 출장을 위한 맞춤형 컨설팅 서비스를 제공합니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="services" style="height: 500px;">
-        <div style="width: 100%; height: 100%; background-color: #eee; "><img style="display: inline-block; width: 100%; height: 100%;" src="/images/company/main.png"></div>
-    </section>
+    </div>
 
     <section class="client-logos services">
         <h2 class="section-title">함께 성장하는 고객사들과의 소중한 파트너십</h2>
@@ -70,9 +29,54 @@
         </div>
     </section>
 
-    <section class="services" style="height: 500px;">
-        <div style="width: 100%; height: 100%; background-color: #eee; "><img style="display: inline-block; width: 100%; height: 100%;" src="/images/company/1.png"></div>
+    <section class="services">
+        <h2 class="section-title">주요 서비스</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <img src="/images/company/airplane.gif" alt="항공권 예약" style="width: 100px">
+                <h3>항공권 예약</h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/company/hotel.gif" alt="호텔 예약" style="width: 100px">
+                <h3>호텔 예약</h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/company/rent-car.gif" alt="렌터카 예약" style="width: 100px">
+                <h3>렌터카 예약</h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/company/consulting.gif" alt="출장 맞춤 컨설팅" style="width: 100px">
+                <h3>출장 맞춤 컨설팅</h3>
+            </div>
+        </div>
     </section>
+
+    <section class="services">
+        <h2 class="section-title">증명된 후기</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <img src="/images/company/japan.png" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/company/japan.png" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/company/japan.png" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+            <div class="service-item">
+                <img src="/images/company/japan.png" alt="항공권 예약">
+                <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- 배너 영역-->
+    <!--<section class="services" style="height: 500px;">
+        <div style="width: 100%; height: 100%; background-color: #eee; "><img style="display: inline-block; width: 100%; height: 100%;" src="/images/company/1.png"></div>
+    </section>-->
 
     <section class="contact">
         <h2>즉시 문의 신청 하기</h2>
@@ -120,8 +124,14 @@
                         <label for="etc">기타</label>
                     </td>
                 </tr>
-
-
+                <tr>
+                    <td class="col1"> 기간 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="date" class="datepicker" name="start_date" required/>
+                        ~
+                        <input type="date" class="datepicker" name="end_date" required/>
+                    </td>
+                </tr>
                 <tr>
                     <td class="col1"> 문의내용 <span class="warn">*</span></td>
                     <td class="col2">

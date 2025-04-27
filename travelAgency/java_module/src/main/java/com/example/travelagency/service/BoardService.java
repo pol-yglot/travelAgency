@@ -9,9 +9,8 @@ import java.util.Map;
 
 public interface BoardService {
     PageInfo<BoardVO> getAllBoard(int page);
-    List<BoardVO> getBoardByTitle(String keyword);
-    List<BoardVO> getBoardByContent(String keyword);
     Map<String, Object> getBoardById(int boardId);
     List<CommentVO> getCommentListByBoardId(int boardId);
     int addComment(int boardId, String commentWriter, String commentContent);
+    PageInfo<BoardVO> searchBoard(int page, String searchType, String keyword);
 }

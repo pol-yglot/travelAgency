@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,7 +23,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,43 +43,29 @@ public class BoardContoller {
         return "board/contact";
     }
 
-    /**
-     * ResponseEntity : HTTP 상태 코드와 함께 응답 데이터를 클라이언트에 반환
-     * */
-    @GetMapping("/searchBoard")
-    public ResponseEntity<List<BoardVO>> searchBoard(@RequestParam("searchType") String searchType,
-                                                     @RequestParam("keyword") String keyword) {
-        List<BoardVO> boardList = null;
-        try {
-            switch (searchType) {
-                case "content":
-                    boardList = boardService.getBoardByContent(keyword);
-                    break;
-                case "title":
-                    boardList = boardService.getBoardByTitle(keyword);
-                    break;
-                default:
-                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // 잘못된 요청
-            }
-            return new ResponseEntity<>(boardList, HttpStatus.OK);
-        } catch (Exception e) {
-            // 로깅
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // 서버 오류
-        }
-    }
-
     @GetMapping("/boardList")
-    public String boardList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        PageInfo<BoardVO> pageInfo = boardService.getAllBoard(page);
-        LOGGER.debug("페이지 수  :::::: {}",pageInfo.getPageSize());
+    public String boardList(Model model,
+                            @RequestParam(value = "page", defaultValue = "1") int page,
+                            @RequestParam(value = "searchType", required = false) String searchType,
+                            @RequestParam(value = "keyword", required = false) String keyword) {
+        PageInfo<BoardVO> pageInfo;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            // 검색
+            pageInfo = boardService.searchBoard(page, searchType, keyword);
+        } else {
+            // 전체 조회
+            pageInfo = boardService.getAllBoard(page);
+        }
 
         int startIndex = (page - 1) * pageInfo.getPageSize();
 
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("boardList", pageInfo.getItems());
-        model.addAttribute("startIndex", startIndex);  // 다음페이지로 넘어갔을때 시작할 인덱스 + 게시글 인덱스로 순번 계산
-        /* model.addAttribute("title", "게시판"); // 제목 추가 (템플릿에서 사용) */
+        model.addAttribute("startIndex", startIndex);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+
         return "board/boardList";
     }
 

@@ -17,8 +17,6 @@ public class PageInfo<T> {
         this.totalItems = totalItems;
     }
 
-    // Getter 메소드들 (Lombok의 @Getter 어노테이션을 사용할 수도 있습니다.)
-
     public List<T> getItems() {
         return items;
     }

@@ -56,4 +56,47 @@ $(document).ready(function() {
         }
     }
 
+    /* datepicke 캘린더 적용 */
+    $('.datepicker').datepicker();
+
+    $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        showMonthAfterYear: true,
+        yearSuffix: '년'
+    });
+
+    /*$('.post-wrapper').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });*/
+
+    $('.slider-container').slick({
+        dots: false,
+        infinite: true,
+        autoplaySpeed: 2000,
+        autoplay: true,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        arrows: true, // <<< 이거 추가: 좌우 버튼 켜기
+        prevArrow: '<i class="slick-prev fa fa-chevron-left"></i>',
+        nextArrow: '<i class="slick-next fa fa-chevron-right"></i>',
+        responsive: [
+            {
+                breakpoint: 1000,
+                settings: {
+                    arrows: false,
+                    dots: true
+                }
+            }
+        ]
+    });
 });

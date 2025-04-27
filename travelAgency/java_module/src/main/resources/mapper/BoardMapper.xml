@@ -58,16 +58,36 @@
         WHERE tb.BOARD_ID = #{BOARD_ID}
     </select>
 
-    <select id="getBoardListByTitle" parameterType="string" resultMap="BoardVOResultMap">
+    <!-- 제목으로 검색 + 페이징 -->
+    <select id="getBoardByTitlePaged" resultMap="BoardVOResultMap">
         SELECT *
-        FROM tb_board
-        WHERE BOARD_TITLE LIKE CONCAT('%',#{keyword},'%')
+        FROM TB_BOARD
+        WHERE BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY CREATED_AT DESC
+            LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="getBoardListByContent" parameterType="string" resultMap="BoardVOResultMap">
+    <!-- 내용으로 검색 + 페이징 -->
+    <select id="getBoardByContentPaged" resultMap="BoardVOResultMap">
         SELECT *
-        FROM tb_board
-        WHERE BOARD_CONTENT LIKE CONCAT('%',#{keyword},'%')
+        FROM TB_BOARD
+        WHERE BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY CREATED_AT DESC
+            LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 제목으로 검색한 총 게시글 수 -->
+    <select id="getTotalBoardCountByTitle" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_BOARD
+        WHERE BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <!-- 내용으로 검색한 총 게시글 수 -->
+    <select id="getTotalBoardCountByContent" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_BOARD
+        WHERE BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
     </select>
 
     <select id="getTotalBoardCount" resultType="int">

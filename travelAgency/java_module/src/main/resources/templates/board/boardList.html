@@ -124,7 +124,7 @@
             var keyword = $('#keyword').val().trim();
 
             $.ajax({
-                url: '/board/searchBoard',
+                url: '/board/boardList',
                 type: 'GET',
                 dataType: 'json',
                 data: { searchType: searchType, keyword: keyword },

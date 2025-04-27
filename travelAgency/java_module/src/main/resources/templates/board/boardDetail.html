@@ -33,10 +33,12 @@
     </section>
     <section class="comment-section">
         <h3>📌 댓글</h3>
-        <ul class="comment-list" th:each="comment : ${commentList}">
+        <span class="comment-header" th:if="${#lists.isEmpty(commentList)}">첫 댓글의 주인공이 되어보세요.</span>
+        <ul class="comment-list" th:if="${!#lists.isEmpty(commentList)}" th:each="comment : ${commentList}">
             <li class="comment-header" th:text="${user.USER_NAME} +' ['+${#dates.format(comment.CREATED_AT,'yyyy-MM-dd HH:mm')}+']'"></li>
             <li class="comment-item" th:text="${comment.COMMENT_CONTENT}"></li>
         </ul>
+
         <div class="comment-form">
             <!--<h4>댓글 작성</h4>-->
             <form action="/board/addComment" method="post">

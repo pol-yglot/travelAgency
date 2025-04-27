@@ -31,23 +31,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardVO> getBoardByTitle(String keyword) {
-        return boardMapper.getBoardListByTitle(keyword);
-    }
-
-    @Override
-    public List<BoardVO> getBoardByContent(String keyword) {
-        return boardMapper.getBoardListByContent(keyword);
-    }
-
-    @Override
     public Map<String, Object> getBoardById(int boardId) {
-        Map<String, Object> boardMap = boardMapper.getBoardById(boardId);
-        if(boardMap != null){
-            return boardMapper.getBoardById(boardId);
-        }else{
-            throw new IllegalArgumentException("조회된 게시글이 없습니다.");
-        }
+        return boardMapper.getBoardById(boardId);
     }
 
     @Override
@@ -58,6 +43,33 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int addComment(int boardId, String commentWriter, String commentContent) {
         return boardMapper.addComment(boardId, commentWriter, commentContent);
+    }
+
+    @Override
+    public PageInfo<BoardVO> searchBoard(int page, String searchType, String keyword) {
+        int pageSize = PAGE_SIZE; // 한 페이지에 보여줄 게시글 수
+        int offset = (page - 1) * pageSize; // 가져올 시작 인덱스
+
+        List<BoardVO> boardList;
+        int totalItems;
+
+        // 검색 타입에 따라 분기
+        switch (searchType) {
+            case "title":
+                boardList = boardMapper.getBoardByTitlePaged(keyword, offset, pageSize);
+                totalItems = boardMapper.getTotalBoardCountByTitle(keyword);
+                break;
+            case "content":
+                boardList = boardMapper.getBoardByContentPaged(keyword, offset, pageSize);
+                totalItems = boardMapper.getTotalBoardCountByContent(keyword);
+                break;
+            default:
+                throw new IllegalArgumentException("잘못된 검색 타입입니다: " + searchType);
+        }
+
+        int totalPages = (int) Math.ceil((double) totalItems / pageSize);
+
+        return new PageInfo<>(boardList, page, totalPages, pageSize, totalItems);
     }
 
     /**
