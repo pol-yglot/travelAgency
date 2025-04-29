@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📨 프로필
+    url:
+    about: Please ask and answer questions here.
+  - name: 🌎 프로젝트
+    url:
+    about: Please report security vulnerabilities here.

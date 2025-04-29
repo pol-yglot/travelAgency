@@ -1,0 +1,28 @@
+" ============================================================================
+" Netrw Directory Listing                                        (netrw v172)
+"   /Users/kyoulee/goingfree/HW42_WORKSPACE/.github/ISSUE_TEMPLATE
+"   Sorted by      name
+"   Sort sequence: [\/]$,\<core\%(\.\d\+\)\=\>,\.h$,\.c$,\.cpp$,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$
+"   Quick Help: <F1>:help  -:go up dir  D:delete  R:rename  s:sort-by  x:special
+" ==============================================================================
+../
+./
+BUG.yml
+DELETE.yml
+DEPLOY.yml
+DIAGRAM.yml
+DOCS.yml
+FEAT.yml
+FIX.yml
+GITHUB_SETTING.yml
+REFACTORING.yml
+SECURITY.yml
+SETTING.yml
+STUDY.yml
+STYLE.yml
+TECHNOLOGY.yml
+TEMPLATE.yml
+TEST.yml
+UPDATE.yml
+WORK.yml
+config.yml
