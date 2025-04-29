@@ -65,7 +65,7 @@
 /* 핵심 서비스 영역 */
 .services {
     text-align: center;
-    padding: 3rem 0;
+    padding: 3rem 0.5em;
 }
 
 .service-list {
@@ -73,6 +73,29 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-top: 2rem;
+}
+
+.mices{
+    text-align: center;
+    padding: 3rem 0.5em;
+}
+
+.mice-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mice-item {
+    width: 100%;
+    text-align: left;
+}
+
+.mice-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .service-item img {
@@ -102,13 +125,25 @@
     flex: 1;
     padding: 20px;
 }
+.sub-title{
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #333;
+}
 
+.sub-description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
+}
 .service-image {
     flex: 1;
+    place-items: center;
 }
 
 .service-image img {
-    width: 100%;
+    width: 380px;
     height: auto;
     border-radius:50px;
 }
@@ -180,6 +215,197 @@
 .map-container li {
     margin-bottom: 1rem;
     color: #555;
+}
+
+.banner-text {
+    position: relative;
+    height: 300px; /* 적당한 높이 */
+    overflow: hidden;
+    margin: 0;
+}
+
+.banner-text .background {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /*background-image: url("/images/company/1.png");*/
+    background: var(--brand-main-color);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* 배경만 흐릿하게 */
+    z-index: 1;
+}
+
+.contact-banner{
+    margin: 2rem 0;
+    background: var(--brand-main-color);
+    background-size: cover;
+    color: white;
+}
+
+.banner-text .content {
+    position: relative;
+    z-index: 2;
+    padding: 5em 1em;
+    text-align: center;
+    color: #333; /* 글자 색 진하게 */
+}
+
+.success-stories {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.stories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.story-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+}
+
+.story-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.story-content {
+    padding: 20px;
+}
+
+.story-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.story-description {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.process-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.step {
+    background: #f9f9f9;
+    padding: 30px 20px;
+    border-radius: 12px;
+    width: 220px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6c63ff;
+    margin-bottom: 10px;
+}
+
+.step-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.step-description {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.package-section, .checklist-section, .process-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+.package-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+.package-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+}
+.btn-download {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #7d5ba6;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+.step {
+    width: 18%;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+}
+.step span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #7d5ba6;
+    margin-bottom: 10px;
 }
 
 /* 반응형 디자인 */

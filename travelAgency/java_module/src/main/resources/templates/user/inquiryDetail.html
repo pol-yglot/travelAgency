@@ -51,17 +51,16 @@
         </td>
       </tr>
 
-
       <tr>
         <td class="col1"> 문의내용 <span class="warn">*</span></td>
         <td class="col2">
-          <textarea th:utext="${inquiry.INQUIRY_CONTENT}">내용이 없습니다.</textarea>
+          <span th:utext="${inquiry.INQUIRY_CONTENT}">내용이 없습니다.</span>
         </td>
       </tr>
       <tr>
         <td colspan="2">
-          <button type="button">수정하기</button>
-          <button type="button">삭제하기</button>
+          <button type="button" class="pretty-button">수정하기</button>
+          <button type="button" class="pretty-button">삭제하기</button>
           <a th:href="@{/}">메인으로</a>
         </td>
       </tr>

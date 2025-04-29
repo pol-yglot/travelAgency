@@ -13,4 +13,7 @@ public interface BoardService {
     List<CommentVO> getCommentListByBoardId(int boardId);
     int addComment(int boardId, String commentWriter, String commentContent);
     PageInfo<BoardVO> searchBoard(int page, String searchType, String keyword);
+    List<BoardVO> selectTop5ViewedPosts();
+    int getTotalBoardCount();
+    void incrementBoardHits(int boardId);
 }

@@ -5,16 +5,17 @@
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
+    <link href="/css/services.css" rel="stylesheet">
 
+    <!-- 메인 슬라이더 영역 -->
     <div class="slider-container">
-
         <img src="/images/company/1.png" class="slider-image" alt="슬라이더 이미지">
         <img src="/images/company/main.png" class="slider-image" alt="슬라이더 이미지">
         <img src="/images/company/1.png" class="slider-image" alt="슬라이더 이미지">
         <img src="/images/company/main.png" class="slider-image" alt="슬라이더 이미지">
-
     </div>
 
+    <!-- 고객사 로고 영역 -->
     <section class="client-logos services">
         <h2 class="section-title">함께 성장하는 고객사들과의 소중한 파트너십</h2>
         <div class="logo-list">
@@ -29,55 +30,75 @@
         </div>
     </section>
 
+    <!-- 배너 영역 -->
+    <div class="banner-text">
+        <div class="background"></div> <!-- 배경 흐릿하게 -->
+        <div class="content">           <!-- 글자 선명하게 -->
+            <h1>기업 출장, 이제 더 스마트하게!</h1>
+            <p>고객사 1:1 맞춤 출장관리전문가가 출장데이터 분석부터 컨설팅까지</p>
+        </div>
+    </div>
+
+    <!-- 서비스 소개 영역 -->
     <section class="services">
-        <h2 class="section-title">주요 서비스</h2>
+        <h2 class="section-title">00 여행만의 특화 서비스</h2>
         <div class="service-list">
             <div class="service-item">
-                <img src="/images/company/airplane.gif" alt="항공권 예약" style="width: 100px">
-                <h3>항공권 예약</h3>
+                <img src="/images/company/airplane.gif" alt="항공권 예약" style="width: 200px">
+                <h3>신속한 항공 예약</h3>
             </div>
             <div class="service-item">
-                <img src="/images/company/hotel.gif" alt="호텔 예약" style="width: 100px">
-                <h3>호텔 예약</h3>
+                <img src="/images/company/hotel.gif" alt="호텔 예약" style="width: 200px">
+                <h3>쾌적한 호텔 예약</h3>
             </div>
             <div class="service-item">
-                <img src="/images/company/rent-car.gif" alt="렌터카 예약" style="width: 100px">
-                <h3>렌터카 예약</h3>
+                <img src="/images/company/rent-car.gif" alt="렌터카 예약" style="width: 200px">
+                <h3>현지 가이드 및 렌터카 예약</h3>
             </div>
             <div class="service-item">
-                <img src="/images/company/consulting.gif" alt="출장 맞춤 컨설팅" style="width: 100px">
-                <h3>출장 맞춤 컨설팅</h3>
+                <img src="/images/company/consulting.gif" alt="출장 맞춤 컨설팅" style="width: 200px">
+                <h3>개별 출장 맞춤 컨설팅</h3>
             </div>
         </div>
     </section>
 
+    <!-- 고객 후기 -->
     <section class="services">
-        <h2 class="section-title">증명된 후기</h2>
+        <h2 class="section-title">고객의 소리로 직접 듣는 리뷰</h2>
         <div class="service-list">
             <div class="service-item">
                 <img src="/images/company/japan.png" alt="항공권 예약">
                 <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+                <p>정말좋았어요 어쩌구...</p>
             </div>
             <div class="service-item">
                 <img src="/images/company/japan.png" alt="항공권 예약">
                 <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+                <p>정말좋았어요 어쩌구...</p>
             </div>
             <div class="service-item">
                 <img src="/images/company/japan.png" alt="항공권 예약">
                 <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+                <p>정말좋았어요 어쩌구...</p>
             </div>
             <div class="service-item">
                 <img src="/images/company/japan.png" alt="항공권 예약">
                 <h3><a th:href="@{/}">D사 어쩌구</a></h3>
+                <p>정말좋았어요 어쩌구...</p>
             </div>
         </div>
     </section>
 
-    <!-- 배너 영역-->
-    <!--<section class="services" style="height: 500px;">
-        <div style="width: 100%; height: 100%; background-color: #eee; "><img style="display: inline-block; width: 100%; height: 100%;" src="/images/company/1.png"></div>
-    </section>-->
+    <!-- 배너 영역 -->
+    <div class="banner-text">
+        <div class="background"></div> <!-- 배경 흐릿하게 -->
+        <div class="content">           <!-- 글자 선명하게 -->
+            <h1>여행의 불편함을 최소화하고, 성공을 극대화합니다.</h1>
+            <p>00여행사와 함께 더 나은 출장을 경험하세요.</p>
+        </div>
+    </div>
 
+    <!-- 문의 신청 폼 -->
     <section class="contact">
         <h2>즉시 문의 신청 하기</h2>
         <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
@@ -103,11 +124,11 @@
                 <tr>
                     <td class="col1"> 유형 <span class="warn">*</span></td>
                     <td class="col2">
-                        <input type="radio" name="personal" id="personal" checked>
+                        <input type="radio" name="type" id="personal" checked>
                         <label for="personal">개인</label>
-                        <input type="radio" name="copr" id="copr">
+                        <input type="radio" name="type" id="copr">
                         <label for="personal">기업</label>
-                        <input type="radio" name="org" id="org">
+                        <input type="radio" name="type" id="org">
                         <label for="personal">단체</label>
                     </td>
                 </tr>
@@ -127,15 +148,17 @@
                 <tr>
                     <td class="col1"> 기간 <span class="warn">*</span></td>
                     <td class="col2">
-                        <input type="date" class="datepicker" name="start_date" required/>
-                        ~
-                        <input type="date" class="datepicker" name="end_date" required/>
+                        <div class="date-range">
+                            <input type="date" class="datepicker" name="start_date" required/>
+                            <span class="date-separator">~</span>
+                            <input type="date" class="datepicker" name="end_date" required/>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1"> 문의내용 <span class="warn">*</span></td>
                     <td class="col2">
-                        <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 99%;height: 18em; "></textarea>
+                        <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 100%;height: 18em; "></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -144,8 +167,10 @@
                     </td>
                 </tr>
             </table>
+            <p style="text-align: left">※ 개인정보는 상담 이외의 용도로 사용되지 않습니다.</p>
         </form>
     </section>
+
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 </body>

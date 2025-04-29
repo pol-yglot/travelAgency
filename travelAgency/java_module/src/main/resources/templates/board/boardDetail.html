@@ -6,6 +6,9 @@
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
     <link href="/css/board.css" rel="stylesheet">
+    <div style="height: 30px; display: flex; justify-content: flex-end">
+        <a href="javascript:window.history.back()">뒤로가기↩️</a>
+    </div>
     <section class="board-detail">
         <table class="form-table">
             <tr>
@@ -21,7 +24,7 @@
             </tr>
             <tr>
                 <td class="col1"> 조회수</td>
-                <td class="col2"><span th:text="|조회수: ${board.BOARD_HITS}|"></span></td>
+                <td class="col2"><span th:text="${board.BOARD_HITS}"></span></td>
             </tr>
             <tr>
                 <td class="col1"> 글본문</td>

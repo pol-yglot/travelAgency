@@ -13,4 +13,6 @@ public class BoardVO {
     private Date CREATED_AT;
     private Date UPDATED_AT;
     private int BOARD_HITS;
+    private String USER_ACCOUNT;
+    private String USER_NAME;
 }

@@ -54,15 +54,17 @@
                 <tr>
                     <td class="col1"> 기간 <span class="warn">*</span></td>
                     <td class="col2">
-                        <input type="date" class="datepicker" name="start_date" required/>
-                        ~
-                        <input type="date" class="datepicker" name="end_date" required/>
+                        <div class="date-range">
+                            <input type="date" class="datepicker" name="start_date" required/>
+                            <span class="date-separator">~</span>
+                            <input type="date" class="datepicker" name="end_date" required/>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1"> 문의내용 <span class="warn">*</span></td>
                     <td class="col2">
-                        <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 99%;height: 18em; "></textarea>
+                        <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 100%;height: 18em; "></textarea>
                     </td>
                 </tr>
                 <tr>

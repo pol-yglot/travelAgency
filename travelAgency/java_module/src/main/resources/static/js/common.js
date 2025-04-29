@@ -6,7 +6,16 @@ $(document).ready(function() {
         scrollFunction();
     });
 
-    // 다크모드 확인
+    /**
+     * 최상단 이동버튼
+     * */
+    $('#topBtn').click(function() {
+        $('html, body').animate({scrollTop: 0}, 'slow'); // 부드러운 스크롤 애니메이션 추가
+    });
+
+    /**
+     * 다크모드 유지
+     * */
     if (localStorage.getItem('darkMode') === 'enabled') {
         $('body').addClass('dark-mode');
         $('.dark-mode-toggle').text("라이트 모드");
@@ -15,12 +24,9 @@ $(document).ready(function() {
         $('.dark-mode-toggle').text("다크 모드");
     }
 
-    // 최상단으로 이동
-    $('#topBtn').click(function() {
-        $('html, body').animate({scrollTop: 0}, 'slow'); // 부드러운 스크롤 애니메이션 추가
-    });
-
-    // 다크모드 설정
+    /**
+     * 다크모드 세팅
+     * */
     $('.dark-mode-toggle').click(function() {
         $('body').toggleClass('dark-mode');
 
@@ -34,19 +40,22 @@ $(document).ready(function() {
         }
     });
 
-    // 열기
+    /**
+     * 모달창 열기
+     * */
     $(document).on("click", "#openModal", function () {
         $("#preferenceModal, #preferenceModalOverlay").show();
     });
 
-// 닫기
+    /**
+     * 모달창 닫기
+     * */
     $(document).on("click", "#closeModal, #preferenceModalOverlay", function () {
         $("#preferenceModal, #preferenceModalOverlay").hide();
     });
 
-
     /**
-     * 최상단으로 이동
+     * 최상단으로 이동버튼 show on/off
      * */
     function scrollFunction() {
         if ($(document).scrollTop() > 20) {
@@ -56,7 +65,9 @@ $(document).ready(function() {
         }
     }
 
-    /* datepicke 캘린더 적용 */
+    /**
+     * datepicker 캘린더 적용
+     * */
     $('.datepicker').datepicker();
 
     $.datepicker.setDefaults({
@@ -72,13 +83,9 @@ $(document).ready(function() {
         yearSuffix: '년'
     });
 
-    /*$('.post-wrapper').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-    });*/
-
+    /**
+     * slick 슬라이더 적용
+     * */
     $('.slider-container').slick({
         dots: false,
         infinite: true,
@@ -99,4 +106,5 @@ $(document).ready(function() {
             }
         ]
     });
+
 });

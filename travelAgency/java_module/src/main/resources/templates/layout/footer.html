@@ -3,10 +3,10 @@
 <footer id="footer" th:fragment="footerFragment">
     <ul class="terms">
         <li><a th:href="@{/service/company}" target="_blank" class="term">회사소개</a></li>
-        <li><a th:href="@{/}" class="term">이용약관</a></li>
-        <li><a th:href="@{/}" class="term">개인정보처리방침</a></li>
-        <li><a th:href="@{/}" class="term">여행약관</a></li>
-        <li><a th:href="@{/}" class="term">해외여행자보험</a></li>
+        <li><a th:href="@{/web/2021.pdf}" class="term">이용약관</a></li>
+        <li><a th:href="@{/web/2021.pdf}" class="term">개인정보처리방침</a></li>
+        <!--<li><a th:href="@{/}" class="term">여행약관</a></li>
+        <li><a th:href="@{/}" class="term">해외여행자보험</a></li>-->
     </ul>
     <ul class="captions">
         <li><a href="#" class="caption">(주)투어비즈</a></li>
@@ -32,4 +32,6 @@
         <li>예금주 0000이 아닌 계좌(개인,대리점 등)로 입금하실 경우 당사에 대한 유효한 지급액이 아니며, 당사는 책임지지 않습니다.</li>
     </ul>
 </footer>
+
+<iframe src="web/viewer.html?file=samplepdf.pdf" style="width:500px; height:300px; border:1px solid #00c;"></iframe>
 </html>

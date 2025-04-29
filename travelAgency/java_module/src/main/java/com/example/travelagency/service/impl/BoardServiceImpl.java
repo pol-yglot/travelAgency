@@ -63,6 +63,10 @@ public class BoardServiceImpl implements BoardService {
                 boardList = boardMapper.getBoardByContentPaged(keyword, offset, pageSize);
                 totalItems = boardMapper.getTotalBoardCountByContent(keyword);
                 break;
+            case "userId":
+                boardList = boardMapper.getBoardByUserAccount(keyword, offset, pageSize);
+                totalItems = boardMapper.getTotalBoardCountByUserAccount(keyword);
+                break;
             default:
                 throw new IllegalArgumentException("잘못된 검색 타입입니다: " + searchType);
         }
@@ -70,6 +74,21 @@ public class BoardServiceImpl implements BoardService {
         int totalPages = (int) Math.ceil((double) totalItems / pageSize);
 
         return new PageInfo<>(boardList, page, totalPages, pageSize, totalItems);
+    }
+
+    @Override
+    public List<BoardVO> selectTop5ViewedPosts() {
+        return boardMapper.selectTop5ViewedPosts();
+    }
+
+    @Override
+    public int getTotalBoardCount() {
+        return boardMapper.getTotalBoardCount();
+    }
+
+    @Override
+    public void incrementBoardHits(int boardId) {
+        boardMapper.incrementBoardHits(boardId);
     }
 
     /**

@@ -11,6 +11,8 @@
         <result property="CREATED_AT" column="CREATED_AT"/>
         <result property="UPDATED_AT" column="UPDATED_AT"/>
         <result property="BOARD_HITS" column="BOARD_HITS"/>
+        <result property="USER_ACCOUNT" column="USER_ACCOUNT"/>
+        <result property="USER_NAME" column="USER_NAME"/>
     </resultMap>
 
     <select id="getAllBoardPaged" resultMap="BoardVOResultMap">
@@ -28,7 +30,6 @@
         WHERE tb.BOARD_ID = #{boardId}
     </select>
 
-
     <select id="getBoardByTitle" resultMap="BoardVOResultMap">
         SELECT *
         FROM tb_board
@@ -42,19 +43,62 @@
             (#{boardId}, #{commentWriter}, #{commentContent}, NOW(), NOW())
     </insert>
 
+    <select id="selectTop5ViewedPosts" resultMap="BoardVOResultMap">
+        SELECT *
+            FROM tb_board
+        ORDER BY BOARD_HITS  DESC
+        LIMIT 5
+    </select>
+
+    <update id="incrementBoardHits">
+        UPDATE TB_BOARD
+        SET BOARD_HITS = BOARD_HITS+1
+        WHERE BOARD_ID = #{boardId}
+    </update>
+
+    <select id="searchBoard" resultType="map">
+        SELECT
+            *
+        FROM TB_BOARD TB
+        LEFT OUTER JOIN TB_USER TU
+        ON TB.USER_ID = TU.USER_ID
+        WHERE 1=1
+        <if test="searchType == 'title'">
+            and BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType == 'content'">
+            and BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType == 'userAccount'">
+            and USER_ACCOUNT = #{keyword}
+        </if>
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countBoard" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_BOARD
+        WHERE 1=1
+        <if test="searchType == 'title'">
+            and BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType == 'content'">
+            and BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType == 'userAccount'">
+            and USER_ACCOUNT = #{keyword}
+        </if>
+\    </select>
+
     <select id="getCommentListByBoardId" parameterType="int" resultType="map">
         SELECT  TC.COMMENT_ID,
                 TC.BOARD_ID,
                 TC.COMMENT_WRITER,
                 TC.COMMENT_CONTENT,
                 TC.CREATED_AT,
-                TC.UPDATED_AT,
-                TU.USER_ID,
-                TU.USER_NAME,
-                TU.USER_ACCOUNT
-            FROM TB_COMMENT TC
-        INNER JOIN TB_BOARD TB ON TB.USER_ID = TC.COMMENT_WRITER
-        INNER JOIN TB_USER TU ON TU.USER_ID = TC.COMMENT_WRITER
+                TC.UPDATED_AT
+        FROM TB_COMMENT TC
+        INNER JOIN TB_BOARD TB ON TB.BOARD_ID = TC.BOARD_ID
         WHERE tb.BOARD_ID = #{BOARD_ID}
     </select>
 
@@ -88,6 +132,22 @@
         SELECT COUNT(*)
         FROM TB_BOARD
         WHERE BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <!-- 아이디로 검색 + 페이징 -->
+    <select id="getBoardByUserAccount" resultMap="BoardVOResultMap">
+        SELECT *
+        FROM TB_BOARD
+        WHERE USER_ID = #{keyword}
+        ORDER BY CREATED_AT DESC
+            LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 아이디로 검색한 총 게시글 수 -->
+    <select id="getTotalBoardCountByUserAccount" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_BOARD
+        WHERE USER_ID = #{keyword}
     </select>
 
     <select id="getTotalBoardCount" resultType="int">

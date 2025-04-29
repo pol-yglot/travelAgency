@@ -6,121 +6,197 @@
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
     <link href="/css/services.css" rel="stylesheet">
-    <section class="main-banner">
-        <h2>기업 출장, 이제 더 스마트하게!</h2>
-        <p>고객사 1:1 맞춤 출장관리전문가가
-            출장데이터 분석부터 컨설팅까지</p>
-        <img src="/images/company/1.png" alt="메인 배너 이미지">
-    </section>
 
-    <!--<section class="service-intro">
-        <h2>우리 회사 출장 관리 이런 고민이 있으신가요?</h2>
-        <div class="tab-container">
-            <div class="tab" id="tab1">
-                <img src="/images/company/busy.gif">
-                <h3>효율적인 출장 관리</h3>
-                <p>출장 관리가 어렵습니다.</p>
-            </div>
-            <div class="tab" id="tab2">
-                <img src="/images/company/busy.gif">
-                <h3>전담 직원 24시간 상주</h3>
-                <p>시간이 오래 걸립니다.</p>
-            </div>
-            <div class="tab" id="tab3">
-                <img src="/images/company/busy.gif">
-                <h3>비상 상황 응대 개선</h3>
-                <p>연락이 어렵습니다.</p>
+    <div class="slider-container" style="margin: 2em 0;">
+        <img src="/images/company/1.png" class="slider-image" alt="슬라이더 이미지">
+        <img src="/images/company/main.png" class="slider-image" alt="슬라이더 이미지">
+        <img src="/images/company/1.png" class="slider-image" alt="슬라이더 이미지">
+        <img src="/images/company/main.png" class="slider-image" alt="슬라이더 이미지">
+    </div>
+
+    <div class="banner-text">
+        <div class="background"></div> <!-- 배경 흐릿하게 -->
+        <div class="content">           <!-- 글자 선명하게 -->
+            <h1>기업 출장, 전문성과 효율성을 모두 갖추다</h1>
+            <p>1:1 전담 관리로 출장 준비부터 복귀까지 스마트하게 지원합니다.</p>
+        </div>
+    </div>
+
+    <!-- 출장 서비스 패키지 소개 섹션 -->
+    <section class="package-section">
+        <div class="container">
+            <h2>출장 서비스 패키지</h2>
+            <div class="package-list">
+                <div class="package-item">
+                    <h3>Standard</h3>
+                    <p>기본 항공, 호텔 예약 지원<br>24시간 긴급 대응</p>
+                </div>
+                <div class="package-item">
+                    <h3>Premium</h3>
+                    <p>항공/호텔 업그레이드 옵션<br>출장 보험 무료 제공</p>
+                </div>
+                <div class="package-item">
+                    <h3>VIP</h3>
+                    <p>개인 맞춤 일정 관리<br>전담 매니저 1:1 케어 서비스</p>
+                </div>
             </div>
         </div>
-    </section>-->
+    </section>
 
+    <!-- 출장 준비 체크리스트 다운로드 섹션 -->
+    <section class="checklist-section">
+        <div class="container">
+            <h2>출장 준비 체크리스트</h2>
+            <p>꼭 챙겨야 할 필수 준비물부터 실전 팁까지 한 번에 확인하세요.</p>
+            <a href="/web/2021.pdf" class="btn-download" download>체크리스트 다운로드</a>
+        </div>
+    </section>
+
+    <!-- 출장 프로세스 안내 섹션 -->
+    <section class="process-section">
+        <div class="container">
+            <h2>출장 서비스 진행 프로세스</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <span>1</span>
+                    <p>상담 및 요청 접수</p>
+                </div>
+                <div class="step">
+                    <span>2</span>
+                    <p>맞춤 견적 제안</p>
+                </div>
+                <div class="step">
+                    <span>3</span>
+                    <p>출장 일정 확정</p>
+                </div>
+                <div class="step">
+                    <span>4</span>
+                    <p>출장 실행 및 지원</p>
+                </div>
+                <div class="step">
+                    <span>5</span>
+                    <p>출장 완료 및 피드백</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 효율적인 출장 관리 / 전담 직원 부재 / 비상 상황 대응 설명 -->
     <section>
         <div class="service-container">
             <div class="service-section">
                 <div class="service-text">
-                    <h2>효율적인 출장 관리</h2>
-                    <p>출장 신청부터 정산까지 하나의 플랫폼에서 관리할 수 있어 인사담당자의 업무 부담을 줄이고, 출장자 역시 일정과 비용을 체계적으로 관리할 수 있습니다.</p>
+                    <h2 class="sub-title">효율적인 출장 관리</h2>
+                    <p class="sub-description">출장 신청부터 정산까지 하나의 플랫폼에서 관리할 수 있어 인사담당자의 업무 부담을 줄이고, 출장자 역시 일정과 비용을 체계적으로 관리할 수 있습니다.</p>
                 </div>
                 <div class="service-image">
-                    <img src="/images/company/business.jpg" alt="효율적인 출장 관리 이미지">
+                    <img src="/images/company/line-graph.png" alt="효율적인 출장 관리 이미지">
                 </div>
             </div>
 
             <div class="service-section">
                 <div class="service-text">
-                    <h2>전담 직원 부재</h2>
-                    <p>전담 인력이 부족한 중소·중견 기업에서도 복잡한 출장 업무를 효율적으로 수행할 수 있도록 자동화된 워크플로우와 맞춤형 지원 서비스를 제공합니다.</p>
+                    <h2 class="sub-title">전담 직원 부재</h2>
+                    <p class="sub-description">전담 인력이 부족한 중소·중견 기업에서도 복잡한 출장 업무를 효율적으로 수행할 수 있도록 자동화된 워크플로우와 맞춤형 지원 서비스를 제공합니다.</p>
                 </div>
                 <div class="service-image">
-                    <img src="/images/company/business.jpg" alt="전담 직원 부재 이미지">
+                    <img src="/images/company/monitoring.png" alt="전담 직원 부재 이미지">
                 </div>
             </div>
 
             <div class="service-section">
                 <div class="service-text">
-                    <h2>비상 상황 응대 개선</h2>
-                    <p>해외 출장 중 긴급 상황이 발생하더라도 실시간 위치 기반의 알림 서비스와 대응 체계를 통해 안전한 출장 환경을 조성할 수 있습니다.</p>
+                    <h2 class="sub-title">비상 상황 응대 개선</h2>
+                    <p class="sub-description">해외 출장 중 긴급 상황이 발생하더라도 실시간 위치 기반의 알림 서비스와 대응 체계를 통해 안전한 출장 환경을 조성할 수 있습니다.</p>
                 </div>
                 <div class="service-image">
-                    <img src="/images/company/business.jpg" alt="비상 상황 응대 개선 이미지">
+                    <img src="/images/company/bar-chart.png" alt="비상 상황 응대 개선 이미지">
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!--<section class="service-intro">
-        <h2>기업 전문 책임전담제는
-            출장 관리 고민을 이렇게 해결합니다</h2>
-        <div class="circle-container">
-            <div class="circle">
-                <img src="/images/company/man.png" alt="이미지 4">
-                <p>Data Analystic</p>
-            </div>
-            <div class="circle">
-                <img src="/images/company/man.png" alt="이미지 4">
-                <p>BTMS</p>
-            </div>
-            <div class="circle">
-                <img src="/images/company/man.png" alt="이미지 4">
-                <p>Optimized Service</p>
-            </div>
-            <div class="circle">
-                <img src="/images/company/man.png" alt="이미지 4">
-                <p>Report</p>
-            </div>
-        </div>
-    </section>-->
+    <!-- 문의 신청 폼 -->
+    <section class="contact">
+        <h2>서비스 문의 신청 하기</h2>
+        <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
+            <table class="form-table">
+                <!--<colgroup>
+                    <col style="width: 20%">
+                </colgroup>-->
+                <tr>
+                    <td class="col1"> 성명 <span class="warn">*</span></td>
+                    <label class="label-form" for="username"></label>
+                    <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                    <label class="label-form" for="tel"></label>
+                    <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 이메일 <span class="warn">*</span></td>
+                    <label class="label-form" for="USER_EMAIL"></label>
+                    <td class="col2"><input type="email" name="USER_EMAIL" id="USER_EMAIL" placeholder="example@google.com" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 유형 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="radio" name="type" id="personal" checked>
+                        <label for="personal">개인</label>
+                        <input type="radio" name="type" id="copr">
+                        <label for="personal">기업</label>
+                        <input type="radio" name="type" id="org">
+                        <label for="personal">단체</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1"> 문의구분 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
+                        <label for="businesstrip">출장</label>
+                        <input type="checkbox" name="edu" id="edu">
+                        <label for="edu">연수/교육</label>
+                        <input type="checkbox" name="conference" id="conference">
+                        <label for="conference">학회/협회</label>
+                        <input type="checkbox" name="etc" id="etc">
+                        <label for="etc">기타</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1"> 기간 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <div class="date-range">
+                            <input type="date" class="datepicker" name="start_date" required/>
+                            <span class="date-separator">~</span>
+                            <input type="date" class="datepicker" name="end_date" required/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1"> 문의내용 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 100%;height: 18em; "></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">견적문의</button>
+                    </td>
+                </tr>
+            </table>
+            <p style="text-align: left">※ 개인정보는 상담 이외의 용도로 사용되지 않습니다.</p>
+        </form>
 
-    <!--<section class="service-intro">
-        <h2>모두가 만족하는 서비스</h2>
-        <div class="tab-container">
-            <div class="tab" id="tab4">
-                <h3>출장 직원</h3>
-                <ul>
-                    <li>출장 예약 한 번에</li>
-                    <li>출장 규정 자동 반영</li>
-                    <li>사용 내역 자동 연동</li>
-                </ul>
-            </div>
-            <div class="tab" id="tab5">
-                <h3>관리자</h3>
-                <ul>
-                    <li>연중무휴 실시간 CS 대응 지원</li>
-                    <li>검증 업무 최소화</li>
-                    <li>출장 규정 설정 및 커스터마이징</li>
-                </ul>
-            </div>
-            <div class="tab" id="tab6">
-                <h3>CEO</h3>
-                <ul>
-                    <li>자동화 보고서</li>
-                    <li>컴플라이언스 기능</li>
-                    <li>출장 현황, 안전 관리 등 출장 통계 지원</li>
-                </ul>
-            </div>
-        </div>
-    </section>-->
+        <!-- 기존 문의폼 아래쪽에 추가 -->
+        <!--<div class="kakao-contact">
+            <p>빠른 상담을 원하시나요?</p>
+            <a href="https://pf.kakao.com/_your_channel_link/chat" target="_blank" class="kakao-btn">
+                카카오톡으로 문의하기
+            </a>
+        </div>-->
+    </section>
 
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>

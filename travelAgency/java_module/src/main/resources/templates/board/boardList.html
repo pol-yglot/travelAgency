@@ -6,8 +6,31 @@
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
     <link href="/css/contact.css" rel="stylesheet">
-    <section>
-        <div class="content-wrap">
+
+    <div style="height: 30px; display: flex; justify-content: flex-end">
+        <a href="javascript:window.history.back()">뒤로가기↩️</a>
+    </div>
+    <div class="container">
+        <aside class="left-nav">
+            <div class="nav-section">
+                <h3>카테고리</h3>
+                <div style="border-bottom: 3px solid black;"></div>
+                <ul>
+                    <li><a th:href="@{/board/contact}">자주 묻는 질문 (FAQ)</a></li>
+                    <li><a th:href="@{/board/boardList}">질문 전체 조회</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <h3>빠른 링크</h3>
+                <div style="border-bottom: 3px solid black;"></div>
+                <ul>
+                    <li><a href="#">질문 등록하기</a></li>
+                    <li><a th:href="@{/board/boardList(searchType=userId)}">내 질문 내역 보기</a></li>
+                </ul>
+            </div>
+        </aside>
+
+    <section class="content">
             <!--<h2 th:text="${'✈ '+title +' 전체보기'}"></h2>-->
             <h2>궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
             <div class="search-bar">
@@ -17,7 +40,7 @@
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select>
-                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." onkeyup="enterkey();" required>
+                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." onkeyup="enterkey(e);" required>
                     <button type="submit">검색</button>
                 </form>
             </div>
@@ -35,26 +58,33 @@
             <div class="sort">
                 <form method="get" action="/board/boardList">
                     <input type="hidden" name="sortType" id="sortTypeInput">
-                    <button type="button" onclick="submitSort('recommend')">추천순</button>
-                    <button type="button" onclick="submitSort('popular')">인기순</button>
-                    <button type="button" onclick="submitSort('comment')">댓글순</button>
-                    <button type="button" onclick="submitSort('recent')">최신순</button>
+                    <button class="pretty-button" type="button" onclick="submitSort('recommend')">추천순</button>
+                    <button class="pretty-button" type="button" onclick="submitSort('popular')">인기순</button>
+                    <button class="pretty-button" type="button" onclick="submitSort('comment')">댓글순</button>
+                    <button class="pretty-button" type="button" onclick="submitSort('recent')">최신순</button>
                 </form>
             </div>
-            <table id="readResults" th:if="${not #lists.isEmpty(pageInfo.items)}">
+            <div class="quick-register">
+                <a href="/faq/register" class="btn-register">+ 질문 등록하기</a> <!-- 추가 -->
+            </div>
+            <table id="readResults" th:if="${pageInfo != null and pageInfo.items != null and not #lists.isEmpty(pageInfo.items)}">
                 <thead>
                 <tr>
                     <th>번호</th>
                     <th>제목</th>
                     <th>내용</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="board, stat : ${pageInfo.items}">
+                <tr th:each="board, stat : ${pageInfo.items}" style="text-align: center;">
                     <!--<td name="stat" th:text="${stat.index + 1}"></td>-->
-                    <td name="stat" th:text="${startIndex + stat.index + 1}"></td> <!-- 역순 -->
-                    <td name="title"><a href="board/boardDetail" th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}"></span></a></td>
-                    <td name="content" th:text="${board.BOARD_CONTENT}"></td>
+                    <td th:text="${startIndex + stat.index + 1}"></td> <!-- 역순 -->
+                    <td><a href="board/boardDetail" th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}"></span></a></td>
+                    <td th:text="${board.BOARD_CONTENT}"></td>
+                    <td th:text="${#strings.isEmpty(board.USER_NAME) ? '게스트' : board.USER_NAME}"></td>
+                    <td th:text="${board.BOARD_HITS}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -72,20 +102,30 @@
 
                 <a th:if="${pageInfo.currentPage < pageInfo.totalPages}" th:href="@{/board/boardList(page=${pageInfo.currentPage + 1})}">&raquo;</a>
             </div>
-        </div>
     </section>
+    </div>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
     $(document).ready(function () {
         hashTag();
 
+        // 엔터키가 눌렸을 때 실행하는 반응
+        function enterkey(e) {
+            if(searchType == '' || keyword == ''){
+                alert('검색구분 혹은 검색어를 입력하세요.');
+                return;
+            }
+            if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
+                $("#searchForm").submit();
+            }
+        }
+
         // 키워드 검색처리
         $('.keywords').find('a').click(function (e) {
             var tag = e.target.textContent;
             var txt = tag.replace('#','');
             $('.search-bar').find('input').val(txt);
-            // 여기서 바로 클릭 호출하면 Maximum call stack size exceeded
         });
 
         $('#boardList').click(function (e) {
@@ -107,12 +147,12 @@
         }
 
         // 엔터키가 눌렸을 때 실행하는 반응
-        function enterkey() {
+        function enterkey(e) {
             if(searchType == '' || keyword == ''){
                 alert('검색구분 혹은 검색어를 입력하세요.');
                 return;
             }
-            if (window.event.keyCode == 13) {
+            if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
                 $("#searchForm").submit();
             }
         }

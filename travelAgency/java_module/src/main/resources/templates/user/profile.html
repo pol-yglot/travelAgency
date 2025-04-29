@@ -20,63 +20,19 @@
         </div>
 
         <div class="profile-content">
-            <div class="profile-section">
-                <h3>활동 기록</h3>
-                <ul class="activity-list">
-                    <li>게시글 1: 2024-01-01</li>
-                    <li>댓글 2: 2024-01-02</li>
-                    <li>좋아요 3: 2024-01-03</li>
-                </ul>
-            </div>
-
-            <div class="profile-section">
+            <!--<div class="profile-section">
                 <h3>관심분야</h3>
                 <input type="hidden" id="preferenceJson" name="preferenceJson">
                 <p class="preference" id="preference"></p>
-                <!--<tr>
-                    <td class="col1"> 관심분야</td>
-                    <label class="label-form" for="preference"></label>
-                    <input type="hidden" id="displayArea" th:value="${userDetail.USER_PREFERENCE}" >
-                    <td class="col2"><input type="text" name="preference" id="preference"></td>
-                </tr>-->
-            </div>
+            </div>-->
 
             <div class="profile-section">
-                <h3>프로필 수정</h3>
-                <button class="pretty-button" id="edit-profile-button">프로필 수정</button>
+                <a href="/user/updateProfile" class="profile-btn"  id="edit-profile-button">프로필 수정</a>
+                <a href="/user/dashboard" class="profile-btn"  id="dashboard">대시보드</a>
             </div>
+
+
         </div>
-
-        <div class="profile-content">
-            <div class="profile-section">
-                <h3>찜 목록</h3>
-                <ul class="wish-list">
-                    <li>상품 1</li>
-                    <li>상품 2</li>
-                    <li>상품 3</li>
-                </ul>
-            </div>
-
-            <div class="profile-section">
-                <h3>문의 내역</h3>
-                <ul class="recommend-list" th:each="inq,stat : ${inqList}">
-                    <li>
-                        <a class="pretty-button"
-                           th:href="@{/user/getInquiry(inquiryId=${inq.INQUIRY_ID})}"
-                           th:text="${stat.index + 1} + '. ' + ${inq.INQUIRY_TITLE}">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="profile-section">
-                <h3>출장 리포트</h3>
-                <ul class="recommend-list">
-                    <button class="pretty-button" type="button">리포트 확인</button>
-                </ul>
-            </div>
-        </div>
-
     </section>
 </main>
 <!-- 모달 배경 -->

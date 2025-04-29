@@ -19,6 +19,34 @@ public class AdminController {
         return "admin/index";
     }
 
+    @GetMapping("/views")
+    public String views(@RequestParam("name") String name) {
+        if(name.equals("components")) {
+            return "admin/components";
+        }
+        if(name.equals("forms")) {
+            return "admin/forms";
+        }
+        if(name.equals("icons")) {
+            return "admin/icons";
+        }
+        if(name.equals("notifications")) {
+            return "admin/notifications";
+        }
+        if(name.equals("tables")) {
+            return "admin/tables";
+        }
+        if(name.equals("typography")) {
+            return "admin/typography";
+        }
+        return "admin/index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "admin/login";
+    }
+
     @GetMapping("/userList")
     public String userList() {
         return "user/userList";

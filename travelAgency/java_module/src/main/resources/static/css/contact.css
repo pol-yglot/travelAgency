@@ -11,6 +11,10 @@
     width: 150px;
     padding: 20px;
     background-color: #f0f0f0;
+    height: fit-content;
+    position: relative;
+    top: 100px;
+    border-radius: 15px;
 }
 
 .dark-mode .left-nav {
@@ -25,7 +29,7 @@
 }
 
 .left-nav li {
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 .left-nav a {
@@ -113,6 +117,10 @@
     border-radius: 4px;
 }
 
+.accordion-header:hover {
+    background: var(--brand-sub-color);
+}
+
 .accordion-header {
     background-color: #f0f0f0;
     padding: 0 20px 0 10px;
@@ -142,6 +150,7 @@
 
 .grid-container {
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(4, 1fr); /* 4개의 동일한 열 */
     gap: 10px; /* 박스 간 간격 */
     margin-top: 20px; /* 아코디언과의 간격 */
@@ -190,4 +199,63 @@ div.notice{
 
 .step-ui .step.active {
     /* 나머지 step 버튼 활성화 스타일 */
+}
+
+.navigation {
+    width: 220px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.nav-section {
+    margin-bottom: 30px;
+}
+
+.nav-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.nav-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-section ul li {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.nav-section ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.nav-section ul li a:hover {
+    color: #6b4caf; /* 포인트 컬러 */
+}
+
+td {
+    height: 50px;
+}
+.btn-register {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #6b4aa1;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #4a2f81;
 }
