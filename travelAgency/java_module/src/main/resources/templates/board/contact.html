@@ -111,6 +111,13 @@
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
     $(document).ready(function () {
+
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        };
+
         // 전체 게시판으로 이동
        $('#boardList').click(function (e) {
             location.replace("/board/boardList");

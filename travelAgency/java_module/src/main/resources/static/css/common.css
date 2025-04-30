@@ -590,6 +590,7 @@ tbody td:nth-child(3) {
 
 .pagination a:hover {
     background: var(--brand-highlight-color);
+    color: #fff;
 }
 
 .pagination .current {

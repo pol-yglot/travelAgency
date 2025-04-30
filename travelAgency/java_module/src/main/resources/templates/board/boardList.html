@@ -110,6 +110,12 @@
     $(document).ready(function () {
         hashTag();
 
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        };
+
         // 엔터키가 눌렸을 때 실행하는 반응
         function enterkey(e) {
             if(searchType == '' || keyword == ''){
