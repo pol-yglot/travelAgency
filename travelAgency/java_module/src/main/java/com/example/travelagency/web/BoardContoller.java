@@ -52,11 +52,11 @@ public class BoardContoller {
     }
 
     /**
-     * 게시판
+     * 게시글 리스트 조회
      * @param page, searchType, keyword
      * */
     @GetMapping("/boardList")
-    public String boardList(Model model,
+    public Object boardList(Model model, HttpServletRequest request,
                             @RequestParam(value = "page", defaultValue = "1") int page,
                             @RequestParam(value = "searchType", required = false) String searchType,
                             @RequestParam(value = "keyword", required = false) String keyword) {
@@ -81,6 +81,8 @@ public class BoardContoller {
 
         PageInfo<BoardVO> pageInfo;
 
+        pageInfo = boardService.getAllBoard(page);
+
         // 검색
         if (keyword != null && !keyword.isEmpty()) {
             pageInfo = boardService.searchBoard(page, searchType, keyword);
@@ -88,20 +90,24 @@ public class BoardContoller {
         // 본인 게시글
         if(searchType != null && searchType.equals("userId")){
             pageInfo = boardService.searchBoard(page, searchType, userId);
-        } else {
-            // 전체 조회
-            pageInfo = boardService.getAllBoard(page);
         }
 
         int startIndex = (page - 1) * pageInfo.getPageSize();
 
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("boardList", pageInfo.getItems());
         model.addAttribute("startIndex", startIndex);
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("boardList", pageInfo.getItems());
 
-        return "board/boardList";
+        boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+
+        if(isAjax){
+            // return ResponseEntity.ok(pageInfo.getItems()); // 페이징 안된 데이터
+            return ResponseEntity.ok(pageInfo);
+        }else{
+            return "board/boardList";
+        }
     }
 
     /**
@@ -139,6 +145,11 @@ public class BoardContoller {
         }
 
         return "board/boardDetail";
+    }
+
+    @GetMapping("/writeBoard")
+    public String writeBoard(Model model) {
+        return "board/writeBoard";
     }
 
     /**

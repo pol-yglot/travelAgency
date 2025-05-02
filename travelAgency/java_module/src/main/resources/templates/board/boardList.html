@@ -11,36 +11,21 @@
         <a href="javascript:window.history.back()">뒤로가기↩️</a>
     </div>
     <div class="container">
-        <aside class="left-nav">
-            <div class="nav-section">
-                <h3>카테고리</h3>
-                <div style="border-bottom: 3px solid black;"></div>
-                <ul>
-                    <li><a th:href="@{/board/contact}">자주 묻는 질문 (FAQ)</a></li>
-                    <li><a th:href="@{/board/boardList}">질문 전체 조회</a></li>
-                </ul>
-            </div>
-            <div class="nav-section">
-                <h3>빠른 링크</h3>
-                <div style="border-bottom: 3px solid black;"></div>
-                <ul>
-                    <li><a href="#">질문 등록하기</a></li>
-                    <li><a th:href="@{/board/boardList(searchType=userId)}">내 질문 내역 보기</a></li>
-                </ul>
-            </div>
-        </aside>
+
+        <aside th:replace="~{layout/side-bar :: sideBarFragment}"></aside>
 
     <section class="content">
             <!--<h2 th:text="${'✈ '+title +' 전체보기'}"></h2>-->
-            <h2>궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
+            <h2>🔍 궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
             <div class="search-bar">
                 <form id="searchForm">
                     <select name="searchType" id="searchType" required>
                         <option value="">구분</option>
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
+                        <option value="title" th:selected="${searchType == 'title'}">제목</option>
+                        <option value="content" th:selected="${searchType == 'content'}">내용</option>
+                        <option value="userId" th:selected="${searchType == 'userId'}">작성자</option>
                     </select>
-                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." onkeyup="enterkey(e);" required>
+                    <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." onkeyup="enterkey(event);" required>
                     <button type="submit">검색</button>
                 </form>
             </div>
@@ -65,7 +50,7 @@
                 </form>
             </div>
             <div class="quick-register">
-                <a href="/faq/register" class="btn-register">+ 질문 등록하기</a> <!-- 추가 -->
+                <a href="/board/writeBoard" class="btn-register">+ 질문 등록하기</a> <!-- 추가 -->
             </div>
             <table id="readResults" th:if="${pageInfo != null and pageInfo.items != null and not #lists.isEmpty(pageInfo.items)}">
                 <thead>
@@ -110,32 +95,18 @@
     $(document).ready(function () {
         hashTag();
 
+        // 조회수 페이지 리로드
         window.onpageshow = function(event) {
             if (event.persisted) {
                 window.location.reload();
             }
         };
 
-        // 엔터키가 눌렸을 때 실행하는 반응
-        function enterkey(e) {
-            if(searchType == '' || keyword == ''){
-                alert('검색구분 혹은 검색어를 입력하세요.');
-                return;
-            }
-            if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
-                $("#searchForm").submit();
-            }
-        }
-
         // 키워드 검색처리
         $('.keywords').find('a').click(function (e) {
             var tag = e.target.textContent;
             var txt = tag.replace('#','');
             $('.search-bar').find('input').val(txt);
-        });
-
-        $('#boardList').click(function (e) {
-            location.replace("/board/boardList");
         });
 
         // 해시태그 # 추가
@@ -146,61 +117,116 @@
             }
         }
 
-        // 정렬
-        function submitSort(type) {
-            $('#sortTypeInput').val(type);
-            $('.sort form').submit();
-        }
+        // 1) 실제 검색 & 페이징 수행 함수
+        function doSearch(page) {
+            var searchType = $('#searchType').val();
+            var keyword    = $('#keyword').val().trim();
 
-        // 엔터키가 눌렸을 때 실행하는 반응
-        function enterkey(e) {
+            console.log("page ===> "+page);
+
             if(searchType == '' || keyword == ''){
                 alert('검색구분 혹은 검색어를 입력하세요.');
                 return;
             }
-            if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
-                $("#searchForm").submit();
-            }
-        }
-
-        $('#searchForm').submit(function(event) {
-            event.preventDefault(); // 폼 기본 제출 동작 방지
-
-            var searchType = $('#searchType').val();
-            var keyword = $('#keyword').val().trim();
 
             $.ajax({
                 url: '/board/boardList',
-                type: 'GET',
+                method: 'GET',
                 dataType: 'json',
-                data: { searchType: searchType, keyword: keyword },
-                success: function(data) {
-                    var html = '';
-                    if (data && data.length > 0) { // data는 배열이므로 length 속성으로 확인
-                        $.each(data, function(index, board) { // 배열을 순회
-                            html += '<tr>';
-                            html += '<td>' + (index + 1) + '</td>';
-                            html += '<td>' + board.board_TITLE + '</td>'; // 객체의 속성명 그대로 접근
-                            html += '<td>' + board.board_CONTENT + '</td>'; // 객체의 속성명 그대로 접근
-                            html += '</tr>';
-                        });
-                        $('#readResults tbody').empty().append(html);
-                        $('#searchResults').empty();
-                        $('#keyword').val("");
-                    } else {
-                        $('#searchResults').html('<p class="no-data">검색 결과가 없습니다.</p>');
-                        $('#readResults tbody').empty();
-                        $('#keyword').val("");
+                data: { page: page, searchType: searchType, keyword: keyword },
+                success: function(pageInfo) {
+                    console.log(pageInfo)
+                    $('#readResults tbody').empty();
+                    $('.pagination').hide();
+                    renderTable(pageInfo.items, pageInfo.pageSize, pageInfo.totalItems, pageInfo.currentPage);
+                    if(pageInfo.totalItems > 0){
+                        renderPagination(pageInfo.currentPage, pageInfo.totalPages);
                     }
                 },
-                error: function(xhr, status, error) {
-                    console.error('검색 요청 실패:', error);
-                    alert('검색 에러!');
-                    $('#keyword').val("");
+                error: function() {
+                    alert('검색 중 오류가 발생했습니다.');
                 }
             });
+        }
+
+        // 2) 테이블 바디 렌더링
+        function renderTable(items, pageSize, totalItems, currentPage) {
+            var startIndex = (currentPage-1)*pageSize;
+            var html = '';
+
+            if (totalItems > 0){
+                $.each(items, function(i, board){
+                    var username = board.user_NAME ? board.user_NAME : '게스트';
+                    html += '<tr style="text-align: center">';
+                    html +=   '<td>' + (startIndex + i + 1) + '</td>';
+                    html +=   '<td><a href="/board/boardDetail?BOARD_ID='
+                        + board.board_ID + '">' + board.board_TITLE + '</a></td>';
+                    html +=   '<td>' + board.board_CONTENT + '</td>';
+                    html +=   '<td>' + username + '</td>';
+                    html +=   '<td>' + board.board_HITS + '</td>';
+                    html += '</tr>';
+                });
+            }else{
+                html += '<tr style="text-align: center">';
+                html +=   '<td colspan="5">' + '검색 결과가 없습니다,' + '</td>';
+                html += '</tr>';
+            }
+
+            $('#readResults tbody').html(html);
+        }
+
+        // 3) 페이징 버튼 렌더링
+        function renderPagination(currentPage, totalPages) {
+            var html = '';
+            if(totalPages > 0){
+                $('.pagination').show();
+
+                if (currentPage > 1) {
+                    html += '<button class="page-btn" data-page="'+(currentPage-1)+'">&laquo;</button>';
+                }
+                for (var p=1; p<=totalPages; p++) {
+                    if (p === currentPage) {
+                        html += '<span class="current">'+p+'</span>';
+                    } else {
+                        html += '<button class="page-btn" data-page="'+p+'">'+p+'</button>';
+                    }
+                }
+                if (currentPage < totalPages) {
+                    html += '<button class="page-btn" data-page="'+(currentPage+1)+'">&raquo;</button>';
+                }
+            }
+
+            $('#pagination-container').html(html);
+        }
+
+        // 4) 이벤트 바인딩
+        $('#searchForm').on('submit', function(e){
+            e.preventDefault();
+            doSearch(1);
+        });
+
+        $('#pagination-container').on('click', '.page-btn', function(){
+            var page = $(this).data('page');
+            doSearch(page);
         });
     });
+
+    // 엔터키가 눌렸을 때 실행하는 반응
+    function enterkey(event) {
+        if(searchType == '' || keyword == ''){
+            alert('검색구분 혹은 검색어를 입력하세요.');
+            return;
+        }
+        if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
+            $("#searchForm").submit();
+        }
+    }
+
+    // 정렬
+    function submitSort(type) {
+        $('#sortTypeInput').val(type);
+        $('.sort form').submit();
+    }
 </script>
 </body>
 </html>

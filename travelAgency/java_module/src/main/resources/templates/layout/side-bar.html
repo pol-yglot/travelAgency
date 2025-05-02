@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:fragment="sideBarFragment">
+    <aside class="left-nav">
+        <div class="nav-section">
+            <h3>카테고리</h3>
+            <div style="border-bottom: 3px solid black;"></div>
+            <ul>
+                <li><a th:href="@{/board/contact}">자주 묻는 질문 (FAQ)</a></li>
+                <li><a th:href="@{/board/boardList}">질문 전체 조회</a></li>
+            </ul>
+        </div>
+        <div class="nav-section">
+            <h3>빠른 링크</h3>
+            <div style="border-bottom: 3px solid black;"></div>
+            <ul>
+                <li><a th:href="@{/board/writeBoard}">질문 등록하기</a></li>
+                <li><a th:href="@{/board/boardList(searchType=userId)}">내 질문 내역 보기</a></li>
+            </ul>
+        </div>
+    </aside>
+</th:block>

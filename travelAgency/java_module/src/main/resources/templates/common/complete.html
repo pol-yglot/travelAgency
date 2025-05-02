@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="ko">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 공통 head fragment (메타, CSS import 등) -->
+    <th:block th:replace="layout/head :: headFragment"></th:block>
+
+    <!-- 이 페이지 전용 스타일 -->
+    <link href="/css/complete.css" rel="stylesheet"/>
+</head>
 <body>
+<!-- 공통 헤더 -->
 <header th:replace="~{layout/header :: headerFragment}"></header>
+<!-- 공통 네비게이션 -->
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
-<main class="main-content">
-    <section>
-        엥
-    </section>
+
+<main class="main-content complete-page">
+    <div class="complete-container">
+        <!-- 완료 아이콘 -->
+        <img src="/images/company/checked.png" alt="✔ 문의 등록 완료" class="complete-icon"/>
+
+        <!-- 메시지 -->
+        <h2>문의가 성공적으로 등록되었습니다!</h2>
+        <p>담당자가 확인 후 최대한 빠르게 답변드리겠습니다.</p>
+
+        <!-- 버튼 그룹 -->
+        <div class="btn-group">
+            <a th:href="@{/board/boardList}" class="btn">전체 문의 보기</a>
+            <a th:href="@{/}" class="btn btn-outline">메인으로 이동</a>
+        </div>
+    </div>
 </main>
+
+<!-- 공통 푸터 -->
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 </body>
 </html>

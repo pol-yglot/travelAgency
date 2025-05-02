@@ -409,7 +409,7 @@ footer {
     display: none; /* 초기에는 숨김 */
     position: fixed; /* 화면 고정 */
     bottom: 60px;
-    right: 20px;
+    right: 100px;
     z-index: 99; /* 다른 요소 위에 표시 */
     border: none;
     outline: none;
@@ -865,6 +865,83 @@ button.long_btn {
     padding: 0 0.5rem;
     font-weight: bold;
 }
+
+/* 페이지 전체 높이 맞추고 가운데 정렬 */
+.complete-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 200px); /* header+footer 높이 제외 */
+    background: #f9f9f9;
+}
+
+/* 메시지 박스 스타일 */
+.complete-container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* 아이콘 */
+.complete-icon {
+    width: 64px;
+    margin-bottom: 1rem;
+}
+
+/* 제목 */
+.complete-container h2 {
+    font-size: 1.6rem;
+    color: #6a4fb6;
+    margin-bottom: 0.5rem;
+}
+
+/* 부제목 */
+.complete-container p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* 버튼 그룹 */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* 기본 버튼 */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* 주 버튼 */
+.btn {
+    background-color: #6a4fb6;
+    color: #fff;
+}
+
+/* 보조 버튼 */
+.btn-outline {
+    background-color: transparent;
+    color: #6a4fb6;
+    border: 1px solid #6a4fb6;
+}
+
+/* hover */
+.btn:hover {
+    opacity: 0.9;
+}
+
 
 /**
 * 브랜드 컬러
