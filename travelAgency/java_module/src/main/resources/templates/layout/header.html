@@ -8,6 +8,7 @@
             </a>
             <div class="user-actions">
                 <!--<button class="dark-mode-toggle">다크 모드</button>-->
+                <span href="javascript: void(0);" id="session-timer"></span>
                 <a th:href="@{/login}" class="login-btn" sec:authorize="isAnonymous()">로그인</a>
                 <a th:href="@{/user/profile}" class="profile-btn" sec:authorize="isAuthenticated()">프로필</a>
                 <a th:href="@{/logout}" class="logout-btn" sec:authorize="isAuthenticated()">로그아웃</a>

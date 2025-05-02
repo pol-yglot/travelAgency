@@ -62,5 +62,5 @@ body:
           required: false
         - label: 📍 타이틀에 문서 이름을 추가하였습니까?
           required: true
-        - label: 📌 작성자는 모든 작업에 대한 정보가 공개됨을 동의함니까?
+        - label: 📌 작성자는 모든 작업에 대한 정보가 공개됨을 동의합니까?
           required: true

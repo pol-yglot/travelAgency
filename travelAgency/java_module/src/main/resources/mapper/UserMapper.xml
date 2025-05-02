@@ -13,6 +13,8 @@
         <result property="UPDATED_AT" column="UPDATED_AT"/>
         <result property="USER_EMAIL" column="USER_EMAIL"/>
         <result property="USER_TYPE" column="USER_TYPE"/>
+        <result property="LOGIN_FAILED_CNT" column="LOGIN_FAILED_CNT"/>
+        <result property="USE_YN" column="USE_YN"/>
     </resultMap>
 
     <resultMap id="UserDetailVOMap" type="com.example.travelagency.vo.UserDetailVO">
@@ -27,20 +29,20 @@
 
     <select id="getAllUser" resultMap="UserVOMap">
         SELECT
-            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+            *
         FROM TB_USER
     </select>
 
     <select id="getUser" parameterType="String" resultMap="UserVOMap">
         SELECT
-            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+            *
         FROM TB_USER
         WHERE USER_ACCOUNT = #{inputId}
     </select>
 
     <select id="getUserById" parameterType="int" resultMap="UserVOMap">
         SELECT
-            USER_ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE
+            *
         FROM TB_USER
         WHERE USER_ID = #{userId}
     </select>
@@ -74,6 +76,8 @@
             USER_EMAIL=#{USER_EMAIL},
             USER_PASSWORD=#{USER_PASSWORD},
             USER_TYPE=#{USER_TYPE},
+            LOGIN_FAILED_CNT=#{LOGIN_FAILED_CNT},
+            USE_YN=#{USE_YN},
             UPDATED_AT=CURRENT_TIMESTAMP
         WHERE USER_ID = #{USER_ID}
     </update>

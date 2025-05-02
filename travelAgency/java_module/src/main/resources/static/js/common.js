@@ -1,10 +1,81 @@
 $(document).ready(function() {
+
+    /**
+     * 세션 체크
+     * */
+    // 공통 변수
+    const SESSION_TIMEOUT = 30 * 60 * 1000; // 30분 (ms)
+    const WARNING_TIME= 1 * 60 * 1000; // 1분전 (ms)
+
+    // 2. 내부 사용 변수
+    let remainingTime;        // 남은 시간 (ms)
+    let countdownInterval;    // setInterval ID
+    let warningTimer;         // 경고용 setTimeout ID
+    let logoutTimer;          // 강제 로그아웃용 setTimeout ID
+
+    // 3. 화면에 남은 시간 표시 함수
+    function updateCountdownDisplay() {
+        const $el = $('#session-timer');
+        if (!$el.length) return;
+
+        const totalSec = Math.max(0, Math.floor(remainingTime / 1000));
+        const m = String(Math.floor(totalSec / 60)).padStart(2, '0');
+        const s = String(totalSec % 60).padStart(2, '0');
+        $el.text(`${m}:${s}`);
+    }
+
+    // 4. 경고창 띄우기
+    function showWarning() {
+        // 남은 분 단위로 계산
+        const minsLeft = Math.ceil(remainingTime / 60000);
+        if (confirm(`세션이 ${minsLeft}분 후에 만료됩니다.\n연장하시겠습니까?`)) {
+            // 서버에 갱신 호출 (예: /keepAlive)
+            fetch('/keepAlive', { method: 'GET' })
+                .then(() => startTimers())
+                .catch(() => console.warn('세션 연장 실패'));
+        }
+    }
+
+    // 5. 강제 로그아웃
+    function logoutUser() {
+        window.location.href = '/logout';
+    }
+
+    // 6. 타이머(카운트다운 + 경고 + 로그아웃) 모두 초기화하고 재시작
+    function startTimers() {
+        // 기존 타이머 전부 제거
+        clearInterval(countdownInterval);
+        clearTimeout(warningTimer);
+        clearTimeout(logoutTimer);
+
+        // 남은 시간을 세션 만료 시간으로 초기화
+        remainingTime = SESSION_TIMEOUT;
+        updateCountdownDisplay();
+
+        // 1초마다 남은 시간 갱신
+        countdownInterval = setInterval(() => {
+            remainingTime -= 1000;
+            if (remainingTime <= 0) {
+                clearInterval(countdownInterval);
+                $('#session-timer').text('00:00');
+                logoutUser();
+            } else {
+                updateCountdownDisplay();
+            }
+        }, 1000);
+
+        // 만료 1분 전 경고
+        warningTimer = setTimeout(showWarning, SESSION_TIMEOUT - WARNING_TIME);
+
+        // 만료 시 강제 로그아웃
+        logoutTimer = setTimeout(logoutUser, SESSION_TIMEOUT);
+    }
+
     /**
      * 페이지 init
      * */
-    $(window).scroll(function() {
-        scrollFunction();
-    });
+    window.addEventListener('load', startTimers);
+    window.addEventListener('scroll', scrollFunction);
 
     /**
      * 최상단 이동버튼

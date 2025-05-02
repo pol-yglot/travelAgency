@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="/layout/head :: headFragment"></th:block>
+<body>
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+    <link href="/css/profile.css" rel="stylesheet">
+    <section class="profile">
+        <div class="profile-header">
+            <div class="profile-background"></div>
+            <div class="profile-avatar">
+                <div class="profile-info">
+                    <h2 th:text="${user.USER_NAME} + '님, 탈퇴하시나요? ㅠ_ㅠ'"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="profile-section">
+            <a href="/user/signout" class="long_btn"  id="signout">회원탈퇴</a>
+            <a href="javascript:history.back();" class="long_btn"  id="backBtn">뒤로가기</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

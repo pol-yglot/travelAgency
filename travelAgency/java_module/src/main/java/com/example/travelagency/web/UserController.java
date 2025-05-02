@@ -79,6 +79,35 @@ public class UserController {
         return "user/signup";
     }
 
+    @PostMapping("/signup")
+    public String signupProcess(Model model) {
+        return "redirect:/";
+    }
+    @GetMapping("/signout")
+    public String signout(HttpSession session, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 인증된 사용자 정보가 있는지 확인
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String)) { // "anonymousUser" 방지
+
+            // principal 꺼내기
+            org.springframework.security.core.userdetails.User userDetails =
+                    (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+
+            String username = userDetails.getUsername(); // 로그인한 아이디
+
+            // DB에서 추가 정보 조회
+            UserVO user = userService.getUser(username);
+            model.addAttribute("user", user);
+        }
+        return "user/signout";
+    }
+
+    @PostMapping("/signout")
+    public String signoutProcess(Model model) {
+        return "redirect:/";
+    }
+
     @GetMapping("/updateProfile")
     public String updateProfile(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
