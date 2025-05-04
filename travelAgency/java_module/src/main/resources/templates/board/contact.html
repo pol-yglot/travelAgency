@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
@@ -79,7 +79,7 @@
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
-    $(document).ready(function () {
+    $(function () {
 
         window.onpageshow = function(event) {
             if (event.persisted) {

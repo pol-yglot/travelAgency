@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
@@ -152,7 +152,7 @@
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
-    $(document).ready(function() {
+    $(function() {
         // 선호도
         const userPreferenceJson = $("#displayArea").val();
         if (userPreferenceJson) {

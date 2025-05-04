@@ -100,6 +100,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int userSignout(String useraccount) {
+        return userMapper.userSignout(useraccount);
+    }
+
+    @Override
     public boolean isUserExist(String inputId) {
         try {
             int isUserExistYn = userMapper.isUserExist(inputId);

@@ -638,8 +638,13 @@ tbody td:nth-child(3) {
 .step.active {
     font-weight: bold;
     color: #fff;
-    background-color: #007bff;
+    background: var(--brand-main-color);
     border-radius: 10px;
+}
+
+.terms-list{
+    text-align: left;
+    margin: 0 7.5rem;
 }
 
 .hide {
@@ -969,6 +974,13 @@ a.pretty-button:hover {
 
 .alert-danger {
     color: #ff646d;
+}
+
+.button-group{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
 }
 
 /**

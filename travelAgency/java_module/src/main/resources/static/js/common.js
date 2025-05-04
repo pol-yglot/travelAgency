@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 
     /**
      * 세션 체크

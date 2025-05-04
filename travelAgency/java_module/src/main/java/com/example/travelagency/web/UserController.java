@@ -5,6 +5,7 @@ import com.example.travelagency.service.UserService;
 import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
@@ -12,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "user")
@@ -75,37 +79,59 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    public String signup() {
-        return "user/signup";
+    public String signup(HttpSession session, RedirectAttributes redirectAttributes) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 인증된 사용자 정보가 있는지 확인 -> 로그인했으면 회원가입 불가
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String)) {
+            redirectAttributes.addFlashAttribute("message", "고객정보 수정을 실패했습니다. 다시 시도해주세요.");
+            return "redirect:/user/signup";
+        } else {
+            return "user/signup";            
+        }
     }
 
     @PostMapping("/signup")
     public String signupProcess(Model model) {
         return "redirect:/";
     }
+
     @GetMapping("/signout")
     public String signout(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // 인증된 사용자 정보가 있는지 확인
-        if (authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String)) { // "anonymousUser" 방지
 
-            // principal 꺼내기
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String)) {
+
             org.springframework.security.core.userdetails.User userDetails =
                     (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
 
-            String username = userDetails.getUsername(); // 로그인한 아이디
-
-            // DB에서 추가 정보 조회
+            String username = userDetails.getUsername();
             UserVO user = userService.getUser(username);
-            model.addAttribute("user", user);
+
+            if (user != null) {
+                model.addAttribute("user", user);
+                return "user/signout";
+            }
         }
-        return "user/signout";
+
+        return "redirect:/login";
     }
 
     @PostMapping("/signout")
-    public String signoutProcess(Model model) {
-        return "redirect:/";
+    @ResponseBody
+    public ResponseEntity<?> signout(@RequestParam String useraccount, HttpServletRequest request) {
+        int result = userService.userSignout(useraccount);
+        if (result > 0) {
+            // 세션 무효화
+            request.getSession().invalidate();
+            // Spring Security 인증 제거
+            SecurityContextHolder.clearContext();
+            return ResponseEntity.ok(Map.of("result", "success"));
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("result", "fail"));
+        }
     }
 
     @GetMapping("/updateProfile")

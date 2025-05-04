@@ -21,5 +21,6 @@ public interface UserMapper {
     List<InquiryVO> getInquiryList(int inputId);
     InquiryVO getInquiry(int inquiryId);
     int updateUserDetail(UserDetailVO userDetail);
+    int userSignout(String username);
 }
 

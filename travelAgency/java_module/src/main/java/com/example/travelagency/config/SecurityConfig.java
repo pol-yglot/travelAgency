@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .anyRequest().permitAll() // 모든 요청에 대해 접근 허용
                 );*/
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/css/**", "/js/**", "/images/**", "/login", "/logout", "/user/signup").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/login", "/logout", "user/signup").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
