@@ -105,6 +105,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int insertUser(UserVO user) {
+        return userMapper.insertUser(user);
+    }
+
+    @Override
+    public int insertUserDtl(UserDetailVO userDtl) {
+        return userMapper.insertUserDtl(userDtl);
+    }
+
+    @Override
     public boolean isUserExist(String inputId) {
         try {
             int isUserExistYn = userMapper.isUserExist(inputId);

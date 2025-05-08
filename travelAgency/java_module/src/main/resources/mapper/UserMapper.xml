@@ -98,6 +98,20 @@
         WHERE USER_ID=#{USER_ID}
     </update>
 
+    <insert id="insertUser" parameterType="com.example.travelagency.vo.UserVO">
+        INSERT INTO tb_user
+            (USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_PHONE, CREATED_AT, UPDATED_AT, USER_EMAIL, USER_TYPE, LOGIN_FAILED_CNT, USE_YN)
+        VALUES
+            (#{USER_ACCOUNT}, #{USER_PASSWORD}, #{USER_NAME}, #{USER_PHONE}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{USER_EMAIL}, #{USER_TYPE}, 0, 'Y')
+    </insert>
+
+    <insert id="insertUserDtl" parameterType="com.example.travelagency.vo.UserVO">
+        INSERT INTO tb_user_detail
+            (USER_ID, USER_ADDRESS, USER_PROFILE_IMAGE_URL, USER_PREFERENCE, CREATED_AT, UPDATED_AT)
+        VALUES
+            (#{USER_ID}, #{USER_ADDRESS}, '', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    </insert>
+
     <insert id="insertInquiry" parameterType="com.example.travelagency.vo.InquiryVO">
 
     </insert>

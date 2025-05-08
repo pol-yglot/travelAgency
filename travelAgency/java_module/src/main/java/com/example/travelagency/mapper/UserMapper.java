@@ -3,6 +3,7 @@ package com.example.travelagency.mapper;
 import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
+import jakarta.validation.Valid;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,5 +23,7 @@ public interface UserMapper {
     InquiryVO getInquiry(int inquiryId);
     int updateUserDetail(UserDetailVO userDetail);
     int userSignout(String username);
+    int insertUser(UserVO user);
+    int insertUserDtl(@Valid UserDetailVO userDtl);
 }
 

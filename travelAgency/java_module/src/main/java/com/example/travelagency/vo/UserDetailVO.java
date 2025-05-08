@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class UserDetailVO {
     private int USER_DETAIL_ID;
-    private String USER_ID;
+    private int USER_ID;
     private String USER_ADDRESS;
     private String USER_PROFILE_IMAGE_URL;
     private String USER_PREFERENCE;
