@@ -11,14 +11,15 @@
             <div class="profile-background"></div>
             <div class="profile-avatar">
                 <!-- 기존 프로필 이미지 영역 -->
-                <img id="profileImageOld" th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">
+                <img id="profileImageOld" th:if='${userDetail.USER_PROFILE_IMAGE_URL != ""}'  th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">
+                <img  id="profileImageOld" th:if='${userDetail.USER_PROFILE_IMAGE_URL == ""}' src="/images/company/user.png" alt="프로필 기본 사진" style="cursor:pointer;" />
                 <!-- preview 영역 -->
                 <img id="profileImagePreview" alt="프로필 사진" class="hide">
                 <div class="profile-info">
                     <form method="post" th:action="@{/user/updateProfileImage}" id="profile-info" onsubmit="return formCheck(this);" enctype="multipart/form-data">
                         <label for="profileImage"></label>
                         <input type="file" id="profileImage" name="profileImage" accept="image/*" required>
-                        <button id="edit-profile-image" type="submit">프로필 이미지 변경</button>
+                        <button class="pretty-button" id="edit-profile-image" type="submit" style="margin-top: 10px">프로필 이미지 변경</button>
                     </form>
                 </div>
             </div>

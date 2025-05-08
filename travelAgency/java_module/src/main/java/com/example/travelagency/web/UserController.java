@@ -124,7 +124,7 @@ public class UserController {
         }
 
         redirectAttributes.addFlashAttribute("success", "회원가입 성공!");
-        return "/";
+        return "redirect:/";
     }
 
     @GetMapping("/signout")

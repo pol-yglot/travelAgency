@@ -15,7 +15,8 @@
                     <p th:text="${user.USER_EMAIL}"></p>
                 </div>
                 <!--<img th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">-->
-                <img id="profile-avatar" th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진" style="cursor:pointer;" />
+                <img  th:if='${userDetail.USER_PROFILE_IMAGE_URL != ""}' th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진" style="cursor:pointer;" />
+                <img  th:if='${userDetail.USER_PROFILE_IMAGE_URL == ""}' src="/images/company/user.png" alt="프로필 기본 사진" style="cursor:pointer;" />
             </div>
         </div>
 

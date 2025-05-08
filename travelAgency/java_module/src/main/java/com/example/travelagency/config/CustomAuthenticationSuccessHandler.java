@@ -41,12 +41,14 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         if (username != null && !username.isBlank()) {
             UserVO user = userService.getUser(username);
             if (user != null) {
-                // 2) 실패 카운트 초기화
-                int failures = 0;
-                user.setLOGIN_FAILED_CNT(failures);
-
-                // 4) 변경된 사용자 정보 DB에 반영
-                userService.updateUser(user);
+                // 실패이력 없으면 패스
+                if(user.getLOGIN_FAILED_CNT() != 0){
+                    // 2) 실패 카운트 초기화
+                    int failures = 0;
+                    user.setLOGIN_FAILED_CNT(failures);
+                    // 3) 변경된 사용자 정보 DB에 반영
+                    userService.updateUser(user);
+                }
             }
         }
 

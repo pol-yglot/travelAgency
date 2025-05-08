@@ -26,6 +26,10 @@
                     <button type="submit">로그인</button>
                 </div>
                 <!--<div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>-->
+                <!-- 세션 유효하지 않을 때 -->
+                <div class="alert alert-danger" th:if="${param.success}">
+                    <p>환영합니다!</p>
+                </div>
                 <div class="alert alert-danger" th:if="${param.error}">
                     <p th:text="${param.error}">[로그인 실패 메시지]</p>
                 </div>

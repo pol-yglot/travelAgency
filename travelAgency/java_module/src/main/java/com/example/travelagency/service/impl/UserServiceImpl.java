@@ -106,6 +106,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insertUser(UserVO user) {
+
+        // 비밀번호 인코딩 처리
+        String password = user.getUSER_PASSWORD();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        try{
+            user.setUSER_PASSWORD(encoder.encode(password));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return userMapper.insertUser(user);
     }
 
