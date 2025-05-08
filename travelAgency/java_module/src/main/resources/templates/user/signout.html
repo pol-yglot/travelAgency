@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
+<body>
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+    <link href="/css/profile.css" rel="stylesheet">
+    <section class="profile">
+        <div class="profile-header">
+            <div class="profile-background"></div>
+            <div class="profile-avatar">
+                <div class="profile-info">
+                    <h2 th:if="${user != null}"  th:text="${user.USER_NAME} + '님, 정말 탈퇴하시겠습니까?'"></h2>
+                    <input type="hidden" th:if="${user != null}" id="useraccount" name="useraccount" th:value="${user.USER_ACCOUNT}"/>
+                </div>
+            </div>
+        </div>
+        <div class="profile-section">
+            <a class="long_btn" id="signout">회원탈퇴</a>
+            <a href="javascript:history.back();" class="long_btn" id="backBtn">뒤로가기</a>
+        </div>
+    </section>
+</main>
+</body>
+<script>
+    $(function () {
+        $('#signout').click(function () {
+            signout();
+        });
+
+        function signout() {
+            $.ajax({
+                url: '/user/signout',
+                method: 'POST',
+                dataType: 'json',
+                data: { useraccount : $('#useraccount').val() },
+                success: function() {
+                    alert('탈퇴완료되었습니다.');
+                    window.location.href = "/";
+                    return;
+                },
+                error: function() {
+                    alert('회원탈퇴 중 오류가 발생했습니다. 다시 시도해주세요.');
+                    window.location.href = "/user/signout";
+                    return;
+                }
+            });
+        }
+
+    });
+</script>
+</html>

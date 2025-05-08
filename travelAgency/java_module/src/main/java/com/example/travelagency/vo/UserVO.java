@@ -16,4 +16,6 @@ public class UserVO {
     private Date UPDATED_AT;
     private String USER_EMAIL;
     private String USER_TYPE;
+    private int LOGIN_FAILED_CNT;
+    private char USE_YN;
 }

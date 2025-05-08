@@ -75,5 +75,5 @@ body:
           required: true
         - label: 📍 배포 버전을 적절하게 정하였습니까?
           required: true
-        - label: 📌 작성자는 모든 작업에 대한 정보가 공개됨을 동의함니까?
+        - label: 📌 작성자는 모든 작업에 대한 정보가 공개됨을 동의합니까?
           required: true

@@ -1,169 +1,364 @@
 <!DOCTYPE html>
-<html lang="ko">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
-    <section class="contact">
-        <h2>회원가입</h2>
-        <div class="step-ui">
-            <div class="step step1"><span>1. 약관동의</span></div>
-            <div class="step step2"><span>2. 정보입력</span></div>
-            <div class="step step3"><span>3. 입력확인</span></div>
-            <div class="step step4"><span>4. 가입완료</span></div>
-        </div>
-    </section>
+    <!-- ... 폼 ... -->
+    <form method="post" th:action="@{/user/signup}" id="signup" class="terms-list">
+        <!-- ✨ Progress UI: step-ui-container 로 분리 -->
+        <section class="step-ui-container">
+            <h2>회원가입</h2>
+            <div class="step-ui">
+                <div class="step step1 active"><span>1. 약관동의</span></div>
+                <div class="step step2"><span>2. 정보입력</span></div>
+                <div class="step step3"><span>3. 입력확인</span></div>
+                <div class="step step4"><span>4. 가입완료</span></div>
+            </div>
+        </section>
 
-    <!-- 1. 약관동의 -->
-    <section class="contact step1">
-        <div class="terms-list">
-            <div class="term-item">
-                <label>
-                    <input type="checkbox" name="agree_terms_service" id="agree_terms_service" required>
-                    <a href="/pdf/terms_service.pdf" class="view-pdf" data-pdf-url="/pdf/terms_service.pdf"
-                       target="_blank">서비스 이용약관 (필수)</a>
-                </label>
+        <!-- 1. 약관동의 -->
+        <section class="contact step1">
+            <div class="alert alert-danger" th:if="${param.error}">
+                <p th:text="${param.error}">[회원가입 실패 메시지]</p>
             </div>
-            <div class="term-item">
-                <label>
-                    <input type="checkbox" name="agree_terms_privacy" id="agree_terms_privacy" required>
-                    <a href="/pdf/terms_privacy.pdf" class="view-pdf" data-pdf-url="/pdf/terms_privacy.pdf"
-                       target="_blank">개인정보 수집 및 이용 동의 (필수)</a>
-                </label>
+            <!-- ... 약관 리스트 ... -->
+            <div class="terms-list">
+                <div class="term-item">
+                    <label>
+                        <input type="checkbox" name="agree_terms_service" id="agree_terms_service" required>
+                        <a href="/pdf/terms_service.pdf" class="view-pdf" data-pdf-url="/pdf/terms_service.pdf"
+                           target="_blank">서비스 이용약관 (필수)</a>
+                    </label>
+                </div>
+                <div class="term-item">
+                    <label>
+                        <input type="checkbox" name="agree_terms_privacy" id="agree_terms_privacy" required>
+                        <a href="/pdf/terms_privacy.pdf" class="view-pdf" data-pdf-url="/pdf/terms_privacy.pdf"
+                           target="_blank">개인정보 수집 및 이용 동의 (필수)</a>
+                    </label>
+                </div>
+                <div class="term-item">
+                    <label>
+                        <input type="checkbox" name="agree_terms_marketing" id="agree_terms_marketing">
+                        <a href="/pdf/terms_marketing.pdf" class="view-pdf" data-pdf-url="/pdf/terms_marketing.pdf"
+                           target="_blank">(선택) 마케팅 정보 수신 동의</a>
+                    </label>
+                </div>
             </div>
-            <div class="term-item">
-                <label>
-                    <input type="checkbox" name="agree_terms_marketing" id="agree_terms_marketing">
-                    <a href="/pdf/terms_marketing.pdf" class="view-pdf" data-pdf-url="/pdf/terms_marketing.pdf"
-                       target="_blank">(선택) 마케팅 정보 수신 동의</a>
-                </label>
+            <div class="button-group">
+                <button type="button"
+                        class="next-step pretty-button"
+                        data-next="step2"
+                        disabled
+                        id="next-step-terms">다음 단계
+                </button>
             </div>
-        </div>
-        <div class="button-group">
-            <button type="button" class="next-step" data-next="step2" disabled id="next-step-terms">다음 단계</button>
-        </div>
-    </section>
+        </section>
 
-    <!-- 2. 정보입력 -->
-    <section class="contact step2">
-        <h2>문의하기</h2>
-        <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
-            <table class="form-table">
-                <!--<colgroup>
-                    <col style="width: 20%">
-                </colgroup>-->
+        <!-- 2. 정보입력 -->
+        <section class="contact step2">
+            <table class="form-table" id="formTable">
                 <tr>
-                    <td class="col1"> 성명 <span class="warn">*</span></td>
-                    <label class="label-form" for="username"></label>
-                    <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
-                </tr>
-                <tr>
-                    <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
-                    <label class="label-form" for="tel"></label>
-                    <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
-                </tr>
-                <tr>
-                    <td class="col1"> 이메일 <span class="warn">*</span></td>
-                    <label class="label-form" for="email"></label>
-                    <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com"
-                                            required></td>
-                </tr>
-                <tr>
-                    <td class="col1"> 유형 <span class="warn">*</span></td>
-                    <td class="col2">
-                        <input type="radio" name="personal" id="personal" checked>
-                        <label for="personal">개인</label>
-                        <input type="radio" name="copr" id="copr">
-                        <label for="personal">기업</label>
-                        <input type="radio" name="org" id="org">
-                        <label for="personal">단체</label>
+                    <td class="col1"> 아이디 <span class="warn">*</span></td>
+                    <td style="display: flex; gap: 10px;" >
+                        <input type="text" id="useraccount" name="USER_ACCOUNT" placeholder="영문 대문자 아이디, 길이는 4~20자" required>
+                        <button type="button" class="pretty-button" id="idChk">아이디 중복확인</button>
                     </td>
                 </tr>
                 <tr>
-                    <td class="col1"> 문의구분 <span class="warn">*</span></td>
+                    <td class="col1"> 비밀번호 <span class="warn">*</span></td>
+                    <td class="col2"><input type="password" id="password" name="USER_PASSWORD" placeholder="연속되지 않은 대문자 1개이상, 소문자 1개이상, 숫자 1개이상, 특수문자 1개 이상을 포함한 8자이상 20자 이하" value="password111" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 비밀번호 확인 <span class="warn">*</span></td>
+                    <td class="col2"><input type="password" id="password-chk" placeholder="비밀번호 재입력" value="password111" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 성명 <span class="warn">*</span></td>
+                    <td class="col2"><input type="text" id="username" name="USER_NAME" placeholder="이름" value="홍길동" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                    <td class="col2"><input type="tel" id="tel" name="USER_PHONE" placeholder="010-0000-0000" value="010-0000-0000" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 이메일 <span class="warn">*</span></td>
+                    <td class="col2"><input type="email" id="email" name="USER_EMAIL"
+                                            placeholder="example@google.com"
+                                            value="example@google.com"
+                                            required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 주소 <span class="warn">*</span></td>
+                    <td class="col2"><input type="text" id="useraddress" name="USER_ADDRESS" placeholder="직장 주소" value="서울시 평창동" required></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 고객 유형 <span class="warn">*</span></td>
                     <td class="col2">
-                        <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
-                        <label for="businesstrip">출장</label>
-                        <input type="checkbox" name="edu" id="edu">
+                        <input type="radio" class="userType" name="USER_TYPE" id="personal" value="personal" required>
+                        <label for="personal">개인</label>
+                        <input type="radio" class="userType" name="USER_TYPE" id="corporate" value="copr" required>
+                        <label for="corporate">기업</label>
+                        <input type="radio" class="userType" name="USER_TYPE" id="group" value="org" required>
+                        <label for="group">단체</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1"> 문의 구분 <span class="warn">*</span></td>
+                    <td class="col2">
+                        <input type="checkbox" id="inqType" name="INQ_TYPE" checked>
+                        <label for="inqType">출장</label>
+                        <input type="checkbox" id="edu" name="INQ_TYPE">
                         <label for="edu">연수/교육</label>
-                        <input type="checkbox" name="conference" id="conference">
+                        <input type="checkbox" id="conference" name="INQ_TYPE">
                         <label for="conference">학회/협회</label>
                         <input type="checkbox" name="etc" id="etc">
                         <label for="etc">기타</label>
                     </td>
                 </tr>
             </table>
+
             <div class="button-group">
-                <button type="button" class="next-step" data-next="step2" disabled id="next-step-terms">다음 단계</button>
+                <button type="button"
+                        class="next-step pretty-button"
+                        data-next="step3"
+                        id="next-step-info">다음 단계
+                </button>
             </div>
-        </form>
-    </section>
+        </section>
 
-    <!-- 3. 입력확인 -->
-    <section class="contact step3">
-        <h2>입력확인</h2>
-        <table class="form-table">
-            <!--<colgroup>
-                <col style="width: 20%">
-            </colgroup>-->
-            <tr>
-                <td class="col1"> 성명 <span class="warn">*</span></td>
-                <label class="label-form" for="username"></label>
-                <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
-            </tr>
-            <tr>
-                <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
-                <label class="label-form" for="tel"></label>
-                <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
-            </tr>
-            <tr>
-                <td class="col1"> 이메일 <span class="warn">*</span></td>
-                <label class="label-form" for="email"></label>
-                <td class="col2"><input type="email" name="email" id="email" placeholder="example@google.com" required>
-                </td>
-            </tr>
-            <tr>
-                <td class="col1"> 유형 <span class="warn">*</span></td>
-                <td class="col2">
-                    <input type="radio" name="personal" id="personal" checked>
-                    <label for="personal">개인</label>
-                    <input type="radio" name="copr" id="copr">
-                    <label for="personal">기업</label>
-                    <input type="radio" name="org" id="org">
-                    <label for="personal">단체</label>
-                </td>
-            </tr>
-            <tr>
-                <td class="col1"> 문의구분 <span class="warn">*</span></td>
-                <td class="col2">
-                    <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
-                    <label for="businesstrip">출장</label>
-                    <input type="checkbox" name="edu" id="edu">
-                    <label for="edu">연수/교육</label>
-                    <input type="checkbox" name="conference" id="conference">
-                    <label for="conference">학회/협회</label>
-                    <input type="checkbox" name="etc" id="etc">
-                    <label for="etc">기타</label>
-                </td>
-            </tr>
-        </table>
-        <div class="button-group">
-            <button type="button" class="next-step" data-next="step2" disabled id="next-step-terms">다음 단계</button>
-        </div>
-    </section>
+        <!-- 3. 입력확인 -->
+        <section class="contact step3">
+            <!-- ... 확인 테이블 ... -->
+            <table class="form-table terms-list">
+                <tr>
+                    <td class="col1"> 아이디</td>
+                    <td class="col2" id="confirm-account"></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 성명</td>
+                    <td class="col2" id="confirm-username"></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 휴대폰번호</td>
+                    <td class="col2" id="confirm-tel"></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 이메일</td>
+                    <td class="col2" id="confirm-email"></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 고객 주소</td>
+                    <td class="col2" id="confirm-address"></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 고객 유형</td>
+                    <td class="col2" id="confirm-type"></td>
+                </tr>
+                <tr>
+                    <td class="col1"> 문의 구분</td>
+                    <td class="col2" id="confirm-category" ></td>
+                    <input type="hidden" name="inqType"/>
+                </tr>
+            </table>
+            <div class="button-group">
+                <button type="button" class="pretty-button" id="reEnter">다시 입력</button>
+                <button type="submit"
+                        class="next-step pretty-button"
+                        data-next="step4"
+                        id="next-step-confirm">확인 및 가입
+                </button>
+            </div>
+        </section>
 
-    <!-- 4. 회원가입 완료 -->
-    <section class="contact active step4">
-        <h2>회원가입이 완료되었습니다.</h2>
-    </section>
-
-
+        <!-- 4. 회원가입 완료 -->
+        <section class="contact step4">
+            <h2>회원가입이 완료되었습니다!</h2>
+        </section>
+    </form>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('div[class^="step"]')
+    $(function () {
+
+        var idChkFlag = 0; // false
+
+        $('#useraccount').on('change', function () {
+            idChkFlag = 0; // 수정 시 아이디 중복검사 다시 수행
+            var inputTxt = $(this).val();
+            if(inputTxt != '' && inputTxt != undefined && inputTxt != null){
+                var upperTxt = inputTxt.toLocaleUpperCase();
+                $(this).val(upperTxt);
+            }
+        });
+
+        // 1) 초기 세팅: 모든 .contact 숨기고 step1만 보이게
+        $('.contact').hide();
+        $('.contact.step1').show();
+
+        // 2) 약관 동의 체크박스
+        $('#agree_terms_service, #agree_terms_privacy').on('change', function () {
+            const ready = $('#agree_terms_service').is(':checked')
+                && $('#agree_terms_privacy').is(':checked');
+            $('#next-step-terms').prop('disabled', !ready);
+        });
+
+        // 3) 스텝 이동 공통 처리
+        $('.next-step').on('click', function (e) {
+            const next = $(this).data('next');             // "step2", "step3", "step4"
+
+            // 3단계 확인 화면일 경우, 입력값 복사
+            if (next === 'step3') {
+                // 아이디 중복 검사
+                if(idChkFlag < 1){
+                    alert("아이디 중복검사를 수행해주세요.");
+                    e.preventDefault();   // 유효성 실패 → 폼 전송 차단
+                    return false;         // 이벤트 버블링도 중단
+                }
+                // 유효성 검사
+                if (!validateForm('signup')) {
+                    e.preventDefault();   // 유효성 실패 → 폼 전송 차단
+                    return false;         // 이벤트 버블링도 중단
+                }
+
+                // input 값 셋팅
+                $('#confirm-account').text($('#useraccount').val());
+                $('#confirm-username').text($('#username').val());
+                $('#confirm-tel').text($('#tel').val());
+                $('#confirm-email').text($('#email').val());
+                $('#confirm-address').text($('#useraddress').val());
+
+                // 고객유형
+                $('#confirm-type').text($('input[name="USER_TYPE"]:checked').next('label').text());
+                let cats = [];
+                $('input[type="checkbox"]:checked').each(function () {
+                    if($(this).next('label').text() != '')
+                        cats.push($(this).next('label').text());
+                });
+                $('#confirm-type').text($('input[name="USER_TYPE"]:checked').next('label').text());
+
+                // 문의유형
+                cats = [];
+                $('input[type="checkbox"]:checked').each(function () {
+                    if($(this).next('label').text() != '')
+                    cats.push($(this).next('label').text());
+                });
+                $('#confirm-category').text(cats.join(', '));
+            }
+
+            // 실제 섹션 토글
+            $('.contact').hide();
+            $(`.contact.${next}`).show();
+
+            // progress UI 업데이트
+            $('.step-ui .step').removeClass('active');
+            $(`.step-ui .step.${next}`).addClass('active');
+        });
+
+        // 4) 확인 시 오입력한 경우 재입력
+        $('#reEnter').click(function () {
+            // 실제 섹션 토글
+            $('.contact').hide();
+            $(`.contact.step2`).show();
+
+            // progress UI 업데이트
+            $('.step-ui .step').removeClass('active');
+            $(`.step-ui .step2`).addClass('active');
+        });
+
+        $('#idChk').click(function () {
+
+            if($('#useraccount').val() == undefined || $('#useraccount').val() == null || $('#useraccount').val() == ''){
+                $('#useraccount').focus();
+                alert("아이디를 입력해주세요.");
+                return;
+            }
+
+            $.ajax({
+                url: '/user/isUserExist',
+                method: 'GET',
+                data: { USER_ACCOUNT : $('#useraccount').val() },
+                success: function(res) { // 서버응답값
+                    alert(res);
+                    idChkFlag ++; // 증감연산
+                    return;
+                },
+                error: function() {
+                    $('#useraccount').val(''); // 아이디 입력칸 초기화
+                    alert('아이디 중복조회 중 오류가 발생했습니다.');
+                }
+            });
+        });
+
+        /**
+         * @param {string} formId 검사할 <form> 요소의 id
+         * @return {boolean} true → 통과, false → 실패
+         */
+        function validateForm(formId) {
+            const $form   = $('#' + formId);
+            const $inputs = $form.find('input');
+
+            /* 1️⃣  단일 입력(text · password · tel · email) ---------------------- */
+            const $invalid = $inputs.filter(function () {
+                // HTML5 validity + (비밀번호 확인 필드 일치 여부)
+                if (!this.checkValidity()) return true;
+
+                // 비밀번호와 비밀번호 확인 일치 검사
+                if (this.type === 'password' && this.id === 'password-chk') {
+                    return this.value !== $('#password').val();
+                }
+                return false;
+            }).first();
+
+            if ($invalid.length) {
+                const label = $invalid
+                        .closest('tr').find('td.col1').text()
+                    || $invalid.attr('name') || '값';
+                alert(`${label.trim()}을(를) 올바르게 입력하세요.`);
+                $invalid.focus();
+                return false;
+            }
+
+            /* 2️⃣  라디오 그룹(같은 name) -------------------------------------- */
+            const radioGroups = new Set(
+                $inputs.filter('[type="radio"][required]').map(function () { return this.name; }).get()
+            );
+            for (const name of radioGroups) {
+                if (!$form.find(`input[name="${name}"]:checked`).length) {
+                    const $labelCell = $form.find(`input[name="${name}"]`).first()
+                        .closest('tr').find('td.col1');
+                    alert(`${$labelCell.text().trim()}을(를) 선택하세요.`);
+                    $form.find(`input[name="${name}"]`).first().focus();
+                    return false;
+                }
+            }
+
+            /* 3️⃣  체크박스 그룹(같은 name) ------------------------------------ */
+            const chkGroups = new Set(
+                $inputs.filter('[type="checkbox"][required]').map(function () { return this.name; }).get()
+            );
+            for (const name of chkGroups) {
+                if (!$form.find(`input[name="${name}"]:checked`).length) {
+                    const $labelCell = $form.find(`input[name="${name}"]`).first()
+                        .closest('tr').find('td.col1');
+                    alert(`${$labelCell.text().trim()} 항목을 체크하세요.`);
+                    $form.find(`input[name="${name}"]`).first().focus();
+                    return false;
+                }
+            }
+
+            return true;   // 모든 검사 통과
+        }
+        
+        // 정규식 체크
+        function regex() {
+            /* todo */
+        }
+
     });
 </script>
 </body>

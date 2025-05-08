@@ -3,6 +3,7 @@ package com.example.travelagency.service;
 import com.example.travelagency.vo.InquiryVO;
 import com.example.travelagency.vo.UserDetailVO;
 import com.example.travelagency.vo.UserVO;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface UserService {
     List<InquiryVO> getInquiryList(int inputId);
     InquiryVO getInquiry(int inquiryId);
     int updateUserDetail(UserDetailVO userDetail);
+    int userSignout(String useraccount);
+    int insertUser(UserVO user);
+    int insertUserDtl(@Valid UserDetailVO userDtl);
 }

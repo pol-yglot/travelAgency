@@ -100,6 +100,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int userSignout(String useraccount) {
+        return userMapper.userSignout(useraccount);
+    }
+
+    @Override
+    public int insertUser(UserVO user) {
+
+        // 비밀번호 인코딩 처리
+        String password = user.getUSER_PASSWORD();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        try{
+            user.setUSER_PASSWORD(encoder.encode(password));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return userMapper.insertUser(user);
+    }
+
+    @Override
+    public int insertUserDtl(UserDetailVO userDtl) {
+        return userMapper.insertUserDtl(userDtl);
+    }
+
+    @Override
     public boolean isUserExist(String inputId) {
         try {
             int isUserExistYn = userMapper.isUserExist(inputId);

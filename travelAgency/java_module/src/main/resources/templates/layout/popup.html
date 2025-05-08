@@ -1,0 +1,36 @@
+<!-- templates/fragments/popup.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="popup(modalId, title, message, actions)">
+    <div class="modal-overlay" th:attr="id=${modalId}" style="display:none;">
+        <div class="modal-container">
+            <button type="button" class="modal-close" th:onclick="|closeModal('${modalId}')|">×</button>
+            <header class="modal-header">
+                <h2 th:text="${title}">팝업 제목</h2>
+            </header>
+            <section class="modal-body" th:utext="${message}">
+                팝업 내용
+            </section>
+            <footer class="modal-footer">
+                <th:block th:each="btn : ${actions}">
+                    <button type="button"
+                            th:text="${btn.label}"
+                            th:class="${btn.class}"
+                            th:onclick="${btn.onclick}">
+                        버튼
+                    </button>
+                </th:block>
+            </footer>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
+</th:block>
+</html>

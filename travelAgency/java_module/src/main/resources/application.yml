@@ -6,6 +6,10 @@ server:
     context-path: /
     session:
       timeout: 30m
+  error:
+    include-exception: true # 오류응담에 에러내용 포함
+    whitelabel:
+      enabled: false # 오류 기본 페이지 사용 여부
 
 # 최상단에 기재
 mybatis:

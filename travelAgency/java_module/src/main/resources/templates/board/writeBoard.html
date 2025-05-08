@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
+<body>
+<header th:replace="~{layout/header :: headerFragment}"></header>
+<nav th:replace="~{layout/nav :: navFragment}"></nav>
+<main class="main-content">
+    <link href="/css/board.css" rel="stylesheet">
+    <link href="/css/contact.css" rel="stylesheet">
+    <link href="/css/services.css" rel="stylesheet">
+    <!-- 배너 영역 -->
+    <div class="banner-text">
+        <div class="background"></div> <!-- 배경 흐릿하게 -->
+        <div class="content">           <!-- 글자 선명하게 -->
+            <h1>기업 출장, 이제 더 스마트하게!</h1>
+            <p>고객사 1:1 맞춤 출장관리전문가가 출장데이터 분석부터 컨설팅까지</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <aside th:replace="~{layout/side-bar :: sideBarFragment}"></aside>
+
+        <!-- 문의 신청 폼 -->
+        <section class="content">
+            <h2>질문 등록하기</h2>
+            <form method="post" th:action="@{/inquiry}" id="inquiry" onsubmit="return formCheck(this);">
+                <table class="form-table">
+                    <!--<colgroup>
+                        <col style="width: 20%">
+                    </colgroup>-->
+                    <tr>
+                        <td class="col1"> 성명 <span class="warn">*</span></td>
+                        <label class="label-form" for="username"></label>
+                        <td class="col2"><input type="text" name="username" id="username" placeholder="홍길동" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+                        <label class="label-form" for="tel"></label>
+                        <td class="col2"><input type="tel" name="tel" id="tel" placeholder="010-0000-0000" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 이메일 <span class="warn">*</span></td>
+                        <label class="label-form" for="USER_EMAIL"></label>
+                        <td class="col2"><input type="email" name="USER_EMAIL" id="USER_EMAIL" placeholder="example@google.com" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 유형 <span class="warn">*</span></td>
+                        <td class="col2">
+                            <input type="radio" name="type" id="personal" checked>
+                            <label for="personal">개인</label>
+                            <input type="radio" name="type" id="copr">
+                            <label for="personal">기업</label>
+                            <input type="radio" name="type" id="org">
+                            <label for="personal">단체</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1"> 문의구분 <span class="warn">*</span></td>
+                        <td class="col2">
+                            <input type="checkbox" name="businesstrip" id="businesstrip" checked required>
+                            <label for="businesstrip">출장</label>
+                            <input type="checkbox" name="edu" id="edu">
+                            <label for="edu">연수/교육</label>
+                            <input type="checkbox" name="conference" id="conference">
+                            <label for="conference">학회/협회</label>
+                            <input type="checkbox" name="etc" id="etc">
+                            <label for="etc">기타</label>
+                        </td>
+                    </tr>
+                    <!--<tr>
+                        <td class="col1"> 기간 <span class="warn">*</span></td>
+                        <td class="col2">
+                            <div class="date-range">
+                                <input type="date" class="datepicker" name="start_date" required/>
+                                <span class="date-separator">~</span>
+                                <input type="date" class="datepicker" name="end_date" required/>
+                            </div>
+                        </td>
+                    </tr>-->
+                    <tr>
+                        <td class="col1"> 문의내용 <span class="warn">*</span></td>
+                        <td class="col2">
+                            <textarea placeholder="문의내용을 입력하세요." name="content" rows="10" cols="33" required style="width: 100%;height: 18em; "></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">질문등록</button>
+                        </td>
+                    </tr>
+                </table>
+                <p style="text-align: left">※ 개인정보는 상담 이외의 용도로 사용되지 않습니다.</p>
+            </form>
+        </section>
+
+    </div>
+</main>
+<footer th:replace="~{layout/footer :: footerFragment}"></footer>
+
+</body>
+</html>

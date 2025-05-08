@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
@@ -75,7 +75,7 @@
 
             <div class="stories-grid">
                 <div class="story-card">
-                    <img src="/images/mice_success1.jpg" alt="성공 사례 1 이미지" class="story-image">
+                    <img src="/images/company/ceo.png" alt="성공 사례 1 이미지" class="story-image">
                     <div class="story-content">
                         <h3 class="story-title">글로벌 컨퍼런스 개최</h3>
                         <p class="story-description">
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="story-card">
-                    <img src="/images/mice_success2.jpg" alt="성공 사례 2 이미지" class="story-image">
+                    <img src="/images/company/ceo.png" alt="성공 사례 2 이미지" class="story-image">
                     <div class="story-content">
                         <h3 class="story-title">대규모 전시회 운영</h3>
                         <p class="story-description">
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="story-card">
-                    <img src="/images/mice_success3.jpg" alt="성공 사례 3 이미지" class="story-image">
+                    <img src="/images/company/ceo.png" alt="성공 사례 3 이미지" class="story-image">
                     <div class="story-content">
                         <h3 class="story-title">인센티브 투어 기획</h3>
                         <p class="story-description">

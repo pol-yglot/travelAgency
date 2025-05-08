@@ -1,47 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
 <main class="main-content">
     <link href="/css/contact.css" rel="stylesheet">
     <link href="/css/services.css" rel="stylesheet">
-    <div style="height: 30px; display: flex; justify-content: flex-end">
-        <a href="javascript:window.history.back()">뒤로가기↩️</a>
-    </div>
     <div class="container">
-        <aside class="left-nav">
-            <div class="nav-section">
-                <h3>카테고리</h3>
-                <div style="border-bottom: 3px solid black;"></div>
-                <ul>
-                    <li><a th:href="@{/board/contact}">자주 묻는 질문 (FAQ)</a></li>
-                    <li><a th:href="@{/board/boardList}">질문 전체 조회</a></li>
-                </ul>
-            </div>
-            <div class="nav-section">
-                <h3>빠른 링크</h3>
-                <div style="border-bottom: 3px solid black;"></div>
-                <ul>
-                    <li><a href="#">질문 등록하기</a></li>
-                    <li><a th:href="@{/board/boardList(searchType=userId)}">내 질문 내역 보기</a></li>
-                </ul>
-            </div>
-        </aside>
+
+        <aside th:replace="~{layout/side-bar :: sideBarFragment}"></aside>
+
         <section class="content">
-            <h2>🔍 궁금한 점은 검색으로 쉽고 빠르게 확인하세요.</h2>
-            <div class="search-bar">
-                <form id="searchForm" th:action="@{/board/boardList}" method="get">
-                    <select name="searchType" id="searchType" required>
-                        <option value="">구분</option>
-                        <option value="title" th:selected="${searchType == 'title'}">제목</option>
-                        <option value="content" th:selected="${searchType == 'content'}">내용</option>
-                    </select>
-                    <input type="text" id="keyword" name="keyword" th:value="${keyword}" placeholder="검색어를 입력하세요." required>
-                    <button type="submit">검색</button>
-                </form>
-            </div>
             <div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
                 <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
             </div>
@@ -103,14 +73,13 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="search-result-count" style="text-align: right"><span th:text="${'총 게시글 : '+totalBoardCount}"></span></div>
             <button class="pretty-button" type="button" id="boardList" style="width: 100%;margin: 2em 0; padding: 1rem;}">전체 보기</button>
         </section>
     </div>
 </main>
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
-    $(document).ready(function () {
+    $(function () {
 
         window.onpageshow = function(event) {
             if (event.persisted) {
@@ -163,56 +132,6 @@
             $('#sortTypeInput').val(type);
             $('.sort form').submit();
         }
-
-        // 엔터키가 눌렸을 때 실행하는 반응
-        function enterkey() {
-            if(searchType == '' || keyword == ''){
-                alert('검색구분 혹은 검색어를 입력하세요.');
-                return;
-            }
-            if (window.event.keyCode == 13) {
-                $("#searchForm").submit();
-            }
-        }
-
-        $('#searchForm').submit(function(event) {
-            event.preventDefault();
-
-            var keyword = $('#keyword').val().trim();
-
-            $.ajax({
-                url: '/api/boardList',
-                type: 'GET',
-                dataType: 'json',
-                data: { keyword: keyword },
-                success: function(data) {
-                    var html = '';
-                    if (data && data.length > 0) {
-                        $.each(data, function(index, board) {
-                            html += '<tr>';
-                            html += '<td>' + (index + 1) + '</td>';
-                            html += '<td>' + board.board_TITLE + '</td>';
-                            html += '<td>' + board.board_CONTENT + '</td>';
-                            html += '</tr>';
-                        });
-                        $('#readResults tbody').empty().append(html);
-                        $('#searchResults').empty();
-                        $('#keyword').val("");
-                    } else {
-                        $('#searchResults').html('<p class="no-data">검색 결과가 없습니다.</p>');
-                        $('#readResults tbody').empty();
-                        $('#keyword').val("");
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('검색 요청 실패:', error);
-                    alert('검색 에러!');
-                    $('#keyword').val("");
-                }
-            });
-        });
-
-
 
     });
 </script>

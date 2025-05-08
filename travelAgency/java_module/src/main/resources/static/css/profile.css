@@ -25,6 +25,29 @@
     margin-bottom: 2rem;
 }
 
+.profile-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+.profile-section > a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.5em 1em;
+    text-align: center; /* fallback */
+    transition: background 0.2s;
+}
+.profile-section > a:hover{
+    cursor: pointer;
+    background: var(--brand-main-color);
+    color: #fff;
+}
+
 .profile-background {
     position: absolute;
     top: 0;
@@ -46,7 +69,7 @@
     width: 100%;
     height: auto;
     border-radius: 50%;
-    border: 4px solid white;
+    border: 4px solid grey;
     margin-top: 50px;
 }
 form#profile-info{
@@ -63,32 +86,6 @@ form#profile-info{
     flex-direction: column;
     gap: 10px;
     margin-top: 20px;
-}
-
-.profile-btn {
-    display: block;
-    background: #7b4397; /* 버튼 포인트 컬러 */
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
-    margin: 20px 0;
-}
-.logout-btn {
-    display: block;
-    background: #7b4397; /* 버튼 포인트 컬러 */
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
-    margin: 20px 0;
-}
-.profile-btn:hover {
-    background: #5c2a6b; /* hover시 색 살짝 어둡게 */
 }
 
 .profile-settings {
@@ -146,9 +143,6 @@ form#profile-info{
     color: #333;
     cursor: pointer;
 }
-
-
-
 
 /**
 * 브랜드 컬러

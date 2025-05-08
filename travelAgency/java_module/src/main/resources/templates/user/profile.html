@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-<th:block th:replace="/layout/head :: headFragment"></th:block>
+<th:block th:replace="~{/layout/head :: headFragment}"></th:block>
 <body>
 <header th:replace="~{layout/header :: headerFragment}"></header>
 <nav th:replace="~{layout/nav :: navFragment}"></nav>
@@ -15,7 +15,8 @@
                     <p th:text="${user.USER_EMAIL}"></p>
                 </div>
                 <!--<img th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진">-->
-                <img id="profile-avatar" th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진" style="cursor:pointer;" />
+                <img  th:if='${userDetail.USER_PROFILE_IMAGE_URL != ""}' th:src="${userDetail.USER_PROFILE_IMAGE_URL}" alt="프로필 사진" style="cursor:pointer;" />
+                <img  th:if='${userDetail.USER_PROFILE_IMAGE_URL == ""}' src="/images/company/user.png" alt="프로필 기본 사진" style="cursor:pointer;" />
             </div>
         </div>
 
@@ -27,8 +28,9 @@
             </div>-->
 
             <div class="profile-section">
-                <a href="/user/updateProfile" class="profile-btn"  id="edit-profile-button">프로필 수정</a>
-                <a href="/user/dashboard" class="profile-btn"  id="dashboard">대시보드</a>
+                <a href="/user/updateProfile" class="long_btn"  id="edit-profile-button">프로필 수정</a>
+                <a href="/user/dashboard" class="long_btn"  id="dashboard">대시보드</a>
+                <a href="/user/signout" class="long_btn"  id="signout">회원탈퇴</a>
             </div>
 
 
@@ -73,7 +75,7 @@
 
 <footer th:replace="~{layout/footer :: footerFragment}"></footer>
 <script>
-    $(document).ready(function () {
+    $(function () {
 
         $('#edit-profile-button').click(function () {
             location.replace("/user/updateProfile");
