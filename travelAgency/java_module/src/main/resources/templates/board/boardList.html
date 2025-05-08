@@ -23,7 +23,7 @@
                         <option value="">구분</option>
                         <option value="title" th:selected="${searchType == 'title'}">제목</option>
                         <option value="content" th:selected="${searchType == 'content'}">내용</option>
-                        <option value="userId" th:selected="${searchType == 'userId'}">작성자</option>
+                        <option value="userId" th:selected="${searchType == 'userId'}">아이디</option>
                     </select>
                     <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." onkeyup="enterkey(event);" required>
                     <button type="submit">검색</button>
@@ -68,7 +68,7 @@
                     <td th:text="${startIndex + stat.index + 1}"></td> <!-- 역순 -->
                     <td><a href="board/boardDetail" th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}"></span></a></td>
                     <td th:text="${board.BOARD_CONTENT}"></td>
-                    <td th:text="${#strings.isEmpty(board.USER_NAME) ? '게스트' : board.USER_NAME}"></td>
+                    <td th:text="${#strings.isEmpty(board.USER_ACCOUNT) ? '게스트' : board.USER_ACCOUNT}"></td>
                     <td th:text="${board.BOARD_HITS}"></td>
                 </tr>
                 </tbody>
@@ -135,7 +135,7 @@
                 dataType: 'json',
                 data: { page: page, searchType: searchType, keyword: keyword },
                 success: function(pageInfo) {
-                    console.log(pageInfo)
+                    console.log("pageInfo"+pageInfo);
                     $('#readResults tbody').empty();
                     $('.pagination').hide();
                     renderTable(pageInfo.items, pageInfo.pageSize, pageInfo.totalItems, pageInfo.currentPage);
@@ -156,13 +156,13 @@
 
             if (totalItems > 0){
                 $.each(items, function(i, board){
-                    var username = board.user_NAME ? board.user_NAME : '게스트';
+                    var useraccount = board.user_ACCOUNT ? board.user_ACCOUNT : '게스트';
                     html += '<tr style="text-align: center">';
                     html +=   '<td>' + (startIndex + i + 1) + '</td>';
                     html +=   '<td><a href="/board/boardDetail?BOARD_ID='
                         + board.board_ID + '">' + board.board_TITLE + '</a></td>';
                     html +=   '<td>' + board.board_CONTENT + '</td>';
-                    html +=   '<td>' + username + '</td>';
+                    html +=   '<td>' + useraccount + '</td>';
                     html +=   '<td>' + board.board_HITS + '</td>';
                     html += '</tr>';
                 });
@@ -177,8 +177,11 @@
 
         // 3) 페이징 버튼 렌더링
         function renderPagination(currentPage, totalPages) {
+            debugger;
+
             var html = '';
             if(totalPages > 0){
+                $('.pagination').children().remove();
                 $('.pagination').show();
 
                 if (currentPage > 1) {
@@ -196,7 +199,7 @@
                 }
             }
 
-            $('#pagination-container').html(html);
+            $('.pagination').html(html);
         }
 
         // 4) 이벤트 바인딩
@@ -205,7 +208,7 @@
             doSearch(1);
         });
 
-        $('#pagination-container').on('click', '.page-btn', function(){
+        $('.pagination').on('click', '.page-btn', function(){
             var page = $(this).data('page');
             doSearch(page);
         });
