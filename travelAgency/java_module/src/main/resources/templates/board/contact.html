@@ -9,10 +9,10 @@
     <link href="/css/services.css" rel="stylesheet">
     <div class="container">
 
-        <aside th:replace="~{layout/side-bar :: sideBarFragment}"></aside>
+        <!--<aside th:replace="~{layout/side-bar :: sideBarFragment}"></aside>-->
 
         <section class="content">
-            <div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
+            <!--<div class="notice" style="font-size: large; background-color: aliceblue; padding: 10px;">
                 <a><strong>🚨공지 </strong> [안내] 사이트 점검 안내 4/1</a>
             </div>
 
@@ -23,7 +23,7 @@
                 <a href="#">출장 관리</a>
                 <a href="#">견적 문의</a>
                 <a href="#">회원가입</a>
-            </div>
+            </div>-->
             <h2>❓ 자주 묻는 질문 FAQ</h2>
             <div class="accordion">
                 <div class="accordion-item">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <table id="readResults">
+            <!--<table id="readResults">
                 <h2>🗂️ 가장 많이 조회된 질문 TOP5</h2>
                 <thead>
                 <tr>
@@ -66,14 +66,14 @@
                 </thead>
                 <tbody>
                 <tr th:each="board, stat : ${boardList}" style="text-align: center;">
-                    <td name="stat" th:text="${stat.index+1}"></td> <!-- 역순 -->
+                    <td name="stat" th:text="${stat.index+1}"></td> &lt;!&ndash; 역순 &ndash;&gt;
                     <td name="title"><a th:href="@{/board/boardDetail(BOARD_ID=${board.BOARD_ID})}"><span th:text="${board.BOARD_TITLE}"></span></a></td>
                     <td name="content" th:text="${board.BOARD_CONTENT}"></td>
                     <td name="hits" th:text="${board.BOARD_HITS}"></td>
                 </tr>
                 </tbody>
             </table>
-            <button class="pretty-button" type="button" id="boardList" style="width: 100%;margin: 2em 0; padding: 1rem;}">전체 보기</button>
+            <button class="pretty-button" type="button" id="boardList" style="width: 100%;margin: 2em 0; padding: 1rem;}">전체 보기</button>-->
         </section>
     </div>
 </main>

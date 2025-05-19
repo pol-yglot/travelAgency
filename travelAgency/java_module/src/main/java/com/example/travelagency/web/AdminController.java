@@ -14,6 +14,11 @@ public class AdminController {
         return "admin/index";
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "admin/test";
+    }
+
     @GetMapping("/views")
     public String views(@RequestParam("name") String name) {
         if(name.equals("components")) {
