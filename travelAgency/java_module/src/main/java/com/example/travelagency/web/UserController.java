@@ -153,7 +153,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> signout(@RequestParam String useraccount, HttpServletRequest request) {
         int result = userService.userSignout(useraccount);
-        if (result > 0) {
+        if (result < 1) {
             // 세션 무효화
             request.getSession().invalidate();
             // Spring Security 인증 제거

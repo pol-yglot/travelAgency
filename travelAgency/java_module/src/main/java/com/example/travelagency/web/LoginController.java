@@ -39,5 +39,10 @@ public class LoginController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/user/login";
+    }
 
 }

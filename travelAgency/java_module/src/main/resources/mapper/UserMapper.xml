@@ -113,7 +113,35 @@
     </insert>
 
     <insert id="insertInquiry" parameterType="com.example.travelagency.vo.InquiryVO">
-
+        INSERT INTO tb_inquiry (
+            USER_ID,
+            INQUIRY_CONTENT,
+            CREATED_AT,
+            UPDATED_AT,
+            USER_ACCOUNT,
+            USER_NAME,
+            USER_PHONE,
+            INQUIRY_TITLE,
+            USER_EMAIL,
+            USER_TYPE,
+            INQ_TYPE,
+            START_DATE,
+            END_DATE
+        ) VALUES (
+             IFNULL(#{USER_ID}, 0),
+             #{INQUIRY_CONTENT},
+             NOW(),
+             NOW(),
+             IFNULL(#{USER_ACCOUNT}, '비로그인'),
+             #{USER_NAME},
+             #{USER_PHONE},
+             #{INQUIRY_TITLE},
+             #{USER_EMAIL},
+             #{USER_TYPE},
+             #{INQ_TYPE},
+             #{START_DATE},
+             #{END_DATE}
+         )
     </insert>
 
     <select id="getInquiryList" parameterType="int">

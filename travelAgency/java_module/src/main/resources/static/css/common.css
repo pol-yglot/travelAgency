@@ -154,7 +154,7 @@ img {
 
 /* 메인 콘텐츠 스타일 */
 .main-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -364,7 +364,8 @@ section {
 
 /* 푸터 스타일 */
 footer {
-    background-color: #f8f8f8;
+    background-color: #000;
+    color: #fff;
     padding: 2rem 1rem;
     text-align: left;
     border-top: 1px solid #eee;
@@ -807,7 +808,7 @@ a.pretty-button:hover {
 }
 
 .slick-prev, .slick-next {
-    font-size: 30px;
+    font-size: 50px;
     color: #fff;
     position: absolute;
     top: 50%;
@@ -819,11 +820,11 @@ a.pretty-button:hover {
 }
 
 .slick-prev {
-    left: 10px;
+    left: 20px;
 }
 
 .slick-next {
-    right: 10px;
+    right: 20px;
 }
 
 /* dots 기본 스타일 */
@@ -882,7 +883,7 @@ a.pretty-button:hover {
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
-    min-height: calc(100vh - 500px); /* header/nav/footer 높이에 맞춰 조절 */
+    min-height: calc(100vh - 400px); /* header/nav/footer 높이에 맞춰 조절 */
     background: #f9f9f9;
 }
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<form method="post" th:action="@{/service/inquiry}" id="inquiry">
+  <table class="form-table" th:fragment="inquiryFragment">
+    <!--<colgroup>
+        <col style="width: 20%">
+    </colgroup>-->
+    <tr>
+      <td class="col1"> 제목</td>
+      <label class="label-form" for="title"></label>
+      <td class="col2"><input type="text" name="INQUIRY_TITLE" id="title" placeholder="제목" required/></td>
+    </tr>
+    <tr>
+      <td class="col1"> 성명 <span class="warn">*</span></td>
+      <label class="label-form" for="username"></label>
+      <td class="col2"><input type="text" name="USER_NAME" id="username" placeholder="홍길동" required></td>
+    </tr>
+    <tr>
+      <td class="col1"> 휴대폰번호 <span class="warn">*</span></td>
+      <label class="label-form" for="tel"></label>
+      <td class="col2"><input type="tel" name="USER_PHONE" id="tel" placeholder="010-0000-0000" required></td>
+    </tr>
+    <tr>
+      <td class="col1"> 이메일 <span class="warn">*</span></td>
+      <label class="label-form" for="USER_EMAIL"></label>
+      <td class="col2"><input type="email" name="USER_EMAIL" id="USER_EMAIL" placeholder="example@google.com" required></td>
+    </tr>
+    <tr>
+      <td class="col1"> 유형 <span class="warn">*</span></td>
+      <td class="col2">
+        <input type="radio" name="USER_TYPE" id="personal" value="personal" checked>
+        <label for="personal">개인</label>
+        <input type="radio" name="USER_TYPE" id="copr" value="copr">
+        <label for="personal">기업</label>
+        <input type="radio" name="USER_TYPE" id="org" value="org">
+        <label for="personal">단체</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="col1"> 문의구분 <span class="warn">*</span></td>
+      <td class="col2">
+        <input type="checkbox" name="INQ_TYPE" id="businesstrip" value="businesstrip" checked required>
+        <label for="businesstrip">출장</label>
+        <input type="checkbox" name="INQ_TYPE" id="edu" value="edu">
+        <label for="edu">연수/교육</label>
+        <input type="checkbox" name="INQ_TYPE" id="conference" value="conference">
+        <label for="conference">학회/협회</label>
+        <input type="checkbox" name="INQ_TYPE" id="etc" value="etc">
+        <label for="etc">기타</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="col1"> 기간 <span class="warn">*</span></td>
+      <td class="col2">
+        <div class="date-range">
+          <input type="date" class="datepicker" name="START_DATE" required/>
+          <span class="date-separator">~</span>
+          <input type="date" class="datepicker" name="END_DATE" required/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="col1"> 문의내용 <span class="warn">*</span></td>
+      <td class="col2">
+        <textarea placeholder="문의내용을 입력하세요." name="INQUIRY_CONTENT" rows="10" cols="33" required style="width: 100%;height: 18em; "></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button type="submit">견적문의</button>
+      </td>
+    </tr>
+  </table>
+  <p style="text-align: left">※ 개인정보는 상담 이외의 용도로 사용되지 않습니다.</p>
+</form>
+</html>
